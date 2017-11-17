@@ -3,26 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SimuladorBatalha;
+package SimuladorBatalha.Ataques;
 
 /**
  *
  * @author miche
  */
-public class AtaqueStatus extends Ataque {
-    private int status;
+public class AtaqueModifier extends Ataque {
+    private int mod;
+    private int n;
     private int chance;
     //geters
-    public int getStatus() {
-        return status;
+    public int getMod() {
+        return mod;
+    }
+
+    public int getN() {
+        return n;
     }
 
     public int getChance() {
         return chance;
     }
     //seters
-    public void setStatus(int status) {
-        this.status = status;
+    public void setMod(int mod) {
+        this.mod = mod;
+    }
+
+    public void setN(int n) {
+        this.n = n;
     }
 
     public void setChance(int chance) {

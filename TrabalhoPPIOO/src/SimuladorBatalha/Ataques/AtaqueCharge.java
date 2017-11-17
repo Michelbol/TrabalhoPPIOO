@@ -3,23 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SimuladorBatalha;
+package SimuladorBatalha.Ataques;
 
 /**
  *
  * @author miche
  */
-public class AtaqueFixo extends Ataque {
-    private int val;
-    //geters
-    public int getVal() {
-        return val;
-    }
-    //seters
-    public void setVal(int val) {
-        this.val = val;
-    }
-    //métodos
+public class AtaqueCharge extends Ataque{
     @Override
     public void efeito(){
         
