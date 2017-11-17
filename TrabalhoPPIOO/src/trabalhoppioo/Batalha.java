@@ -12,6 +12,7 @@ package trabalhoppioo;
 public class Batalha {
     public void carregarTabelas(){
         //vai carregar as informações dos atributos e informações dos anexos
+        int teste;
     }
     public void inicializarJogadores(){
         //vai inicializar as informações dos jogadores
