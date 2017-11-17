@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SimuladorBatalha.Jogador;
-
-import SimuladorBatalha.Jogador.Jogador;
+package br.uem.din.SimuladorBatalha.Enum;
 
 /**
  *
  * @author miche
  */
-public class Computador extends Jogador {
-    
-    @Override
-    public void escolherComando(){
-        
-    }
+public enum Status {
+    OK, FAINTED, BURN, FROZEN, PARALYSIS, POISON, SLEEP;
 }

@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SimuladorBatalha.Ataques;
+package br.uem.din.SimuladorBatalha.Jogador;
+
+import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 
 /**
  *
  * @author miche
  */
-public class AtaqueCharge extends Ataque{
+public class Computador extends Jogador {
+    
     @Override
-    public void efeito(){
+    public void escolherComando(){
         
     }
 }
