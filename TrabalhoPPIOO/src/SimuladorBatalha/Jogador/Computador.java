@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SimuladorBatalha;
+package SimuladorBatalha.Jogador;
+
+import SimuladorBatalha.Jogador.Jogador;
 
 /**
  *
  * @author miche
  */
-public enum Tipo {
-    NONE, BUG, DRAGON, ELETRIC, FIGHTING, FIRE, FLYING, ICE, GHOST, GRASS, GROUND, NORMAL, POISON, PSYCHIC, ROCK, WATER;
+public class Computador extends Jogador {
+    
+    @Override
+    public void escolherComando(){
+        
+    }
 }
