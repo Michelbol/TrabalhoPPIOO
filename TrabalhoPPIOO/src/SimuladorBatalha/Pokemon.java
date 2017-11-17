@@ -148,6 +148,7 @@ public class Pokemon {
         this.flinch = flinch;
     }
     
+    //métodos
     public double valorAtributo(){
        double valorAtributo = 0;
         return valorAtributo;
