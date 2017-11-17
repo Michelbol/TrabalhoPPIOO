@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalhoppioo;
+package SimuladorBatalha;
 
 /**
  *
  * @author miche
  */
-public class Computador extends Jogador {
+public class Humano extends Jogador {
     
     @Override
     public void escolherComando(){
