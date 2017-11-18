@@ -5,6 +5,8 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
+
 /**
  *
  * @author miche
@@ -25,6 +27,7 @@ public class Pokemon {
     private int modifierSpd;
     private boolean confusion;
     private boolean flinch;
+    private Status statusPrimario;
 
     //Geters
     public int getLevel() {
@@ -87,6 +90,10 @@ public class Pokemon {
         return flinch;
     }
 
+    public Status getStatusPrimario() {
+        return statusPrimario;
+    }
+
     //Seters
     public void setLevel(int level) {
         this.level = level;
@@ -146,6 +153,10 @@ public class Pokemon {
 
     public void setFlinch(boolean flinch) {
         this.flinch = flinch;
+    }
+    
+    public void setStatusPrimario(Status statusPrimario) {
+        this.statusPrimario = statusPrimario;
     }
     
     //métodos

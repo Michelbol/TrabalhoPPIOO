@@ -10,5 +10,5 @@ package br.uem.din.SimuladorBatalha.Enum;
  * @author miche
  */
 public enum Tipo {
-    NONE, BUG, DRAGON, ELETRIC, FIGHTING, FIRE, FLYING, ICE, GHOST, GRASS, GROUND, NORMAL, POISON, PSYCHIC, ROCK, WATER;
+    None, Bug, Dragon, Electric, Fighting, Fire, Flying, Ice, Ghost, Grass, Ground, Normal, Poison, Psychic, Rock, Water;
 }

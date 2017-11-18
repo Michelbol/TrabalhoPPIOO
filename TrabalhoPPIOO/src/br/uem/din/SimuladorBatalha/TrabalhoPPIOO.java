@@ -5,17 +5,22 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author miche
  */
 public class TrabalhoPPIOO {
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        List<Especie> especies = new ArrayList();
+        Batalha batalha = new Batalha();
+        especies = batalha.carregarTabelas();
     }
     
 }
