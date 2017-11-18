@@ -31,9 +31,9 @@ public class AtaqueStatus extends Ataque {
     }
     @Override
     public String toString() {
-        return "AtaqueCharge{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+        return "AtaqueStatus{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
                 getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() +
-                ", status:" + status + ", chance:" + chance + '}';
+                ", status:" + status + ", chance:" + chance + '}' + "\n";
     }
     //métodos
     @Override

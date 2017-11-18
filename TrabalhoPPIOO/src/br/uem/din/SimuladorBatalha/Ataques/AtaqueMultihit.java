@@ -32,9 +32,9 @@ public class AtaqueMultihit extends Ataque {
     
     @Override
     public String toString() {
-        return "AtaqueCharge{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+        return "AtaqueMultihit{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
                 getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() +
-                ", min:" + min + ", max:" + max + '}';
+                ", min:" + min + ", max:" + max + '}' + "\n";
     }
     //métodos
     @Override

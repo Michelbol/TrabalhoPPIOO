@@ -23,7 +23,8 @@ public class AtaqueFixo extends Ataque {
     @Override
     public String toString() {
         return "AtaqueFixo{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
-                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + ", val=" + val + '}';
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + 
+                ", val=" + val + '}' + "\n";
     }
     //métodos
     @Override

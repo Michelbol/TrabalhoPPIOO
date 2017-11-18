@@ -34,11 +34,22 @@ public class AtaqueHP extends Ataque {
     public String toString() {
         return "AtaqueHP{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
                 getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + 
-                ", valor=" + valor + ", porcentagem=" + porcentagem + '}';
+                ", valor=" + valor + ", porcentagem=" + porcentagem + '}' + "\n";
     }
     //métodos
     @Override
     public void efeito(){
         
+    }
+    
+    public AtaqueHP copiaAtaque(Ataque ataque){
+        AtaqueHP ataquehp = new AtaqueHP();
+        ataquehp.setId(ataque.getId());
+        ataquehp.setNome(ataque.getNome());
+        ataquehp.setTipo(ataque.getTipo());
+        ataquehp.setPpAtual(ataque.getPpAtual());
+        ataquehp.setPower(ataque.getPower());
+        ataquehp.setAccuracy(ataque.getAccuracy());
+        return ataquehp;
     }
 }

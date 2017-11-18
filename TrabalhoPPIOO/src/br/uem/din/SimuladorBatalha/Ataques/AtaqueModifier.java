@@ -40,9 +40,9 @@ public class AtaqueModifier extends Ataque {
     }
     @Override
     public String toString() {
-        return "AtaqueHP{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+        return "AtaqueModifier{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
                 getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + 
-                ", mod=" + mod + ", n=" + n + ", chance=" + chance + '}';
+                ", mod=" + mod + ", n=" + n + ", chance=" + chance + '}' + "\n";
     }
     //métodos
     @Override

@@ -81,7 +81,8 @@ public class Ataque {
 
     @Override
     public String toString() {
-        return "Ataque{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ppMax=" + ppMax + ", ppAtual=" + ppAtual + ", power=" + power + ", accuracy=" + accuracy + '}';
+        return "AtaqueComum{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ppMax=" + ppMax + ", ppAtual=" +
+                ppAtual + ", power=" + power + ", accuracy=" + accuracy + '}'+"\n";
     }
     
     //métodos
