@@ -11,6 +11,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
  */
 public class AtaqueFixo extends Ataque {
     private int val;
+    
     //geters
     public int getVal() {
         return val;
@@ -18,6 +19,11 @@ public class AtaqueFixo extends Ataque {
     //seters
     public void setVal(int val) {
         this.val = val;
+    }
+    @Override
+    public String toString() {
+        return "AtaqueFixo{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + ", val=" + val + '}';
     }
     //métodos
     @Override

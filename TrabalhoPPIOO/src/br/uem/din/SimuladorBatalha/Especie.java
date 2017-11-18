@@ -97,13 +97,17 @@ public class Especie {
     public void setBaseSpd(double baseSpd) {
         this.baseSpd = baseSpd;
     }
+    //tooString
+    @Override
+    public String toString() {
+        return "Especie{" + "id=" + id + ", nome=" + nome + ", tipo1=" + tipo1 + ", tipo2=" + tipo2 + ", baseHp=" + baseHp + ", baseAtk=" + baseAtk + ", baseDef=" + baseDef + ", baseSpe=" + baseSpe + ", baseSpd=" + baseSpd + '}'+"\n";
+    }
 
-
-    
-    
     //métodos
     public double calcularAtributo(){
         int calcularAtributo = 0;
         return calcularAtributo;
     }
+
+    
 }

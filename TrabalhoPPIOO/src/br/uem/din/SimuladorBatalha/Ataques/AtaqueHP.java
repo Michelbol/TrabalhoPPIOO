@@ -12,6 +12,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 public class AtaqueHP extends Ataque {
     private int valor;
     private int porcentagem;
+    
     //geters
     public int getValor() {
         return valor;
@@ -27,6 +28,13 @@ public class AtaqueHP extends Ataque {
 
     public void setPorcentagem(int porcentagem) {
         this.porcentagem = porcentagem;
+    }
+    
+    @Override
+    public String toString() {
+        return "AtaqueHP{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + 
+                ", valor=" + valor + ", porcentagem=" + porcentagem + '}';
     }
     //métodos
     @Override

@@ -12,6 +12,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 public class AtaqueStatus extends Ataque {
     private int status;
     private int chance;
+    
     //geters
     public int getStatus() {
         return status;
@@ -27,6 +28,12 @@ public class AtaqueStatus extends Ataque {
 
     public void setChance(int chance) {
         this.chance = chance;
+    }
+    @Override
+    public String toString() {
+        return "AtaqueCharge{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() +
+                ", status:" + status + ", chance:" + chance + '}';
     }
     //métodos
     @Override

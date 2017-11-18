@@ -13,6 +13,7 @@ public class AtaqueModifier extends Ataque {
     private int mod;
     private int n;
     private int chance;
+    
     //geters
     public int getMod() {
         return mod;
@@ -36,6 +37,12 @@ public class AtaqueModifier extends Ataque {
 
     public void setChance(int chance) {
         this.chance = chance;
+    }
+    @Override
+    public String toString() {
+        return "AtaqueHP{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() + 
+                ", mod=" + mod + ", n=" + n + ", chance=" + chance + '}';
     }
     //métodos
     @Override

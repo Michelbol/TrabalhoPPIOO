@@ -12,6 +12,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 public class AtaqueMultihit extends Ataque {
     private int min;
     private int max;
+    
     //geters
     public int getMin() {
         return min;
@@ -27,6 +28,13 @@ public class AtaqueMultihit extends Ataque {
 
     public void setMax(int max) {
         this.max = max;
+    }
+    
+    @Override
+    public String toString() {
+        return "AtaqueCharge{" + "id=" + getId() + ", nome=" + getNome() + ", tipo=" + getTipo() + ", ppMax=" + 
+                getPpMax() + ", ppAtual=" + getPpAtual() + ", power=" + getPower() + ", accuracy=" + getAccuracy() +
+                ", min:" + min + ", max:" + max + '}';
     }
     //métodos
     @Override

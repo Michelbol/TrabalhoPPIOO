@@ -5,6 +5,13 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueCharge;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueFixo;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueHP;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,14 +28,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class Batalha {
     private static final String FILENAME = "C:\\Projetos\\Java\\TrabalhoPPIOO\\Tabelas.xlsx";
-    public List carregarTabelas(){
+    public void carregarTabelas(List<Especie> listaEspecies, List<Ataque> listaAtaques){
         //vai carregar as informações dos atributos e informações dos anexos
-        List<Especie> listaEspecies = new ArrayList<Especie>();
+        listaEspecies = new ArrayList<Especie>();
         try{
             FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
              XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
-             XSSFSheet sheetAlunos = workbook.getSheetAt(0);
-             Iterator<Row> rowIterator = sheetAlunos.iterator();
+             XSSFSheet sheetSpecies = workbook.getSheetAt(0);
+             Iterator<Row> rowIterator = sheetSpecies.iterator();
              
               while (rowIterator.hasNext()) {
                   Row row = rowIterator.next();
@@ -90,7 +97,75 @@ public class Batalha {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return listaEspecies;
+        listaAtaques = new ArrayList();
+        try{
+            FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
+             XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
+             XSSFSheet sheetAtaques = workbook.getSheetAt(1);
+             Iterator<Row> rowIterator = sheetAtaques.iterator();
+             
+              while (rowIterator.hasNext()) {
+                  Row row = rowIterator.next();
+                  Iterator<Cell> cellIterator = row.cellIterator();
+               
+                  Ataque ataque = new Ataque();
+                  while(cellIterator.hasNext()){
+                      Cell cell = cellIterator.next();
+                      switch(cell.getColumnIndex()){
+                          case 6:
+                              if(cell.getStringCellValue().equals("status")){
+                                  ataque = new AtaqueStatus();
+                                  listaAtaques.add(ataque);
+                              }else if(cell.getStringCellValue().equals("modifier")){
+                                  ataque = new AtaqueModifier();
+                                  listaAtaques.add(ataque);
+                              }else if(cell.getStringCellValue().equals("multihit")){
+                                  ataque = new AtaqueMultihit();
+                                  listaAtaques.add(ataque);
+                              }else if(cell.getStringCellValue().equals("hp")){
+                                  ataque = new AtaqueHP();
+                                  listaAtaques.add(ataque);
+                              }else if(cell.getStringCellValue().equals("charge")){
+                                  ataque = new AtaqueCharge();
+                                  listaAtaques.add(ataque);
+                              }else if(cell.getStringCellValue().equals("fixo")){
+                                  ataque = new AtaqueFixo();
+                                  listaAtaques.add(ataque);
+                              }else{
+                                  listaAtaques.add(ataque);
+                              }                                 
+                              break;
+                          case 0:
+                              ataque.setId((int) cell.getNumericCellValue());
+                              break;
+                          case 1:
+                              ataque.setNome(cell.getStringCellValue());
+                              break;
+                          case 2:
+                              String stringTipo = cell.getStringCellValue();
+                              try{
+                                Tipo tipo = Tipo.valueOf(stringTipo);
+                                ataque.setTipo(tipo);
+                              }catch(Exception e){
+                                  System.out.println(e.getMessage() + " " + "Valor da Tabela: " + stringTipo);
+                              }
+                              break;
+                          case 3:
+                              ataque.setPpAtual(cell.getNumericCellValue());
+                              break;
+                          case 4:
+                              ataque.setPower((int) cell.getNumericCellValue());
+                              break;
+                          case 5:
+                              ataque.setAccuracy((int) cell.getNumericCellValue());
+                              break;
+                      }
+                  }
+              }
+              arquivo.close();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void inicializarJogadores(){

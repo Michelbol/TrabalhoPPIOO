@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,10 @@ public class TrabalhoPPIOO {
     public static void main(String[] args) {
         // TODO code application logic here
         List<Especie> especies = new ArrayList();
+        List<Ataque> ataque = new ArrayList();
         Batalha batalha = new Batalha();
-        especies = batalha.carregarTabelas();
+        batalha.carregarTabelas(especies, ataque);
+        
     }
     
 }
