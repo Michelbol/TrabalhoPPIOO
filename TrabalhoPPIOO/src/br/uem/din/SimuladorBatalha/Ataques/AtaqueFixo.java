@@ -31,4 +31,14 @@ public class AtaqueFixo extends Ataque {
     public void efeito(){
         
     }
+    public AtaqueFixo copiaAtaque(Ataque ataque){
+        AtaqueFixo ataquefixo = new AtaqueFixo();
+        ataquefixo.setId(ataque.getId());
+        ataquefixo.setNome(ataque.getNome());
+        ataquefixo.setTipo(ataque.getTipo());
+        ataquefixo.setPpAtual(ataque.getPpAtual());
+        ataquefixo.setPower(ataque.getPower());
+        ataquefixo.setAccuracy(ataque.getAccuracy());
+        return ataquefixo;
+    }
 }

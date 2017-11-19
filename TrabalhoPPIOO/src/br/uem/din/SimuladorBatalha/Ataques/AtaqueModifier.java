@@ -10,12 +10,12 @@ package br.uem.din.SimuladorBatalha.Ataques;
  * @author miche
  */
 public class AtaqueModifier extends Ataque {
-    private int mod;
+    private String mod;
     private int n;
     private int chance;
     
     //geters
-    public int getMod() {
+    public String getMod() {
         return mod;
     }
 
@@ -27,7 +27,7 @@ public class AtaqueModifier extends Ataque {
         return chance;
     }
     //seters
-    public void setMod(int mod) {
+    public void setMod(String mod) {
         this.mod = mod;
     }
 
@@ -48,5 +48,15 @@ public class AtaqueModifier extends Ataque {
     @Override
     public void efeito(){
         
+    }
+    public AtaqueModifier copiaAtaque(Ataque ataque){
+        AtaqueModifier ataqueModifier = new AtaqueModifier();
+        ataqueModifier.setId(ataque.getId());
+        ataqueModifier.setNome(ataque.getNome());
+        ataqueModifier.setTipo(ataque.getTipo());
+        ataqueModifier.setPpAtual(ataque.getPpAtual());
+        ataqueModifier.setPower(ataque.getPower());
+        ataqueModifier.setAccuracy(ataque.getAccuracy());
+        return ataqueModifier;
     }
 }

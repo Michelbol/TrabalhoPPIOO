@@ -10,11 +10,11 @@ package br.uem.din.SimuladorBatalha.Ataques;
  * @author miche
  */
 public class AtaqueStatus extends Ataque {
-    private int status;
+    private String status;
     private int chance;
     
     //geters
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -22,7 +22,7 @@ public class AtaqueStatus extends Ataque {
         return chance;
     }
     //seters
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -39,5 +39,15 @@ public class AtaqueStatus extends Ataque {
     @Override
     public void efeito(){
         
+    }
+    public AtaqueStatus copiaAtaque(Ataque ataque){
+        AtaqueStatus ataquestatus = new AtaqueStatus();
+        ataquestatus.setId(ataque.getId());
+        ataquestatus.setNome(ataque.getNome());
+        ataquestatus.setTipo(ataque.getTipo());
+        ataquestatus.setPpAtual(ataque.getPpAtual());
+        ataquestatus.setPower(ataque.getPower());
+        ataquestatus.setAccuracy(ataque.getAccuracy());
+        return ataquestatus;
     }
 }

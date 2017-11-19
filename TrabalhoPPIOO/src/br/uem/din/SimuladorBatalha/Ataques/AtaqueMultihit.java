@@ -41,4 +41,15 @@ public class AtaqueMultihit extends Ataque {
     public void efeito(){
         
     }
+    
+    public AtaqueMultihit copiaAtaque(Ataque ataque){
+        AtaqueMultihit ataquemultihit = new AtaqueMultihit();
+        ataquemultihit.setId(ataque.getId());
+        ataquemultihit.setNome(ataque.getNome());
+        ataquemultihit.setTipo(ataque.getTipo());
+        ataquemultihit.setPpAtual(ataque.getPpAtual());
+        ataquemultihit.setPower(ataque.getPower());
+        ataquemultihit.setAccuracy(ataque.getAccuracy());
+        return ataquemultihit;
+    }
 }

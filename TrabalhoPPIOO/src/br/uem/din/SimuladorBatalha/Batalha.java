@@ -139,41 +139,56 @@ public class Batalha {
                             case 6:
                                 if(cell.getStringCellValue().equals("status")){
                                     AtaqueStatus ataquestatus = new AtaqueStatus();
-                                    ataquestatus = (AtaqueStatus) ataque;
+                                    ataquestatus = ataquestatus.copiaAtaque(ataque);
+                                    Cell parametro = cellIterator.next();
+                                    ataquestatus.setStatus(primeiroParametro(parametro.getStringCellValue()));
+                                    ataquestatus.setChance(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
                                     listaAtaques.add(ataquestatus);
                                     break;
                                 }else if(cell.getStringCellValue().equals("modifier")){
                                     AtaqueModifier ataquemodifier = new AtaqueModifier();
-                                    ataquemodifier = (AtaqueModifier) ataque;
+                                    ataquemodifier = ataquemodifier.copiaAtaque(ataque);
+                                    Cell parametro = cellIterator.next();
+                                    ataquemodifier.setMod(primeiroParametro(parametro.getStringCellValue()));
+                                    ataquemodifier.setN(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
+                                    ataquemodifier.setChance(Integer.parseInt(terceiroParametro(parametro.getStringCellValue())));
                                     listaAtaques.add(ataquemodifier);
                                     break;
                                 }else if(cell.getStringCellValue().equals("multihit")){
                                     AtaqueMultihit ataquemultihit = new AtaqueMultihit();
-                                    ataquemultihit = (AtaqueMultihit) ataque;
+                                    ataquemultihit = ataquemultihit.copiaAtaque(ataque);
+                                    Cell parametro = cellIterator.next();
+                                    ataquemultihit.setMin(Integer.parseInt(primeiroParametro(parametro.getStringCellValue())));
+                                    ataquemultihit.setMax(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
                                     listaAtaques.add(ataquemultihit);
                                     break;
                                 }else if(cell.getStringCellValue().equals("hp")){
                                     AtaqueHP ataquehp = new AtaqueHP();
-                                    ataquehp.copiaAtaque(ataque);
+                                    ataquehp = ataquehp.copiaAtaque(ataque);
                                     Cell parametro = cellIterator.next();
-                                    ataquehp.setValor(0);
+                                    ataquehp.setPorcentagem((int) (Double.parseDouble(segundoParametro(parametro.getStringCellValue()))*100));
                                     listaAtaques.add(ataquehp);
                                     break;
                                 }else if(cell.getStringCellValue().equals("charge")){
                                     AtaqueCharge ataquecharge = new AtaqueCharge();
-                                    ataquecharge = (AtaqueCharge) ataque;
+                                    ataquecharge = ataquecharge.copiaAtaque(ataque);
                                     listaAtaques.add(ataquecharge);
                                     break;
                                 }else if(cell.getStringCellValue().equals("fixo")){
                                     AtaqueFixo ataquefixo = new AtaqueFixo();
-                                    ataquefixo = (AtaqueFixo) ataque;
+                                    ataquefixo = ataquefixo.copiaAtaque(ataque);
+                                    Cell parametro = cellIterator.next();
+                                    try{
+                                        ataquefixo.setVal((int) parametro.getNumericCellValue());
+                                    }catch(Exception e){
+                                        System.out.println("Parametro é uma string id:" + ataquefixo.getId());
+                                    }
                                     listaAtaques.add(ataquefixo);
                                     break;
                                 }else{
                                     listaAtaques.add(ataque);
                                     break;
-                                }
-                                
+                                } 
                         }
                     }
             }
@@ -196,14 +211,20 @@ public class Batalha {
     }
     
     public String primeiroParametro(String parametro){
-        int i = parametro.indexOf(",");
-        String string = parametro.substring(0, i);
-        return string;
+        String[] parametros = parametro.split(",");
+        String primeiroParametro = parametros[0];
+        return primeiroParametro;
     }
     public String segundoParametro(String parametro){
-        pareiaqui
-        //implementar
-        
-        return parametro;
+        String[] parametros = parametro.split(",");
+        String segundoParametro = parametros[1];
+        segundoParametro = segundoParametro.replace(" ", "");
+        return segundoParametro;
+    }
+    public String terceiroParametro(String parametro){
+        String[] parametros = parametro.split(",");
+        String terceiroParametro = parametros[2];
+        terceiroParametro = terceiroParametro.replace(" ", "");
+        return terceiroParametro;
     }
 }
