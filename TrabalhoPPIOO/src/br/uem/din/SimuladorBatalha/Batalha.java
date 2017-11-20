@@ -13,6 +13,8 @@ import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
+import br.uem.din.SimuladorBatalha.Jogador.Jogador;
+import br.uem.din.SimuladorBatalha.Jogador.Time;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -41,7 +43,6 @@ public class Batalha {
               while (rowIterator.hasNext()) {
                   Row row = rowIterator.next();
                   Iterator<Cell> cellIterator = row.cellIterator();
-               
                   Especie especie = new Especie();
                   listaEspecies.add(especie);
                   while(cellIterator.hasNext()){
@@ -181,7 +182,7 @@ public class Batalha {
                                     try{
                                         ataquefixo.setVal((int) parametro.getNumericCellValue());
                                     }catch(Exception e){
-                                        System.out.println("Parametro é uma string id:" + ataquefixo.getId());
+//                                        System.out.println("Parametro é uma string id:" + ataquefixo.getId());
                                     }
                                     listaAtaques.add(ataquefixo);
                                     break;
@@ -202,8 +203,24 @@ public class Batalha {
         return tabelas;
     }
     
-    public void inicializarJogadores(){
+    public Jogador inicializarJogadores(String[] args, List tabelas){
         //vai inicializar as informações dos jogadores
+        List listaEspecies = new ArrayList();
+        List listaAtaques = new ArrayList();
+        listaEspecies = (List) tabelas.get(0);
+        listaAtaques = (List) tabelas.get(1);
+        Time time = new Time();
+        Jogador jogador = new Jogador();
+        Especie especie = new Especie();
+        Pokemon pokemon = new Pokemon();
+        time.setNumeroPokemonsTime(Integer.parseInt(args[0].substring(1, 2)));
+        especie.setId(Integer.parseInt(args[0].substring(2, 5)));
+//        System.out.println("A especie é a: " + especie.getId());
+//        System.out.println("O indice da Especie eh: " + tabelas.contains(especie));
+        System.out.println(listaEspecies);
+        
+        jogador.setTime(time);
+        return jogador;
     }
 
     public void executarTurno(){

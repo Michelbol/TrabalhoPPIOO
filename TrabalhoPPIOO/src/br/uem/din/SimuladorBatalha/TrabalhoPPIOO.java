@@ -5,10 +5,9 @@
  */
 package br.uem.din.SimuladorBatalha;
 
-import br.uem.din.SimuladorBatalha.Ataques.Ataque;
+import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
 import java.util.List;
-import br.uem.din.SimuladorBatalha.Especie;
 
 /**
  *
@@ -20,11 +19,14 @@ public class TrabalhoPPIOO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Especie especie;
-        List<Especie> tabelas = new ArrayList();
+        Jogador jogador1 = new Jogador();
+        Jogador jogador2 = new Jogador();
+        List tabelas = new ArrayList();
         Batalha batalha = new Batalha();
         tabelas = batalha.carregarTabelas();
-        System.out.println(tabelas.toString());
+        System.out.println(tabelas);
+//        jogador1 = batalha.inicializarJogadores(args, tabelas);
+//        jogador2 = batalha.inicializarJogadores(args, tabelas);
     }
     
 }

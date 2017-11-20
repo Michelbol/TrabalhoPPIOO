@@ -10,6 +10,16 @@ package br.uem.din.SimuladorBatalha.Jogador;
  * @author miche
  */
 public class Jogador {
+    private Time time;
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+    
     public void escolherComando(){
         //o jogador vai escolher o comando que será executado.
     }
