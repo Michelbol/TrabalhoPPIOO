@@ -25,6 +25,9 @@ public class TrabalhoPPIOO {
         Batalha batalha = new Batalha();
         tabelas = batalha.carregarTabelas();
         System.out.println(tabelas);
+//        List listaAtaques = new ArrayList();
+//        listaAtaques.add(tabelas.get(1));
+//        System.out.println(listaAtaques);
 //        jogador1 = batalha.inicializarJogadores(args, tabelas);
 //        jogador2 = batalha.inicializarJogadores(args, tabelas);
     }

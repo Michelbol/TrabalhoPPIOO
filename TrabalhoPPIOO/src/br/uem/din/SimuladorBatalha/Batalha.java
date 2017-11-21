@@ -44,7 +44,6 @@ public class Batalha {
                   Row row = rowIterator.next();
                   Iterator<Cell> cellIterator = row.cellIterator();
                   Especie especie = new Especie();
-                  listaEspecies.add(especie);
                   while(cellIterator.hasNext()){
                       Cell cell = cellIterator.next();
                       switch(cell.getColumnIndex()){
@@ -94,6 +93,7 @@ public class Batalha {
                               break;
                       }
                   }
+                  listaEspecies.add(especie);
               }
               arquivo.close();
         }catch (Exception e){
@@ -142,32 +142,32 @@ public class Batalha {
                                     AtaqueStatus ataquestatus = new AtaqueStatus();
                                     ataquestatus = ataquestatus.copiaAtaque(ataque);
                                     Cell parametro = cellIterator.next();
-                                    ataquestatus.setStatus(primeiroParametro(parametro.getStringCellValue()));
-                                    ataquestatus.setChance(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
+                                    ataquestatus.setStatus(Parametro(parametro.getStringCellValue(),0));
+                                    ataquestatus.setChance(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
                                     listaAtaques.add(ataquestatus);
                                     break;
                                 }else if(cell.getStringCellValue().equals("modifier")){
                                     AtaqueModifier ataquemodifier = new AtaqueModifier();
                                     ataquemodifier = ataquemodifier.copiaAtaque(ataque);
                                     Cell parametro = cellIterator.next();
-                                    ataquemodifier.setMod(primeiroParametro(parametro.getStringCellValue()));
-                                    ataquemodifier.setN(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
-                                    ataquemodifier.setChance(Integer.parseInt(terceiroParametro(parametro.getStringCellValue())));
+                                    ataquemodifier.setMod(Parametro(parametro.getStringCellValue(),0));
+                                    ataquemodifier.setN(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
+                                    ataquemodifier.setChance(Integer.parseInt(Parametro(parametro.getStringCellValue(),2)));
                                     listaAtaques.add(ataquemodifier);
                                     break;
                                 }else if(cell.getStringCellValue().equals("multihit")){
                                     AtaqueMultihit ataquemultihit = new AtaqueMultihit();
                                     ataquemultihit = ataquemultihit.copiaAtaque(ataque);
                                     Cell parametro = cellIterator.next();
-                                    ataquemultihit.setMin(Integer.parseInt(primeiroParametro(parametro.getStringCellValue())));
-                                    ataquemultihit.setMax(Integer.parseInt(segundoParametro(parametro.getStringCellValue())));
+                                    ataquemultihit.setMin(Integer.parseInt(Parametro(parametro.getStringCellValue(),0)));
+                                    ataquemultihit.setMax(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
                                     listaAtaques.add(ataquemultihit);
                                     break;
                                 }else if(cell.getStringCellValue().equals("hp")){
                                     AtaqueHP ataquehp = new AtaqueHP();
                                     ataquehp = ataquehp.copiaAtaque(ataque);
                                     Cell parametro = cellIterator.next();
-                                    ataquehp.setPorcentagem((int) (Double.parseDouble(segundoParametro(parametro.getStringCellValue()))*100));
+                                    ataquehp.setPorcentagem((int) (Double.parseDouble(Parametro(parametro.getStringCellValue(),1))*100));
                                     listaAtaques.add(ataquehp);
                                     break;
                                 }else if(cell.getStringCellValue().equals("charge")){
@@ -227,21 +227,10 @@ public class Batalha {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
     }
     
-    public String primeiroParametro(String parametro){
+    public String Parametro(String parametro, int nroparametro){
         String[] parametros = parametro.split(",");
-        String primeiroParametro = parametros[0];
+        String primeiroParametro = parametros[nroparametro];
+        primeiroParametro = primeiroParametro.replace(" ", "");
         return primeiroParametro;
-    }
-    public String segundoParametro(String parametro){
-        String[] parametros = parametro.split(",");
-        String segundoParametro = parametros[1];
-        segundoParametro = segundoParametro.replace(" ", "");
-        return segundoParametro;
-    }
-    public String terceiroParametro(String parametro){
-        String[] parametros = parametro.split(",");
-        String terceiroParametro = parametros[2];
-        terceiroParametro = terceiroParametro.replace(" ", "");
-        return terceiroParametro;
     }
 }
