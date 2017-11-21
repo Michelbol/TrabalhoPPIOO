@@ -33,7 +33,7 @@ public class Batalha {
     
     public List carregarTabelas(){
         //vai carregar as informações dos atributos e informações dos anexos
-        List listaEspecies = new ArrayList<Especie>();
+        List<Especie> listaEspecies = new ArrayList<Especie>();
         try{
             FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
              XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
