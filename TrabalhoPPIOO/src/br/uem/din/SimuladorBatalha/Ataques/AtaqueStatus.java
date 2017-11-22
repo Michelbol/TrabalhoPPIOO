@@ -50,4 +50,12 @@ public class AtaqueStatus extends Ataque {
         ataquestatus.setAccuracy(ataque.getAccuracy());
         return ataquestatus;
     }
+    public boolean verificaAtaqueStatus(Object o){
+        AtaqueStatus ataque = new AtaqueStatus();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

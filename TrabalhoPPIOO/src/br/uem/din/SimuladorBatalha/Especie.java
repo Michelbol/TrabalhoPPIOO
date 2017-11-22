@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha;
 
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
+import java.util.List;
 
 /**
  *
@@ -107,7 +108,5 @@ public class Especie {
     public double calcularAtributo(){
         int calcularAtributo = 0;
         return calcularAtributo;
-    }
-
-    
+    }    
 }

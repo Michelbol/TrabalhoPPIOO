@@ -5,8 +5,12 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueCharge;
+import br.uem.din.SimuladorBatalha.Ataques.AtaqueFixo;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,15 +25,15 @@ public class TrabalhoPPIOO {
         // TODO code application logic here
         Jogador jogador1 = new Jogador();
         Jogador jogador2 = new Jogador();
-        List tabelas = new ArrayList();
+        List listaAtaques = new ArrayList();
+        List listaEspecies = new ArrayList();
         Batalha batalha = new Batalha();
-        tabelas = batalha.carregarTabelas();
-        System.out.println(tabelas);
-//        List listaAtaques = new ArrayList();
-//        listaAtaques.add(tabelas.get(1));
+        listaAtaques.addAll(batalha.carregarTabelas(1));
+        listaEspecies.addAll(batalha.carregarTabelas(0));
+//        System.out.println(listaEspecies);
 //        System.out.println(listaAtaques);
-//        jogador1 = batalha.inicializarJogadores(args, tabelas);
-//        jogador2 = batalha.inicializarJogadores(args, tabelas);
+        jogador1 = batalha.inicializarJogadores(args, listaAtaques, listaEspecies);
+//        jogador2 = batalha.inicializarJogadores(args, tabelas);        
     }
     
 }

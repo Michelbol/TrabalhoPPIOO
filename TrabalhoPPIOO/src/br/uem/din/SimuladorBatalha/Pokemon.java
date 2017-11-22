@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha;
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 
 /**
@@ -28,6 +29,11 @@ public class Pokemon {
     private boolean confusion;
     private boolean flinch;
     private Status statusPrimario;
+    private Especie especie;
+    private Object ataque1;
+    private Object ataque2;
+    private Object ataque3;
+    private Object ataque4;
 
     //Geters
     public int getLevel() {
@@ -94,6 +100,25 @@ public class Pokemon {
         return statusPrimario;
     }
 
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public Object getAtaque1() {
+        return ataque1;
+    }
+
+    public Object getAtaque2() {
+        return ataque2;
+    }
+
+    public Object getAtaque3() {
+        return ataque3;
+    }
+
+    public Object getAtaque4() {
+        return ataque4;
+    }
     //Seters
     public void setLevel(int level) {
         this.level = level;
@@ -158,7 +183,26 @@ public class Pokemon {
     public void setStatusPrimario(Status statusPrimario) {
         this.statusPrimario = statusPrimario;
     }
-    
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }   
+
+    public void setAtaque1(Object ataque1) {
+        this.ataque1 = ataque1;
+    }
+
+    public void setAtaque2(Object ataque2) {
+        this.ataque2 = ataque2;
+    }
+
+    public void setAtaque3(Object ataque3) {
+        this.ataque3 = ataque3;
+    }
+
+    public void setAtaque4(Object ataque4) {
+        this.ataque4 = ataque4;
+    }
     //métodos
     public double valorAtributo(){
        double valorAtributo = 0;

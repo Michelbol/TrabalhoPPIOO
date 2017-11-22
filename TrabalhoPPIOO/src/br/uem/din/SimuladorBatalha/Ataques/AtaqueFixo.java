@@ -41,4 +41,13 @@ public class AtaqueFixo extends Ataque {
         ataquefixo.setAccuracy(ataque.getAccuracy());
         return ataquefixo;
     }
+    
+    public boolean verificaAtaqueFixo(Object o){
+        AtaqueFixo ataque = new AtaqueFixo();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

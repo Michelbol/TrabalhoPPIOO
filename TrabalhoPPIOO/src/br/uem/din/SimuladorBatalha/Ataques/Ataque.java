@@ -98,4 +98,12 @@ public class Ataque {
     public void calculoDano(){
         
     }
+    public boolean verificaAtaque(Object o){
+        Ataque ataque = new Ataque();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

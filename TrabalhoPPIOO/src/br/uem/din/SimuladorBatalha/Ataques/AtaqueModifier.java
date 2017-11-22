@@ -59,4 +59,12 @@ public class AtaqueModifier extends Ataque {
         ataqueModifier.setAccuracy(ataque.getAccuracy());
         return ataqueModifier;
     }
+    public boolean verificaAtaqueModifier(Object o){
+        AtaqueModifier ataque = new AtaqueModifier();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

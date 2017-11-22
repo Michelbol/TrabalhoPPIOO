@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Jogador;
 
 import br.uem.din.SimuladorBatalha.Pokemon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,28 +55,29 @@ public class Time {
         this.numeroPokemonsTime = numeroPokemonsTime;
     }
     
-    public void setPokemon1(Pokemon pokemon1) {
-        this.pokemon1 = pokemon1;
-    }
-
-    public void setPokemon2(Pokemon pokemon2) {
-        this.pokemon2 = pokemon2;
-    }
-
-    public void setPokemon3(Pokemon pokemon3) {
-        this.pokemon3 = pokemon3;
-    }
-
-    public void setPokemon4(Pokemon pokemon4) {
-        this.pokemon4 = pokemon4;
-    }
-
-    public void setPokemon5(Pokemon pokemon5) {
-        this.pokemon5 = pokemon5;
-    }
-
-    public void setPokemon6(Pokemon pokemon6) {
-        this.pokemon6 = pokemon6;
+    public void setPokemon(Pokemon pokemon, Time time) {
+        //verificar se existe cada pokemon e inserir pokemon caso exista alguma vaga
+            if(time.getPokemon1() == null){
+                time.pokemon1 = pokemon;
+                System.out.println("Adicionou pokemon1");
+            }else if(time.getPokemon2() == null){
+                time.pokemon2 = pokemon;
+                System.out.println("Adicionou pokemon2");
+            }else if(time.getPokemon3() == null){
+                time.pokemon3 = pokemon;
+                System.out.println("Adicionou pokemon3");
+            }else if(time.getPokemon4() == null){
+                time.pokemon4 = pokemon;
+                System.out.println("Adicionou pokemon4");
+            }else if(time.getPokemon5() == null){
+                time.pokemon5 = pokemon;
+                System.out.println("Adicionou pokemon5");
+            }else if(time.getPokemon6() == null){
+                time.pokemon6 = pokemon;
+                System.out.println("Adicionou pokemon6");
+            }else{
+                JOptionPane.showMessageDialog(null, "O time já está cheio!");
+            } 
     }
     
 }

@@ -32,4 +32,12 @@ public class AtaqueCharge extends Ataque{
         ataquecharge.setAccuracy(ataque.getAccuracy());
         return ataquecharge;
     }
+    public boolean verificaAtaqueCharge(Object o){
+        AtaqueCharge ataque = new AtaqueCharge();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

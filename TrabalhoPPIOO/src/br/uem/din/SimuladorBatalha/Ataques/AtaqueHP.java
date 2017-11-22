@@ -52,4 +52,12 @@ public class AtaqueHP extends Ataque {
         ataquehp.setAccuracy(ataque.getAccuracy());
         return ataquehp;
     }
+    public boolean verificaAtaqueHP(Object o){
+        AtaqueHP ataque = new AtaqueHP();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }

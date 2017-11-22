@@ -52,4 +52,12 @@ public class AtaqueMultihit extends Ataque {
         ataquemultihit.setAccuracy(ataque.getAccuracy());
         return ataquemultihit;
     }
+    public boolean verificaAtaqueMultihit(Object o){
+        AtaqueMultihit ataque = new AtaqueMultihit();
+        if(o.equals(ataque)){
+            return true;
+        }else{
+            return false;
+        }           
+    }
 }
