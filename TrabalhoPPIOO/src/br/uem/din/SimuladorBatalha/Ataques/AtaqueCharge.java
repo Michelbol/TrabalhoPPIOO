@@ -21,23 +21,12 @@ public class AtaqueCharge extends Ataque{
     public void efeito(){
         
     }
+
+    public AtaqueCharge(int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+    }
+
+    public AtaqueCharge() {
+    }
     
-    public AtaqueCharge copiaAtaque(Ataque ataque){
-        AtaqueCharge ataquecharge = new AtaqueCharge();
-        ataquecharge.setId(ataque.getId());
-        ataquecharge.setNome(ataque.getNome());
-        ataquecharge.setTipo(ataque.getTipo());
-        ataquecharge.setPpAtual(ataque.getPpAtual());
-        ataquecharge.setPower(ataque.getPower());
-        ataquecharge.setAccuracy(ataque.getAccuracy());
-        return ataquecharge;
-    }
-    public boolean verificaAtaqueCharge(Object o){
-        AtaqueCharge ataque = new AtaqueCharge();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
-    }
 }

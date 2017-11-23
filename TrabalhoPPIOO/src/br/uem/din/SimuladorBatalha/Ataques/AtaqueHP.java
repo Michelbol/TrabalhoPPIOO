@@ -41,23 +41,14 @@ public class AtaqueHP extends Ataque {
     public void efeito(){
         
     }
+
+    public AtaqueHP(int valor, int porcentagem, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.valor = valor;
+        this.porcentagem = porcentagem;
+    }
+
+    public AtaqueHP() {
+    }
     
-    public AtaqueHP copiaAtaque(Ataque ataque){
-        AtaqueHP ataquehp = new AtaqueHP();
-        ataquehp.setId(ataque.getId());
-        ataquehp.setNome(ataque.getNome());
-        ataquehp.setTipo(ataque.getTipo());
-        ataquehp.setPpAtual(ataque.getPpAtual());
-        ataquehp.setPower(ataque.getPower());
-        ataquehp.setAccuracy(ataque.getAccuracy());
-        return ataquehp;
-    }
-    public boolean verificaAtaqueHP(Object o){
-        AtaqueHP ataque = new AtaqueHP();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
-    }
 }

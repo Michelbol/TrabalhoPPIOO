@@ -41,23 +41,14 @@ public class AtaqueMultihit extends Ataque {
     public void efeito(){
         
     }
+    //Construtores
+    public AtaqueMultihit(int min, int max, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.min = min;
+        this.max = max;
+    }
+
+    public AtaqueMultihit() {
+    }
     
-    public AtaqueMultihit copiaAtaque(Ataque ataque){
-        AtaqueMultihit ataquemultihit = new AtaqueMultihit();
-        ataquemultihit.setId(ataque.getId());
-        ataquemultihit.setNome(ataque.getNome());
-        ataquemultihit.setTipo(ataque.getTipo());
-        ataquemultihit.setPpAtual(ataque.getPpAtual());
-        ataquemultihit.setPower(ataque.getPower());
-        ataquemultihit.setAccuracy(ataque.getAccuracy());
-        return ataquemultihit;
-    }
-    public boolean verificaAtaqueMultihit(Object o){
-        AtaqueMultihit ataque = new AtaqueMultihit();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
-    }
 }

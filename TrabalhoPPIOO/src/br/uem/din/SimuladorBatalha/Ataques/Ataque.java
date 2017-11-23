@@ -78,12 +78,31 @@ public class Ataque {
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
     }
-
+    //toString
     @Override
     public String toString() {
         return "AtaqueComum{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ppMax=" + ppMax + ", ppAtual=" +
                 ppAtual + ", power=" + power + ", accuracy=" + accuracy + '}'+"\n";
     }
+    //contrutores
+    public Ataque(int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        this.id = id;
+        this.nome = nome;
+        try{
+            this.tipo = Tipo.valueOf(tipo);
+        }catch(Exception e){
+//            System.out.println(e.getMessage() + " " + "Valor da Tabela: " + tipo);
+        }      
+        this.ppMax = ppMax;
+        this.ppAtual = ppAtual;
+        this.power = power;
+        this.accuracy = accuracy;
+    }
+
+    public Ataque() {
+    }
+    
+    
     
     //métodos
     public void efeito(){
@@ -98,12 +117,5 @@ public class Ataque {
     public void calculoDano(){
         
     }
-    public boolean verificaAtaque(Object o){
-        Ataque ataque = new Ataque();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
-    }
+    
 }

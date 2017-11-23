@@ -49,22 +49,15 @@ public class AtaqueModifier extends Ataque {
     public void efeito(){
         
     }
-    public AtaqueModifier copiaAtaque(Ataque ataque){
-        AtaqueModifier ataqueModifier = new AtaqueModifier();
-        ataqueModifier.setId(ataque.getId());
-        ataqueModifier.setNome(ataque.getNome());
-        ataqueModifier.setTipo(ataque.getTipo());
-        ataqueModifier.setPpAtual(ataque.getPpAtual());
-        ataqueModifier.setPower(ataque.getPower());
-        ataqueModifier.setAccuracy(ataque.getAccuracy());
-        return ataqueModifier;
+    //Construtores
+    public AtaqueModifier(String mod, int n, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.mod = mod;
+        this.n = n;
+        this.chance = chance;
     }
-    public boolean verificaAtaqueModifier(Object o){
-        AtaqueModifier ataque = new AtaqueModifier();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
+
+    public AtaqueModifier() {
     }
+    
 }

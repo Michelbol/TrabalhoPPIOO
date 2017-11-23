@@ -104,6 +104,27 @@ public class Especie {
         return "Especie{" + "id=" + id + ", nome=" + nome + ", tipo1=" + tipo1 + ", tipo2=" + tipo2 + ", baseHp=" + baseHp + ", baseAtk=" + baseAtk + ", baseDef=" + baseDef + ", baseSpe=" + baseSpe + ", baseSpd=" + baseSpd + '}'+"\n";
     }
 
+    public Especie(int id, String nome, String stringTipo1, String stringTipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
+        this.id = id;
+        this.nome = nome;
+        Tipo tipo1 = Tipo.valueOf(stringTipo1);
+        this.tipo1 = tipo1;
+        if(stringTipo2.equals("")){
+            stringTipo2 = "None";
+        }
+        Tipo tipo2 = Tipo.valueOf(stringTipo2);
+        this.tipo2 = tipo2;
+        this.baseHp = baseHp;
+        this.baseAtk = baseAtk;
+        this.baseDef = baseDef;
+        this.baseSpe = baseSpe;
+        this.baseSpd = baseSpd;
+    }
+
+    public Especie() {
+    }
+    
+
     //métodos
     public double calcularAtributo(){
         int calcularAtributo = 0;

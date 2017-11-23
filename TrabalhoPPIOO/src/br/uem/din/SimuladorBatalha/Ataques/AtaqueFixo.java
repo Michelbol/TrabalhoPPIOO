@@ -31,23 +31,13 @@ public class AtaqueFixo extends Ataque {
     public void efeito(){
         
     }
-    public AtaqueFixo copiaAtaque(Ataque ataque){
-        AtaqueFixo ataquefixo = new AtaqueFixo();
-        ataquefixo.setId(ataque.getId());
-        ataquefixo.setNome(ataque.getNome());
-        ataquefixo.setTipo(ataque.getTipo());
-        ataquefixo.setPpAtual(ataque.getPpAtual());
-        ataquefixo.setPower(ataque.getPower());
-        ataquefixo.setAccuracy(ataque.getAccuracy());
-        return ataquefixo;
+    //Construtores
+    public AtaqueFixo(int val, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.val = val;
+    }
+
+    public AtaqueFixo() {
     }
     
-    public boolean verificaAtaqueFixo(Object o){
-        AtaqueFixo ataque = new AtaqueFixo();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
-    }
 }

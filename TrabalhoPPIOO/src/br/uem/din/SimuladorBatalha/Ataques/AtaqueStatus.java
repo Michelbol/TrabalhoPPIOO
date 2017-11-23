@@ -40,22 +40,15 @@ public class AtaqueStatus extends Ataque {
     public void efeito(){
         
     }
-    public AtaqueStatus copiaAtaque(Ataque ataque){
-        AtaqueStatus ataquestatus = new AtaqueStatus();
-        ataquestatus.setId(ataque.getId());
-        ataquestatus.setNome(ataque.getNome());
-        ataquestatus.setTipo(ataque.getTipo());
-        ataquestatus.setPpAtual(ataque.getPpAtual());
-        ataquestatus.setPower(ataque.getPower());
-        ataquestatus.setAccuracy(ataque.getAccuracy());
-        return ataquestatus;
+
+    public AtaqueStatus(String status, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.status = status;
+        this.chance = chance;
     }
-    public boolean verificaAtaqueStatus(Object o){
-        AtaqueStatus ataque = new AtaqueStatus();
-        if(o.equals(ataque)){
-            return true;
-        }else{
-            return false;
-        }           
+
+    public AtaqueStatus() {
     }
+    
+
 }

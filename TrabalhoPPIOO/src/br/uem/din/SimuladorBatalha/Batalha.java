@@ -24,11 +24,13 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author miche
  */
 public class Batalha {
+
     static int parametroJogador = 0;
     static int parametroNumeroPokemons = 1;
     static int parametroEspeciePokemon = 2;
@@ -38,70 +40,66 @@ public class Batalha {
     static int parametroAtaque3 = 6;
     static int parametroAtaque4 = 7;
     private static final String FILENAME = "C:\\Projetos\\Java\\TrabalhoPPIOO\\Tabelas.xlsx";
-    
-    public List carregarTabelas(int tabela){
+
+    public List carregarTabelas(int tabela) {
         //vai carregar as informações dos atributos e informações dos anexos
         List lista = new ArrayList();
-        if(tabela == 0){
+        if (tabela == 0) {
             lista.add("Tabela de Especies");
-            try{
+            try {
                 FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
-                 XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
-                 XSSFSheet sheetSpecies = workbook.getSheetAt(tabela);
-                 Iterator<Row> rowIterator = sheetSpecies.iterator();
+                XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
+                XSSFSheet sheetSpecies = workbook.getSheetAt(tabela);
+                Iterator<Row> rowIterator = sheetSpecies.iterator();
 
-                  while (rowIterator.hasNext()) {
-                      Row row = rowIterator.next();
-                      Iterator<Cell> cellIterator = row.cellIterator();
-                      Especie especie = new Especie();
-                      while(cellIterator.hasNext()){
-                          Cell cell = cellIterator.next();
-                          switch(cell.getColumnIndex()){
-                              case 0:
-                                  especie.setId((int) cell.getNumericCellValue());
-                                  break;
-                              case 1:
-                                  especie.setNome(cell.getStringCellValue());
-                                  break;
-                              case 2:
-                                  String stringTipo1 = cell.getStringCellValue();
-                                    Tipo tipo1 = Tipo.valueOf(stringTipo1);
-                                    especie.setTipo1(tipo1);
-                                  break;
-                              case 3:
-                                  String stringTipo2 = cell.getStringCellValue();
-                                  if(stringTipo2.equals("")){
-                                      stringTipo2 = "None";
-                                  }
-                                    Tipo tipo2 = Tipo.valueOf(stringTipo2);
-                                    especie.setTipo2(tipo2);
-                                  break;
-                              case 4:
-                                  especie.setBaseHp(cell.getNumericCellValue());
-                                  break;
-                              case 5:
-                                  especie.setBaseAtk(cell.getNumericCellValue());
-                                  break;
-                              case 6:
-                                  especie.setBaseDef(cell.getNumericCellValue());
-                                  break;
-                              case 7:
-                                  especie.setBaseSpe(cell.getNumericCellValue());
-                                  break;
-                              case 8:
-                                  especie.setBaseSpd(cell.getNumericCellValue());
-                                  break;
-                          }
-                      }
-                      lista.add(especie);
-                  }
-                  arquivo.close();
-            }catch (Exception e){
+                while (rowIterator.hasNext()) {
+                    Row row = rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    int id = 0;
+                    String nome = "", tipo1 = "", tipo2 = "";
+                    double baseHp = 0, baseAtk = 0, baseDef = 0, baseSpe = 0, baseSpd = 0;
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        switch (cell.getColumnIndex()) {
+                            case 0:
+                                id = (int) cell.getNumericCellValue();
+                                break;
+                            case 1:
+                                nome = cell.getStringCellValue();
+                                break;
+                            case 2:
+                                tipo1 = cell.getStringCellValue();
+                                break;
+                            case 3:
+                                tipo2 = cell.getStringCellValue();
+                                break;
+                            case 4:
+                                baseHp = cell.getNumericCellValue();
+                                break;
+                            case 5:
+                                baseAtk = cell.getNumericCellValue();
+                                break;
+                            case 6:
+                                baseDef = cell.getNumericCellValue();
+                                break;
+                            case 7:
+                                baseSpe = cell.getNumericCellValue();
+                                break;
+                            case 8:
+                                baseSpd = cell.getNumericCellValue();
+                                break;
+                        }
+                    }
+                    Especie especie = new Especie(id, nome, tipo1, tipo2, baseHp, baseAtk, baseDef, baseSpe, baseSpd);
+                    lista.add(especie);
+                }
+                arquivo.close();
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }else if(tabela == 1){
+        } else if (tabela == 1) {
             lista.add("Tabela de Ataques");
-            try{
+            try {
                 FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
                 XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
                 XSSFSheet sheetAtaques = workbook.getSheetAt(tabela);
@@ -109,100 +107,96 @@ public class Batalha {
 
                 while (rowIterator.hasNext()) {
                     Row row = rowIterator.next();
-                        Iterator<Cell> cellIterator = row.cellIterator();
-                        Ataque ataque = new Ataque();
-                        while(cellIterator.hasNext()){
-                            Cell cell = cellIterator.next();
-                            switch(cell.getColumnIndex()){
-                                case 0:
-                                    ataque.setId((int) cell.getNumericCellValue());
-                                    break;
-                                case 1:
-                                    ataque.setNome(cell.getStringCellValue());
-                                    break;
-                                case 2:
-                                    String stringTipo = cell.getStringCellValue();
-                                    try{
-                                      Tipo tipo = Tipo.valueOf(stringTipo);
-                                      ataque.setTipo(tipo);
-                                    }catch(Exception e){
-                                        System.out.println(e.getMessage() + " " + "Valor da Tabela: " + stringTipo);
-                                    }
-                                    break;
-                                case 3:
-                                    ataque.setPpAtual(cell.getNumericCellValue());
-                                    break;
-                                case 4:
-                                    ataque.setPower((int) cell.getNumericCellValue());
-                                    break;
-                                case 5:
-                                    ataque.setAccuracy((int) cell.getNumericCellValue());
-                                    break;
-                                case 6:
-                                    if(cell.getStringCellValue().equals("status")){
-                                        AtaqueStatus ataquestatus = new AtaqueStatus();
-                                        ataquestatus = ataquestatus.copiaAtaque(ataque);
-                                        Cell parametro = cellIterator.next();
-                                        ataquestatus.setStatus(Parametro(parametro.getStringCellValue(),0));
-                                        ataquestatus.setChance(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
-                                        lista.add(ataquestatus);
-                                        break;
-                                    }else if(cell.getStringCellValue().equals("modifier")){
-                                        AtaqueModifier ataquemodifier = new AtaqueModifier();
-                                        ataquemodifier = ataquemodifier.copiaAtaque(ataque);
-                                        Cell parametro = cellIterator.next();
-                                        ataquemodifier.setMod(Parametro(parametro.getStringCellValue(),0));
-                                        ataquemodifier.setN(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
-                                        ataquemodifier.setChance(Integer.parseInt(Parametro(parametro.getStringCellValue(),2)));
-                                        lista.add(ataquemodifier);
-                                        break;
-                                    }else if(cell.getStringCellValue().equals("multihit")){
-                                        AtaqueMultihit ataquemultihit = new AtaqueMultihit();
-                                        ataquemultihit = ataquemultihit.copiaAtaque(ataque);
-                                        Cell parametro = cellIterator.next();
-                                        ataquemultihit.setMin(Integer.parseInt(Parametro(parametro.getStringCellValue(),0)));
-                                        ataquemultihit.setMax(Integer.parseInt(Parametro(parametro.getStringCellValue(),1)));
-                                        lista.add(ataquemultihit);
-                                        break;
-                                    }else if(cell.getStringCellValue().equals("hp")){
-                                        AtaqueHP ataquehp = new AtaqueHP();
-                                        ataquehp = ataquehp.copiaAtaque(ataque);
-                                        Cell parametro = cellIterator.next();
-                                        ataquehp.setPorcentagem((int) (Double.parseDouble(Parametro(parametro.getStringCellValue(),1))*100));
-                                        lista.add(ataquehp);
-                                        break;
-                                    }else if(cell.getStringCellValue().equals("charge")){
-                                        AtaqueCharge ataquecharge = new AtaqueCharge();
-                                        ataquecharge = ataquecharge.copiaAtaque(ataque);
-                                        lista.add(ataquecharge);
-                                        break;
-                                    }else if(cell.getStringCellValue().equals("fixo")){
-                                        AtaqueFixo ataquefixo = new AtaqueFixo();
-                                        ataquefixo = ataquefixo.copiaAtaque(ataque);
-                                        Cell parametro = cellIterator.next();
-                                        try{
-                                            ataquefixo.setVal((int) parametro.getNumericCellValue());
-                                        }catch(Exception e){
-    //                                        System.out.println("Parametro é uma string id:" + ataquefixo.getId());
-                                        }
-                                        lista.add(ataquefixo);
-                                        break;
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    int id = 0, power = 0, accuracy = 0, parametrosint = 0;
+                    String nome = "", tipo = "", parametro = "", classe = "", parametros = "";
+                    double ppAtual = 0;
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        System.out.println("Celula: " + cell.getColumnIndex());
+                        switch (cell.getColumnIndex()) {
+                            case 0:
+                                id = (int) cell.getNumericCellValue();
+                                break;
+                            case 1:
+                                nome = cell.getStringCellValue();
+                                break;
+                            case 2:
+                                tipo = cell.getStringCellValue();
+                                break;
+                            case 3:
+                                ppAtual = cell.getNumericCellValue();
+                                break;
+                            case 4:
+                                power = (int) cell.getNumericCellValue();
+                                break;
+                            case 5:
+                                accuracy = (int) cell.getNumericCellValue();
+                                break;
+                            case 6:
+                                classe = cell.getStringCellValue();
+                                break;
+                            case 7:
+                                try{
+                                   parametros = cell.getStringCellValue();
+                                }catch(Exception e){
+                                   parametrosint = (int) cell.getNumericCellValue();
+                                }
+                                if (classe.equals("comum")) {
+                                    Ataque ataque = new Ataque(id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataque);
+                                } else if (classe.equals("charge")) {
+                                    AtaqueCharge ataqueCharge = new AtaqueCharge(id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataqueCharge);
+                                } else if (classe.equals("fixo")) {
+                                    int val;
+                                    if((parametrosint > 0) || (parametros.equals("lvl"))){
+                                        val = parametrosint;
                                     }else{
-                                        lista.add(ataque);
-                                        break;
-                                    } 
-                            }
+                                         parametros = Parametro(parametros, 0);
+                                        val = Integer.parseInt(parametros);
+                                    }
+                                    AtaqueFixo ataqueFixo = new AtaqueFixo(val, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataqueFixo);
+                                } else if (classe.equals("hp")) {
+                                    String segundoParametro = Parametro(parametros, 1);
+                                    double aux = Double.parseDouble(segundoParametro);
+                                    aux = aux*100;
+                                    int porcentagem = (int) aux;
+                                    AtaqueHP ataqueHp = new AtaqueHP(0, porcentagem, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataqueHp);
+                                } else if (classe.equals("modifier")) {
+                                    String mod = Parametro(parametros, 0), segundoParametro = Parametro(parametros, 1), terceiroParametro = Parametro(parametros, 2);
+                                    int n = Integer.parseInt(segundoParametro), chance = Integer.parseInt(terceiroParametro);
+                                    AtaqueModifier ataquemodifier = new AtaqueModifier(mod, n, chance, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataquemodifier);
+                                } else if (classe.equals("multihit")) {
+                                    String primeiroParametro = Parametro(parametros, 0), segundoParametro = Parametro(parametros, 1);
+                                    int min = Integer.parseInt(primeiroParametro), max = Integer.parseInt(segundoParametro);
+                                    AtaqueMultihit ataqueMultihit = new AtaqueMultihit(min, max, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataqueMultihit);
+                                } else if (classe.equals("status")) {
+                                    String status = Parametro(parametros, 0), segundoParametro = Parametro(parametros, 1);
+                                    int chance = Integer.parseInt(segundoParametro);
+                                    AtaqueStatus ataquestatus = new AtaqueStatus(status, chance, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                    lista.add(ataquestatus);
+                                }
+                                break;
                         }
+
+                    }
+
                 }
+
                 arquivo.close();
-            }catch (Exception e){
-                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
             }
         }
         return lista;
     }
-    
-    public Jogador inicializarJogadores(String[] args, List listaAtaques, List listaEspecies){
+
+    public Jogador inicializarJogadores(String[] args, List listaAtaques, List listaEspecies) {
         //vai inicializar as informações dos jogadores
         Time time = new Time();
         Jogador jogador = new Jogador();
@@ -213,27 +207,27 @@ public class Batalha {
         AtaqueCharge ataquecharge = new AtaqueCharge();
         AtaqueFixo ataquefixo = new AtaqueFixo();
         AtaqueHP ataquehp = new AtaqueHP();
-        
-        for(int i=0; i<time.getNumeroPokemonsTime(); i++){
-            int multiplicador = (i*6);
-            especie = (Especie) listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
-            pokemon.setLevel(Integer.parseInt(args[parametroLevelPokemon+multiplicador]));
-            Object o = listaAtaques.get(Integer.parseInt(args[parametroAtaque1+multiplicador]));
+
+        for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
+            int multiplicador = (i * 6);
+//            especie = (Especie) listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
+            pokemon.setLevel(Integer.parseInt(args[parametroLevelPokemon + multiplicador]));
+            Object o = listaAtaques.get(Integer.parseInt(args[parametroAtaque1 + multiplicador]));
             pokemon.setAtaque1(o);
-            
+
             time.setPokemon(pokemon, time);
         }
 //        System.out.println(listaEspecies);
-        
+
         jogador.setTime(time);
         return jogador;
     }
 
-    public void executarTurno(){
+    public void executarTurno() {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
     }
-    
-    public String Parametro(String parametro, int nroparametro){
+
+    public String Parametro(String parametro, int nroparametro) {
         String[] parametros = parametro.split(",");
         String primeiroParametro = parametros[nroparametro];
         primeiroParametro = primeiroParametro.replace(" ", "");
