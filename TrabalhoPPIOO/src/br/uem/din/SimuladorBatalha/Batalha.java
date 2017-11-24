@@ -12,7 +12,6 @@ import br.uem.din.SimuladorBatalha.Ataques.AtaqueHP;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
-import br.uem.din.SimuladorBatalha.Enum.Tipo;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.Jogador.Time;
 import java.io.File;
@@ -196,21 +195,21 @@ public class Batalha {
         return lista;
     }
 
-    public Jogador inicializarJogadores(String[] args, List listaAtaques, List listaEspecies) {
+    public Jogador inicializarJogadores(String[] args, List listaAtaques, List<Especie> listaEspecies) {
         //vai inicializar as informações dos jogadores
         Time time = new Time();
         Jogador jogador = new Jogador();
         Especie especie = new Especie();
         Pokemon pokemon = new Pokemon();
-        time.setNumeroPokemonsTime(Integer.parseInt(args[1]));
         Ataque ataque = new Ataque();
         AtaqueCharge ataquecharge = new AtaqueCharge();
         AtaqueFixo ataquefixo = new AtaqueFixo();
         AtaqueHP ataquehp = new AtaqueHP();
-
+        
+        time.setNumeroPokemonsTime(Integer.parseInt(args[1]));
         for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
             int multiplicador = (i * 6);
-//            especie = (Especie) listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
+            especie = listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
             pokemon.setLevel(Integer.parseInt(args[parametroLevelPokemon + multiplicador]));
             Object o = listaAtaques.get(Integer.parseInt(args[parametroAtaque1 + multiplicador]));
             pokemon.setAtaque1(o);
