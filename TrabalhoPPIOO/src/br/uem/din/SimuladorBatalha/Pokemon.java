@@ -7,6 +7,7 @@ package br.uem.din.SimuladorBatalha;
 
 import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import static java.lang.Double.max;
 
 /**
  *
@@ -249,8 +250,16 @@ public class Pokemon {
     
     
     //métodos
-    public double valorAtributoAtk(){
-       double valorAtributo = 0;
-        return valorAtributo;
+    public double valorAtributoAtk(){       
+       return this.atk*(max(2, 2 + this.modifierAtk)/max(2,2-this.modifierAtk));
+    }
+    public double valorAtributoDef(){       
+       return this.def*(max(2, 2 + this.modifierDef)/max(2,2-this.modifierDef));
+    }
+    public double valorAtributoSpe(){       
+       return this.spe*(max(2, 2 + this.modifierSpe)/max(2,2-this.modifierSpe));
+    }
+    public double valorAtributoSpd(){       
+       return this.spd*(max(2, 2 + this.modifierSpd)/max(2,2-this.modifierSpd));
     }
 }
