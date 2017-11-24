@@ -19,6 +19,11 @@ public class Jogador {
     public void setTime(Time time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Jogador{" + "time=" + time + '}';
+    }
     
     public void escolherComando(){
         //o jogador vai escolher o comando que será executado.

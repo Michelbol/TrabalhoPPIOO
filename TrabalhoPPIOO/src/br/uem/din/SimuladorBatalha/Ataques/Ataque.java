@@ -101,6 +101,9 @@ public class Ataque {
 
     public Ataque() {
     }
+    public Ataque(String ataque) {
+        System.out.println("Ataque não informado");;
+    }
     
     
     

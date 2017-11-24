@@ -55,29 +55,47 @@ public class Time {
         this.numeroPokemonsTime = numeroPokemonsTime;
     }
     
-    public void setPokemon(Pokemon pokemon, Time time) {
+    public void setPokemon(Pokemon pokemon) {
         //verificar se existe cada pokemon e inserir pokemon caso exista alguma vaga
-            if(time.getPokemon1() == null){
-                time.pokemon1 = pokemon;
+            if(this.getPokemon1() == null){
+                this.pokemon1 = pokemon;
                 System.out.println("Adicionou pokemon1");
-            }else if(time.getPokemon2() == null){
-                time.pokemon2 = pokemon;
+            }else if(this.getPokemon2() == null){
+                this.pokemon2 = pokemon;
                 System.out.println("Adicionou pokemon2");
-            }else if(time.getPokemon3() == null){
-                time.pokemon3 = pokemon;
+            }else if(this.getPokemon3() == null){
+                this.pokemon3 = pokemon;
                 System.out.println("Adicionou pokemon3");
-            }else if(time.getPokemon4() == null){
-                time.pokemon4 = pokemon;
+            }else if(this.getPokemon4() == null){
+                this.pokemon4 = pokemon;
                 System.out.println("Adicionou pokemon4");
-            }else if(time.getPokemon5() == null){
-                time.pokemon5 = pokemon;
+            }else if(this.getPokemon5() == null){
+                this.pokemon5 = pokemon;
                 System.out.println("Adicionou pokemon5");
-            }else if(time.getPokemon6() == null){
-                time.pokemon6 = pokemon;
+            }else if(this.getPokemon6() == null){
+                this.pokemon6 = pokemon;
                 System.out.println("Adicionou pokemon6");
             }else{
                 JOptionPane.showMessageDialog(null, "O time já está cheio!");
             } 
+    }
+
+    @Override
+    public String toString() {
+        return "Time{" + "numeroPokemonsTime=" + numeroPokemonsTime + ", pokemon1=" + pokemon1 + ", pokemon2=" + pokemon2 + ", pokemon3=" + pokemon3 + ", pokemon4=" + pokemon4 + ", pokemon5=" + pokemon5 + ", pokemon6=" + pokemon6 + '}';
+    }
+
+    public Time(int numeroPokemonsTime, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3, Pokemon pokemon4, Pokemon pokemon5, Pokemon pokemon6) {
+        this.numeroPokemonsTime = numeroPokemonsTime;
+        this.pokemon1 = pokemon1;
+        this.pokemon2 = pokemon2;
+        this.pokemon3 = pokemon3;
+        this.pokemon4 = pokemon4;
+        this.pokemon5 = pokemon5;
+        this.pokemon6 = pokemon6;
+    }
+
+    public Time() {
     }
     
 }

@@ -30,10 +30,10 @@ public class Pokemon {
     private boolean flinch;
     private Status statusPrimario;
     private Especie especie;
-    private Object ataque1;
-    private Object ataque2;
-    private Object ataque3;
-    private Object ataque4;
+    private Ataque ataque1;
+    private Ataque ataque2;
+    private Ataque ataque3;
+    private Ataque ataque4;
 
     //Geters
     public int getLevel() {
@@ -104,19 +104,19 @@ public class Pokemon {
         return especie;
     }
 
-    public Object getAtaque1() {
+    public Ataque getAtaque1() {
         return ataque1;
     }
 
-    public Object getAtaque2() {
+    public Ataque getAtaque2() {
         return ataque2;
     }
 
-    public Object getAtaque3() {
+    public Ataque getAtaque3() {
         return ataque3;
     }
 
-    public Object getAtaque4() {
+    public Ataque getAtaque4() {
         return ataque4;
     }
     //Seters
@@ -188,20 +188,25 @@ public class Pokemon {
         this.especie = especie;
     }   
 
-    public void setAtaque1(Object ataque1) {
+    public void setAtaque1(Ataque ataque1) {
         this.ataque1 = ataque1;
     }
 
-    public void setAtaque2(Object ataque2) {
+    public void setAtaque2(Ataque ataque2) {
         this.ataque2 = ataque2;
     }
 
-    public void setAtaque3(Object ataque3) {
+    public void setAtaque3(Ataque ataque3) {
         this.ataque3 = ataque3;
     }
 
-    public void setAtaque4(Object ataque4) {
+    public void setAtaque4(Ataque ataque4) {
         this.ataque4 = ataque4;
+    }
+
+    @Override
+    public String toString() {
+        return "Pokemon{" + "level=" + level + ", hpAtual=" + hpAtual + ", hpMax=" + hpMax + ", atk=" + atk + ", def=" + def + ", spe=" + spe + ", spd=" + spd + ", modifierAccuracy=" + modifierAccuracy + ", modifierEvasion=" + modifierEvasion + ", modifierAtk=" + modifierAtk + ", modifierDef=" + modifierDef + ", modifierSpe=" + modifierSpe + ", modifierSpd=" + modifierSpd + ", confusion=" + confusion + ", flinch=" + flinch + ", statusPrimario=" + statusPrimario + ", especie=" + especie + ", ataque1=" + ataque1 + ", ataque2=" + ataque2 + ", ataque3=" + ataque3 + ", ataque4=" + ataque4 + '}';
     }
     //métodos
     public double valorAtributo(){
