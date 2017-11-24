@@ -45,6 +45,7 @@ public class Pokemon {
     }
 
     public double getHpMax() {
+        
         return hpMax;
     }
 
@@ -125,7 +126,11 @@ public class Pokemon {
     }
 
     public void setHpAtual(double hpAtual) {
-        this.hpAtual = hpAtual;
+        if(this.hpAtual < this.hpMax){
+            this.hpAtual = hpAtual;
+        }else{
+            System.out.println("Vida do pokemon está completa!");
+        }
     }
 
     public void setHpMax(double hpMax) {
@@ -206,10 +211,45 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "level=" + level + ", hpAtual=" + hpAtual + ", hpMax=" + hpMax + ", atk=" + atk + ", def=" + def + ", spe=" + spe + ", spd=" + spd + ", modifierAccuracy=" + modifierAccuracy + ", modifierEvasion=" + modifierEvasion + ", modifierAtk=" + modifierAtk + ", modifierDef=" + modifierDef + ", modifierSpe=" + modifierSpe + ", modifierSpd=" + modifierSpd + ", confusion=" + confusion + ", flinch=" + flinch + ", statusPrimario=" + statusPrimario + ", especie=" + especie + ", ataque1=" + ataque1 + ", ataque2=" + ataque2 + ", ataque3=" + ataque3 + ", ataque4=" + ataque4 + '}';
+        return "Pokemon{" + "level=" + level + ", hpAtual=" + hpAtual + ", hpMax=" + hpMax + ", atk=" + atk + ", def=" + def + 
+                ", spe=" + spe + ", spd=" + spd + ", modifierAccuracy=" + modifierAccuracy + 
+                ", modifierEvasion=" + modifierEvasion + ", modifierAtk=" + modifierAtk + ", modifierDef=" + modifierDef + 
+                ", modifierSpe=" + modifierSpe + ", modifierSpd=" + modifierSpd + ", confusion=" + confusion + 
+                ", flinch=" + flinch + ", statusPrimario=" + statusPrimario + ",\n especie=" + especie + ",\n ataque1=" + ataque1 +
+                ",\n ataque2=" + ataque2 + ",\n ataque3=" + ataque3 + ",\n ataque4=" + ataque4 + '}'+ 
+                "\n======================================================================================================";
     }
+
+    public Pokemon(int level, Especie especie, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
+        this.level = level;
+        this.hpAtual = especie.calcularAtributoHpAtual(level);
+        this.hpMax = especie.calcularAtributoHpAtual(level);
+        this.atk = especie.calcularAtributoAtk(level);
+        this.def = especie.calcularAtributoDef(level);
+        this.spe = especie.calcularAtributoSpe(level);
+        this.spd = especie.calcularAtributoSpd(level);
+        this.modifierAccuracy = 0;
+        this.modifierEvasion = 0;
+        this.modifierAtk = 0;
+        this.modifierDef = 0;
+        this.modifierSpe = 0;
+        this.modifierSpd = 0;
+        this.confusion = false;
+        this.flinch = false;
+        this.statusPrimario = Status.valueOf("OK");
+        this.especie = especie;
+        this.ataque1 = ataque1;
+        this.ataque2 = ataque2;
+        this.ataque3 = ataque3;
+        this.ataque4 = ataque4;
+    }
+
+    public Pokemon() {
+    }
+    
+    
     //métodos
-    public double valorAtributo(){
+    public double valorAtributoAtk(){
        double valorAtributo = 0;
         return valorAtributo;
     }

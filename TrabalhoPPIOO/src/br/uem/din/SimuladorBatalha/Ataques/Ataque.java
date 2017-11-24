@@ -82,7 +82,7 @@ public class Ataque {
     @Override
     public String toString() {
         return "AtaqueComum{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ppMax=" + ppMax + ", ppAtual=" +
-                ppAtual + ", power=" + power + ", accuracy=" + accuracy + '}'+"\n";
+                ppAtual + ", power=" + power + ", accuracy=" + accuracy + '}';
     }
     //contrutores
     public Ataque(int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

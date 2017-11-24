@@ -196,48 +196,45 @@ public class Batalha {
         Time time = new Time();
         Jogador jogador = new Jogador();
         Especie especie = new Especie();
-        Pokemon pokemon = new Pokemon();
-        Ataque ataque1;
-        Ataque ataque2;
-        Ataque ataque3;
-        Ataque ataque4;
+        Pokemon pokemon;
+        Ataque ataque1 = null;
+        Ataque ataque2 = null;
+        Ataque ataque3 = null;
+        Ataque ataque4 = null;
         time.setNumeroPokemonsTime(Integer.parseInt(args[1]));
         for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
+            int level;
             int multiplicador = (i * 6);
             especie = listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
-            pokemon.setLevel(Integer.parseInt(args[parametroLevelPokemon + multiplicador]));
-            pokemon.setEspecie(especie);
+            level = Integer.parseInt(args[parametroLevelPokemon + multiplicador]);
             if(Integer.parseInt(args[parametroAtaque1 + multiplicador]) == 0){
 //                System.out.println("Ataque1 não informado");
             }else{
                 ataque1 = listaAtaques.get(Integer.parseInt(args[parametroAtaque1 + multiplicador]));
-                pokemon.setAtaque1(ataque1);
             }
             if(Integer.parseInt(args[parametroAtaque2 + multiplicador]) == 0){
 //                System.out.println("Ataque2 não informado");
             }else{
                 ataque2 = listaAtaques.get(Integer.parseInt(args[parametroAtaque2 + multiplicador]));
-                pokemon.setAtaque2(ataque2);
             }   
             if(Integer.parseInt(args[parametroAtaque3 + multiplicador]) == 0){
 //                System.out.println("Ataque3 não informado");
             }else{
                 ataque3 = listaAtaques.get(Integer.parseInt(args[parametroAtaque3 + multiplicador]));
-                pokemon.setAtaque3(ataque3);
             }
             if(Integer.parseInt(args[parametroAtaque4 + multiplicador]) == 0){
 //                System.out.println("Ataque4 não informado");
             }else{
                ataque4 = listaAtaques.get(Integer.parseInt(args[parametroAtaque4 + multiplicador])); 
-               pokemon.setAtaque4(ataque4);
             }
-            if(pokemon.getAtaque1() == null && pokemon.getAtaque2() == null && pokemon.getAtaque3() == null && pokemon.getAtaque4() == null){
-                System.out.println("Pokemon sem ataque!");
-                return jogador;
-            }
+//            if(ataque1 == null && pokemon.getAtaque2() == null && pokemon.getAtaque3() == null && pokemon.getAtaque4() == null){
+//                System.out.println("Pokemon sem ataque!");
+//                return jogador;
+//            }
+            pokemon = new Pokemon(level, especie, ataque1, ataque2, ataque3, ataque4);
             time.setPokemon(pokemon);
-            System.out.println("Time: "+ time);
         }
+        System.out.println("Time: "+ time);
         jogador.setTime(time);
 //        System.out.println("Jogador: " + jogador);
         return jogador;

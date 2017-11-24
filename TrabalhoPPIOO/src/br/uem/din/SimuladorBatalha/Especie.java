@@ -101,7 +101,8 @@ public class Especie {
     //tooString
     @Override
     public String toString() {
-        return "Especie{" + "id=" + id + ", nome=" + nome + ", tipo1=" + tipo1 + ", tipo2=" + tipo2 + ", baseHp=" + baseHp + ", baseAtk=" + baseAtk + ", baseDef=" + baseDef + ", baseSpe=" + baseSpe + ", baseSpd=" + baseSpd + '}'+"\n";
+        return "Especie{" + "id=" + id + ", nome=" + nome + ", tipo1=" + tipo1 + ", tipo2=" + tipo2 + ", baseHp=" + baseHp + 
+                ", baseAtk=" + baseAtk + ", baseDef=" + baseDef + ", baseSpe=" + baseSpe + ", baseSpd=" + baseSpd + '}';
     }
 
     public Especie(int id, String nome, String stringTipo1, String stringTipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
@@ -126,8 +127,28 @@ public class Especie {
     
 
     //métodos
-    public double calcularAtributo(){
-        int calcularAtributo = 0;
-        return calcularAtributo;
-    }    
+    public double calcularAtributoHpMax(int level){
+        double hpMax = (2*this.baseHp*level)/(100+level+10);
+        return hpMax;
+    }
+    public double calcularAtributoHpAtual(int level){
+            double hpAtual = (2*this.baseHp*level)/(100+level+10);
+            return hpAtual;
+    }
+    public double calcularAtributoAtk(int level){
+            double atk = (2*this.baseAtk*level)/(100+5);
+            return atk;
+    }
+    public double calcularAtributoDef(int level){
+            double def = (2*this.baseDef*level)/(100+5);
+            return def;
+    }
+    public double calcularAtributoSpe(int level){
+            double spe = (2*this.baseSpe*level)/(100+5);
+            return spe;
+    }
+    public double calcularAtributoSpd(int level){
+            double spd = (2*this.baseSpe*level)/(100+5);
+            return spd;
+    }
 }
