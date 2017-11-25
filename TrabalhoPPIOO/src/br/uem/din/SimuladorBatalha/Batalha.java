@@ -39,7 +39,10 @@ public class Batalha {
     static final int PARAMETRO_ATAQUE_3 = 6;
     static final int PARAMETRO_ATAQUE_4 = 7;
     private static final String FILENAME = "C:\\Tabelas.xlsx";
+<<<<<<< HEAD
                                            
+=======
+>>>>>>> 12605a01d565e3d16ee26bc081dcd5a24f3efc6b
 
     public List carregarTabelas(int tabela) {
         //vai carregar as informações dos atributos e informações dos anexos
@@ -192,7 +195,7 @@ public class Batalha {
         return lista;
     }
 
-    public Jogador inicializarJogadores(String[] args, List<Ataque> listaAtaques, List<Especie> listaEspecies) {
+    public Jogador inicializarJogadores(String[] args, int decideJogador, List<Ataque> listaAtaques, List<Especie> listaEspecies) {
         //vai inicializar as informações dos jogadores
         Time time = new Time();
         Jogador jogador = new Jogador();
@@ -202,38 +205,67 @@ public class Batalha {
         Ataque ataque2 = null;
         Ataque ataque3 = null;
         Ataque ataque4 = null;
-        time.setNumeroPokemonsTime(Integer.parseInt(args[1]));
-        for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
-            int level;
-            int multiplicador = (i * 6);
-            especie = listaEspecies.get(Integer.parseInt(args[PARAMETRO_ESPECIE_POKEMON+multiplicador]));
-            level = Integer.parseInt(args[PARAMETRO_LEVEL_POKEMON + multiplicador]);
-            if(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]) == 0){
-//                System.out.println("Ataque1 não informado");
-            }else{
-                ataque1 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]));
+        if(decideJogador == 1){
+            time.setNumeroPokemonsTime(Integer.parseInt(args[PARAMETRO_NUMERO_POKEMONS]));
+            for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
+                int level;
+                int multiplicador = (i * 6);
+                especie = listaEspecies.get(Integer.parseInt(args[PARAMETRO_ESPECIE_POKEMON+multiplicador]));
+                level = Integer.parseInt(args[PARAMETRO_LEVEL_POKEMON + multiplicador]);
+                if(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]) == 0){
+    //                System.out.println("Ataque1 não informado");
+                }else{
+                    ataque1 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]));
+                }
+                if(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]) == 0){
+    //                System.out.println("Ataque2 não informado");
+                }else{
+                    ataque2 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]));
+                }   
+                if(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]) == 0){
+    //                System.out.println("Ataque3 não informado");
+                }else{
+                    ataque3 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]));
+                }
+                if(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador]) == 0){
+    //                System.out.println("Ataque4 não informado");
+                }else{
+                   ataque4 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador])); 
+                }
+                pokemon = new Pokemon(level, especie, ataque1, ataque2, ataque3, ataque4);
+                time.setPokemon(pokemon);
             }
-            if(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]) == 0){
-//                System.out.println("Ataque2 não informado");
-            }else{
-                ataque2 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]));
-            }   
-            if(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]) == 0){
-//                System.out.println("Ataque3 não informado");
-            }else{
-                ataque3 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]));
-            }
-            if(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador]) == 0){
-//                System.out.println("Ataque4 não informado");
-            }else{
-               ataque4 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador])); 
-            }
-//            if(ataque1 == null && pokemon.getAtaque2() == null && pokemon.getAtaque3() == null && pokemon.getAtaque4() == null){
-//                System.out.println("Pokemon sem ataque!");
-//                return jogador;
-//            }
-            pokemon = new Pokemon(level, especie, ataque1, ataque2, ataque3, ataque4);
-            time.setPokemon(pokemon);
+        }else if(decideJogador == 2){
+            int ultimaPosicaoPrimeiroJogador = 37;
+           time.setNumeroPokemonsTime(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_NUMERO_POKEMONS]));
+            for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
+                int level;
+                int multiplicador = (i * 6);
+                especie = listaEspecies.get(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ESPECIE_POKEMON+multiplicador]));
+                level = Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_LEVEL_POKEMON + multiplicador]);
+                if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_1 + multiplicador]) == 0){
+    //                System.out.println("Ataque1 não informado");
+                }else{
+                    ataque1 = listaAtaques.get(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_1 + multiplicador]));
+                }
+                if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_2 + multiplicador]) == 0){
+    //                System.out.println("Ataque2 não informado");
+                }else{
+                    ataque2 = listaAtaques.get(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_2 + multiplicador]));
+                }   
+                if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_3 + multiplicador]) == 0){
+    //                System.out.println("Ataque3 não informado");
+                }else{
+                    ataque3 = listaAtaques.get(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_3 + multiplicador]));
+                }
+                if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_4 + multiplicador]) == 0){
+    //                System.out.println("Ataque4 não informado");
+                }else{
+                   ataque4 = listaAtaques.get(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_ATAQUE_4 + multiplicador])); 
+                }
+                pokemon = new Pokemon(level, especie, ataque1, ataque2, ataque3, ataque4);
+                time.setPokemon(pokemon);
+            } 
         }
         System.out.println("Time: "+ time);
         jogador.setTime(time);

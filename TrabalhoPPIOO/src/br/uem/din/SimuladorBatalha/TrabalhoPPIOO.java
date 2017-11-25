@@ -30,10 +30,7 @@ public class TrabalhoPPIOO {
         Batalha batalha = new Batalha();
         listaAtaques.addAll(batalha.carregarTabelas(1));
         listaEspecies.addAll(batalha.carregarTabelas(0));
-//        System.out.println(listaEspecies);
-//        System.out.println(listaEspecies);
-//        System.out.println(listaAtaques);
-        jogador1 = batalha.inicializarJogadores(args, listaAtaques, listaEspecies);
+        jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
 //        jogador2 = batalha.inicializarJogadores(args, tabelas);        
     }
     
