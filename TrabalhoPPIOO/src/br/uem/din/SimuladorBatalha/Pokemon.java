@@ -213,7 +213,7 @@ public class Pokemon {
     @Override
     public String toString() {
         return "Pokemon{" + "level=" + level + ", hpAtual=" + hpAtual + ", hpMax=" + hpMax + ", atk=" + atk + ", def=" + def + 
-                ", spe=" + spe + ", spd=" + spd + ", modifierAccuracy=" + modifierAccuracy + 
+                ", spe=" + spe + ", spd=" + spd + ",\n modifierAccuracy=" + modifierAccuracy + 
                 ", modifierEvasion=" + modifierEvasion + ", modifierAtk=" + modifierAtk + ", modifierDef=" + modifierDef + 
                 ", modifierSpe=" + modifierSpe + ", modifierSpd=" + modifierSpd + ", confusion=" + confusion + 
                 ", flinch=" + flinch + ", statusPrimario=" + statusPrimario + ",\n especie=" + especie + ",\n ataque1=" + ataque1 +

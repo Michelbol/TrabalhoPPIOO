@@ -12,6 +12,7 @@ import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +32,9 @@ public class TrabalhoPPIOO {
         listaAtaques.addAll(batalha.carregarTabelas(1));
         listaEspecies.addAll(batalha.carregarTabelas(0));
         jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
-//        jogador2 = batalha.inicializarJogadores(args, tabelas);        
+        jogador2 = batalha.inicializarJogadores(args, 2, listaAtaques, listaEspecies);  
+        JOptionPane.showMessageDialog(null, jogador1.getTime().getPokemon1());
+        JOptionPane.showMessageDialog(null, jogador2.getTime().getPokemon1());
     }
     
 }
