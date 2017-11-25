@@ -5,6 +5,8 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
+
 /**
  *
  * @author miche
@@ -18,8 +20,8 @@ public class AtaqueCharge extends Ataque{
     }
     
     @Override
-    public void efeito(){
-        
+    public Status efeito(){
+        return Status.valueOf("BURN");
     }
 
     public AtaqueCharge(int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

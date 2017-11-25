@@ -5,7 +5,10 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
+import br.uem.din.SimuladorBatalha.Pokemon;
+import com.sun.xml.internal.ws.api.message.Packet;
 
 /**
  *
@@ -108,17 +111,35 @@ public class Ataque {
     
     
     //métodos
-    public void efeito(){
-        
+    public Status efeito(){
+        return Status.valueOf("BURN");
     }
-    public void calculoCritico(){
-        
+    public boolean calculoCritico(int spd){
+        double isCritico = spd/512;
+        return false;
     }
     public void calculoAcerto(){
         
     }
-    public void calculoDano(){
+    public void calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente){
+        int spd = 0, L = pokemonUsuario.getLevel(), P = this.power;
+        double A = ((pokemonUsuario.getAtk() < 0) ? 0 : pokemonUsuario.getAtk()), D = pokemonUsuario.getDef();
         
+        if(this.tipo == Tipo.valueOf("None") || this.tipo == Tipo.valueOf("Fighting") || this.tipo == Tipo.valueOf("Flying")
+                || this.tipo == Tipo.valueOf("Poison") || this.tipo == Tipo.valueOf("Ground") || this.tipo == Tipo.valueOf("Rock")
+                || this.tipo == Tipo.valueOf("Bug") || this.tipo == Tipo.valueOf("Ghost") ){
+            A = (pokemonUsuario.getAtk() < 0) ? 0 : pokemonUsuario.getAtk();
+            D = pokemonOponente.getDef();
+        }else if(this.tipo == Tipo.valueOf("Fire") || this.tipo == Tipo.valueOf("Water") || this.tipo == Tipo.valueOf("Electric")
+                || this.tipo == Tipo.valueOf("Grass") || this.tipo == Tipo.valueOf("Ice") || this.tipo == Tipo.valueOf("Psychic")
+                || this.tipo == Tipo.valueOf("Dragon")){
+            A = (pokemonUsuario.getSpe() < 0) ? 0 : pokemonUsuario.getSpe();
+            D = pokemonOponente.getSpe();
+        }else if(calculoCritico(spd)){
+            L *= 2;
+        }else if(efeito() == Status.valueOf("BURN")){
+            A = (A < 0) ? 0 : (A/2);
+        }
     }
     
 }

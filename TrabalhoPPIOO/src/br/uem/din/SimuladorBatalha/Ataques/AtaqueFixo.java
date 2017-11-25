@@ -5,6 +5,8 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
+
 /**
  *
  * @author miche
@@ -27,9 +29,8 @@ public class AtaqueFixo extends Ataque {
                 ", val=" + val + '}' + "\n";
     }
     //métodos
-    @Override
-    public void efeito(){
-        
+    public Status efeito(){
+        return Status.valueOf("BURN");
     }
     //Construtores
     public AtaqueFixo(int val, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

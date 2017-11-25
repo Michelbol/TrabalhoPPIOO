@@ -30,14 +30,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class Batalha {
 
-    static int parametroJogador = 0;
-    static int parametroNumeroPokemons = 1;
-    static int parametroEspeciePokemon = 2;
-    static int parametroLevelPokemon = 3;
-    static int parametroAtaque1 = 4;
-    static int parametroAtaque2 = 5;
-    static int parametroAtaque3 = 6;
-    static int parametroAtaque4 = 7;
+    static final int PARAMETRO_JOGADOR = 0;
+    static final int PARAMETRO_NUMERO_POKEMONS = 1;
+    static final int PARAMETRO_ESPECIE_POKEMON = 2;
+    static final int PARAMETRO_LEVEL_POKEMON = 3;
+    static final int PARAMETRO_ATAQUE_1 = 4;
+    static final int PARAMETRO_ATAQUE_2 = 5;
+    static final int PARAMETRO_ATAQUE_3 = 6;
+    static final int PARAMETRO_ATAQUE_4 = 7;
     private static final String FILENAME = "C:\\Projetos\\Java\\TrabalhoPPIOO\\Tabelas.xlsx";
 
     public List carregarTabelas(int tabela) {
@@ -205,27 +205,27 @@ public class Batalha {
         for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
             int level;
             int multiplicador = (i * 6);
-            especie = listaEspecies.get(Integer.parseInt(args[parametroEspeciePokemon+multiplicador]));
-            level = Integer.parseInt(args[parametroLevelPokemon + multiplicador]);
-            if(Integer.parseInt(args[parametroAtaque1 + multiplicador]) == 0){
+            especie = listaEspecies.get(Integer.parseInt(args[PARAMETRO_ESPECIE_POKEMON+multiplicador]));
+            level = Integer.parseInt(args[PARAMETRO_LEVEL_POKEMON + multiplicador]);
+            if(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]) == 0){
 //                System.out.println("Ataque1 não informado");
             }else{
-                ataque1 = listaAtaques.get(Integer.parseInt(args[parametroAtaque1 + multiplicador]));
+                ataque1 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_1 + multiplicador]));
             }
-            if(Integer.parseInt(args[parametroAtaque2 + multiplicador]) == 0){
+            if(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]) == 0){
 //                System.out.println("Ataque2 não informado");
             }else{
-                ataque2 = listaAtaques.get(Integer.parseInt(args[parametroAtaque2 + multiplicador]));
+                ataque2 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_2 + multiplicador]));
             }   
-            if(Integer.parseInt(args[parametroAtaque3 + multiplicador]) == 0){
+            if(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]) == 0){
 //                System.out.println("Ataque3 não informado");
             }else{
-                ataque3 = listaAtaques.get(Integer.parseInt(args[parametroAtaque3 + multiplicador]));
+                ataque3 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_3 + multiplicador]));
             }
-            if(Integer.parseInt(args[parametroAtaque4 + multiplicador]) == 0){
+            if(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador]) == 0){
 //                System.out.println("Ataque4 não informado");
             }else{
-               ataque4 = listaAtaques.get(Integer.parseInt(args[parametroAtaque4 + multiplicador])); 
+               ataque4 = listaAtaques.get(Integer.parseInt(args[PARAMETRO_ATAQUE_4 + multiplicador])); 
             }
 //            if(ataque1 == null && pokemon.getAtaque2() == null && pokemon.getAtaque3() == null && pokemon.getAtaque4() == null){
 //                System.out.println("Pokemon sem ataque!");

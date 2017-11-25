@@ -5,6 +5,8 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
+
 /**
  *
  * @author miche
@@ -46,8 +48,8 @@ public class AtaqueModifier extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(){
-        
+    public Status efeito(){
+        return Status.valueOf("BURN");
     }
     //Construtores
     public AtaqueModifier(String mod, int n, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
