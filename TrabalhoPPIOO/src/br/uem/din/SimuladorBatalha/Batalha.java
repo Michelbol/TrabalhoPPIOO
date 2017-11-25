@@ -39,10 +39,7 @@ public class Batalha {
     static final int PARAMETRO_ATAQUE_3 = 6;
     static final int PARAMETRO_ATAQUE_4 = 7;
     private static final String FILENAME = "C:\\Tabelas.xlsx";
-<<<<<<< HEAD
-                                           
-=======
->>>>>>> 12605a01d565e3d16ee26bc081dcd5a24f3efc6b
+
 
     public List carregarTabelas(int tabela) {
         //vai carregar as informações dos atributos e informações dos anexos
