@@ -40,7 +40,6 @@ public class Batalha {
     static final int PARAMETRO_ATAQUE_4 = 7;
     private static final String FILENAME = "C:\\Tabelas.xlsx";
 
-
     public List carregarTabelas(int tabela) {
         //vai carregar as informações dos atributos e informações dos anexos
         List lista = new ArrayList();
@@ -194,15 +193,16 @@ public class Batalha {
 
     public Jogador inicializarJogadores(String[] args, int decideJogador, List<Ataque> listaAtaques, List<Especie> listaEspecies) {
         //vai inicializar as informações dos jogadores
-        Time time = new Time();
+        Time time = null;
         Jogador jogador = new Jogador();
-        Especie especie = new Especie();
+        Especie especie;
         Pokemon pokemon;
         Ataque ataque1 = null;
         Ataque ataque2 = null;
         Ataque ataque3 = null;
         Ataque ataque4 = null;
         if(decideJogador == 1){
+            time = new Time();
             time.setNumeroPokemonsTime(Integer.parseInt(args[PARAMETRO_NUMERO_POKEMONS]));
             for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
                 int level;
@@ -233,7 +233,8 @@ public class Batalha {
                 time.setPokemon(pokemon);
             }
         }else if(decideJogador == 2){
-            int ultimaPosicaoPrimeiroJogador = 37;
+            time = new Time();
+            int ultimaPosicaoPrimeiroJogador = 38;
            time.setNumeroPokemonsTime(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_NUMERO_POKEMONS]));
             for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
                 int level;
@@ -264,7 +265,6 @@ public class Batalha {
                 time.setPokemon(pokemon);
             } 
         }
-        System.out.println("Time: "+ time);
         jogador.setTime(time);
 //        System.out.println("Jogador: " + jogador);
         return jogador;

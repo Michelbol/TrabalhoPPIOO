@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -114,14 +114,14 @@ public class Ataque {
     public Status efeito(){
         return Status.valueOf("BURN");
     }
-    public boolean calculoCritico(int spd){
-        double isCritico = spd/512;
+    public boolean calculoCritico(Pokemon pokemon){
+        double isCritico = pokemon.getSpd()/512;
         return false;
     }
     public void calculoAcerto(){
         
     }
-    public void calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente){
+    public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente){
         int spd = 0, L = pokemonUsuario.getLevel(), P = this.power;
         double A = ((pokemonUsuario.getAtk() < 0) ? 0 : pokemonUsuario.getAtk()), D = pokemonUsuario.getDef();
         
@@ -135,11 +135,13 @@ public class Ataque {
                 || this.tipo == Tipo.valueOf("Dragon")){
             A = (pokemonUsuario.getSpe() < 0) ? 0 : pokemonUsuario.getSpe();
             D = pokemonOponente.getSpe();
-        }else if(calculoCritico(spd)){
+        }else if(calculoCritico(pokemonUsuario)){
             L *= 2;
         }else if(efeito() == Status.valueOf("BURN")){
             A = (A < 0) ? 0 : (A/2);
         }
+        double dano = (L * A * P / D / 50) + 2;
+        return dano;
     }
     
 }
