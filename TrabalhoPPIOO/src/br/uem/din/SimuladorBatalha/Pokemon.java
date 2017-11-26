@@ -212,14 +212,10 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "level=" + level + ", hpAtual=" + hpAtual + ", hpMax=" + hpMax + ", atk=" + atk + ", def=" + def + 
-                ", spe=" + spe + ", spd=" + spd + ",\n modifierAccuracy=" + modifierAccuracy + 
-                ", modifierEvasion=" + modifierEvasion + ", modifierAtk=" + modifierAtk + ", modifierDef=" + modifierDef + 
-                ", modifierSpe=" + modifierSpe + ", modifierSpd=" + modifierSpd + ", confusion=" + confusion + 
-                ", flinch=" + flinch + ", statusPrimario=" + statusPrimario + ",\n especie=" + especie + ",\n ataque1=" + ataque1 +
-                ",\n ataque2=" + ataque2 + ",\n ataque3=" + ataque3 + ",\n ataque4=" + ataque4 + '}'+ 
-                "\n======================================================================================================";
+        return especie.getNome();
+        
     }
+    
 
     public Pokemon(int level, Especie especie, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
         this.level = level;

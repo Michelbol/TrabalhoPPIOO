@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Jogador;
 
 import br.uem.din.SimuladorBatalha.Pokemon;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,8 @@ public class Time {
     private Pokemon pokemon6;
     //geters
 
+   
+    
     public int getNumeroPokemonsTime() {
         return numeroPokemonsTime;
     }
@@ -38,6 +41,7 @@ public class Time {
         return pokemon3;
     }
 
+    
     public Pokemon getPokemon4() {
         return pokemon4;
     }
@@ -100,5 +104,7 @@ public class Time {
 
     public Time() {
     }
+    
+    
     
 }
