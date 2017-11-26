@@ -12,6 +12,7 @@ import br.uem.din.SimuladorBatalha.Ataques.AtaqueHP;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
+import br.uem.din.SimuladorBatalha.Enum.Tipo;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.Jogador.Time;
 import java.io.File;
@@ -188,7 +189,6 @@ public class Batalha {
                 System.out.println("Erro: " + e.getMessage());
             }
         }else if(tabela == 4){
-            lista.add("Tabela de Ataques");
             try {
                 FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
                 XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
@@ -203,10 +203,115 @@ public class Batalha {
                         switch (cell.getColumnIndex()) {
                             case 0:
                                 try{
-                                    if(cell.getStringCellValue().equals(""));
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 1:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 2:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 3:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 4:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 5:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 6:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 7:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 8:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 9:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 10:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 11:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 12:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 13:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
+                                break;
+                            case 14:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
                                 }catch(Exception e){
                                     
                                 }
+                                break;
+                            case 15:
+                                try{
+                                   lista.add(cell.getNumericCellValue()); 
+                                }catch(Exception e){
+                                    
+                                } 
                                 break;
                         }
                     }
@@ -306,5 +411,17 @@ public class Batalha {
         String primeiroParametro = parametros[nroparametro];
         primeiroParametro = primeiroParametro.replace(" ", "");
         return primeiroParametro;
+    }
+    
+    public double[][] formatArray(List listaMultAtk){
+        double matriz[][] = new double[15][15];
+        int cont = 0;
+            for(int linha = 0; linha<15; linha++){
+                for(int coluna = 0; coluna<15; coluna++){
+                    matriz[linha][coluna] =  (double) listaMultAtk.get((cont));
+                    cont++;
+                }
+            }
+        return matriz;
     }
 }

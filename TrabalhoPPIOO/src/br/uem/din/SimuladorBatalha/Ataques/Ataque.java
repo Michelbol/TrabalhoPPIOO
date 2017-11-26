@@ -9,6 +9,9 @@ import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
 import br.uem.din.SimuladorBatalha.Pokemon;
 import com.sun.xml.internal.ws.api.message.Packet;
+import java.util.Random;
+import java.util.stream.IntStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -105,46 +108,73 @@ public class Ataque {
     public Ataque() {
     }
     public Ataque(String ataque) {
-        System.out.println("Ataque não informado");;
+        System.out.println("Ataque não informado");
     }
-    
-    
     
     //métodos
     public Status efeito(){
-        return Status.valueOf("BURN");
-    }
-    public boolean calculoCritico(Pokemon pokemon){
-        double isCritico = pokemon.getSpd()/512;
-        //não entendi
-        return false;
-    }
-    public void calculoAcerto(){
         
+        return Status.valueOf("OK");
     }
-    public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente){
-        int spd = 0, L = pokemonUsuario.getLevel(), P = this.power;
-        double A = ((pokemonUsuario.getAtk() < 0) ? 0 : pokemonUsuario.getAtk()), D = pokemonUsuario.getDef();
+    public boolean calculoCritico(Double spdUsuario){
+        double isCritico = spdUsuario/512;
+        if(isCritico > Math.random()){
+            JOptionPane.showMessageDialog(null, "Ataque Crítico!!!");
+            return true;
+        }else{
+          return false;  
+        }
+    }
+    
+    public boolean calculoAcerto(Double A, Double E){
+        double isHit = this.accuracy * (A/E);
+        if(isHit > Math.random()){
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "O Ataque falhou!!!");
+          return false;
+        }
+    }
+    
+    public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente, double matriz[][]){
+        int L = pokemonUsuario.getLevel(), P = this.power;
+        double A = 0, D = 0;
         
-        if(this.tipo == Tipo.valueOf("None") || this.tipo == Tipo.valueOf("Fighting") || this.tipo == Tipo.valueOf("Flying")
-                || this.tipo == Tipo.valueOf("Poison") || this.tipo == Tipo.valueOf("Ground") || this.tipo == Tipo.valueOf("Rock")
-                || this.tipo == Tipo.valueOf("Bug") || this.tipo == Tipo.valueOf("Ghost") ){
+        if(this.tipo == Tipo.valueOf("None") 
+                || this.tipo == Tipo.valueOf("Fighting") 
+                || this.tipo == Tipo.valueOf("Flying")
+                || this.tipo == Tipo.valueOf("Poison") 
+                || this.tipo == Tipo.valueOf("Ground") 
+                || this.tipo == Tipo.valueOf("Rock")
+                || this.tipo == Tipo.valueOf("Bug") 
+                || this.tipo == Tipo.valueOf("Ghost") ){
             A = (pokemonUsuario.getAtk() < 0) ? 0 : pokemonUsuario.getAtk();
             D = pokemonOponente.getDef();
-        }else if(this.tipo == Tipo.valueOf("Fire") || this.tipo == Tipo.valueOf("Water") || this.tipo == Tipo.valueOf("Electric")
-                || this.tipo == Tipo.valueOf("Grass") || this.tipo == Tipo.valueOf("Ice") || this.tipo == Tipo.valueOf("Psychic")
+        }else if(this.tipo == Tipo.valueOf("Fire") 
+                || this.tipo == Tipo.valueOf("Water") 
+                || this.tipo == Tipo.valueOf("Electric")
+                || this.tipo == Tipo.valueOf("Grass") 
+                || this.tipo == Tipo.valueOf("Ice") 
+                || this.tipo == Tipo.valueOf("Psychic")
                 || this.tipo == Tipo.valueOf("Dragon")){
             A = (pokemonUsuario.getSpe() < 0) ? 0 : pokemonUsuario.getSpe();
             D = pokemonOponente.getSpe();
-        }else if(calculoCritico(pokemonUsuario)){
+        }
+        if(calculoCritico(pokemonUsuario.getSpd())){
             L *= 2;
-        }else if(efeito() == Status.valueOf("BURN")){
+        }
+        if(efeito() == Status.valueOf("BURN")){
             A = (A < 0) ? 0 : (A/2);
         }
         double dano = (L * A * P / D / 50) + 2;
         if(this.tipo == pokemonUsuario.getEspecie().getTipo1() || this.tipo == pokemonUsuario.getEspecie().getTipo2()){
             dano *= 1.5;
         }
+        dano = dano*matriz[this.tipo.nroEnum-1][pokemonUsuario.getEspecie().getTipo1().nroEnum-1]*matriz[this.tipo.nroEnum-1][pokemonUsuario.getEspecie().getTipo2().nroEnum-1];
+        Random rand = new Random();
+        int R = (rand.nextInt(38)+217);
+        dano = (dano * R)/255;
+        System.out.println("Dano: " + dano);
         return dano;
     }
     
