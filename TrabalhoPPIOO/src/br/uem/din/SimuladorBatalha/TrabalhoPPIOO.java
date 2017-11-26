@@ -5,12 +5,9 @@
  */
 package br.uem.din.SimuladorBatalha;
 
-import br.uem.din.SimuladorBatalha.Ataques.Ataque;
-import br.uem.din.SimuladorBatalha.Ataques.AtaqueCharge;
-import br.uem.din.SimuladorBatalha.Ataques.AtaqueFixo;
+
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -24,8 +21,8 @@ public class TrabalhoPPIOO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Jogador jogador1 = new Jogador();
-        Jogador jogador2 = new Jogador();
+        Jogador jogador1;
+        Jogador jogador2;
         List listaAtaques = new ArrayList();
         List listaEspecies = new ArrayList();
         List listaMultAtk = new ArrayList();
@@ -76,5 +73,4 @@ public class TrabalhoPPIOO {
          }  
         }
     }
-    
 }
