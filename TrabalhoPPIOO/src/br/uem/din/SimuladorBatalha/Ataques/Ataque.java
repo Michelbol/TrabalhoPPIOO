@@ -116,6 +116,7 @@ public class Ataque {
     }
     public boolean calculoCritico(Pokemon pokemon){
         double isCritico = pokemon.getSpd()/512;
+        //não entendi
         return false;
     }
     public void calculoAcerto(){
@@ -141,6 +142,9 @@ public class Ataque {
             A = (A < 0) ? 0 : (A/2);
         }
         double dano = (L * A * P / D / 50) + 2;
+        if(this.tipo == pokemonUsuario.getEspecie().getTipo1() || this.tipo == pokemonUsuario.getEspecie().getTipo2()){
+            dano *= 1.5;
+        }
         return dano;
     }
     

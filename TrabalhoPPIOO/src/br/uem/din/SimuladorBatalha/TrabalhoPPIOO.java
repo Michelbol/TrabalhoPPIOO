@@ -28,9 +28,12 @@ public class TrabalhoPPIOO {
         Jogador jogador2 = new Jogador();
         List listaAtaques = new ArrayList();
         List listaEspecies = new ArrayList();
+        List listaMultAtk = new ArrayList();
         Batalha batalha = new Batalha();
-        listaAtaques.addAll(batalha.carregarTabelas(1));
         listaEspecies.addAll(batalha.carregarTabelas(0));
+        listaAtaques.addAll(batalha.carregarTabelas(1));
+        System.out.println(listaAtaques);
+        listaMultAtk.addAll(batalha.carregarTabelas(4));
         jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
         jogador2 = batalha.inicializarJogadores(args, 2, listaAtaques, listaEspecies);  
         JOptionPane.showMessageDialog(null, jogador1.getTime().getPokemon1());

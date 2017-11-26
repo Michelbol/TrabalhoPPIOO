@@ -187,6 +187,33 @@ public class Batalha {
             } catch (Exception e) {
                 System.out.println("Erro: " + e.getMessage());
             }
+        }else if(tabela == 4){
+            lista.add("Tabela de Ataques");
+            try {
+                FileInputStream arquivo = new FileInputStream(new File(Batalha.FILENAME));
+                XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
+                XSSFSheet sheetAtaques = workbook.getSheetAt(tabela);
+                Iterator<Row> rowIterator = sheetAtaques.iterator();
+
+                while (rowIterator.hasNext()) {
+                    Row row = rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        switch (cell.getColumnIndex()) {
+                            case 0:
+                                try{
+                                    if(cell.getStringCellValue().equals(""));
+                                }catch(Exception e){
+                                    
+                                }
+                                break;
+                        }
+                    }
+                }
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
         }
         return lista;
     }
