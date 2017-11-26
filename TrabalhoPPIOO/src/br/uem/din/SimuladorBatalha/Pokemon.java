@@ -155,27 +155,63 @@ public class Pokemon {
     }
 
     public void setModifierAccuracy(int modifierAccuracy) {
-        this.modifierAccuracy = modifierAccuracy;
+        if(this.modifierAccuracy > 6){
+            this.modifierAccuracy = 6;
+        }else if(this.modifierAccuracy < -6){
+            this.modifierAccuracy = -6;
+        }else{
+           this.modifierAccuracy = modifierAccuracy; 
+        }
     }
 
     public void setModifierEvasion(int modifierEvasion) {
-        this.modifierEvasion = modifierEvasion;
+        if(this.modifierEvasion > 6){
+            this.modifierEvasion = 6;
+        }else if(this.modifierEvasion < -6){
+            this.modifierEvasion = -6;
+        }else{
+           this.modifierEvasion = modifierEvasion; 
+        }
     }
 
     public void setModifierAtk(int modifierAtk) {
-        this.modifierAtk = modifierAtk;
+        if(this.modifierAtk > 6){
+            this.modifierAtk = 6;
+        }else if(this.modifierAtk < -6){
+            this.modifierAtk = -6;
+        }else{
+           this.modifierAtk = modifierAtk; 
+        }
     }
 
     public void setModifierDef(int modifierDef) {
-        this.modifierDef = modifierDef;
+        if(this.modifierDef > 6){
+            this.modifierDef = 6;
+        }else if(this.modifierDef < -6){
+            this.modifierDef = -6;
+        }else{
+           this.modifierDef = modifierDef; 
+        }
     }
 
     public void setModifierSpe(int modifierSpe) {
-        this.modifierSpe = modifierSpe;
+        if(this.modifierSpe > 6){
+            this.modifierSpe = 6;
+        }else if(this.modifierSpe < -6){
+            this.modifierSpe = -6;
+        }else{
+           this.modifierSpe = modifierSpe; 
+        }
     }
 
     public void setModifierSpd(int modifierSpd) {
-        this.modifierSpd = modifierSpd;
+        if(this.modifierSpd > 6){
+            this.modifierSpd = 6;
+        }else if(this.modifierSpd < -6){
+            this.modifierSpd = -6;
+        }else{
+           this.modifierSpd = modifierSpd; 
+        }
     }
 
     public void setConfusion(boolean confusion) {

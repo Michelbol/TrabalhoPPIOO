@@ -8,9 +8,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
 import br.uem.din.SimuladorBatalha.Pokemon;
-import com.sun.xml.internal.ws.api.message.Packet;
 import java.util.Random;
-import java.util.stream.IntStream;
 import javax.swing.JOptionPane;
 
 /**
@@ -112,9 +110,8 @@ public class Ataque {
     }
     
     //métodos
-    public Status efeito(){
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
         
-        return Status.valueOf("OK");
     }
     public boolean calculoCritico(Double spdUsuario){
         double isCritico = spdUsuario/512;
@@ -163,7 +160,7 @@ public class Ataque {
         if(calculoCritico(pokemonUsuario.getSpd())){
             L *= 2;
         }
-        if(efeito() == Status.valueOf("BURN")){
+        if(pokemonUsuario.getStatusPrimario() == Status.valueOf("BURN")){
             A = (A < 0) ? 0 : (A/2);
         }
         double dano = (L * A * P / D / 50) + 2;

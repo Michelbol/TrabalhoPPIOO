@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import br.uem.din.SimuladorBatalha.Pokemon;
 
 /**
  *
@@ -48,8 +49,55 @@ public class AtaqueModifier extends Ataque {
     }
     //métodos
     @Override
-    public Status efeito(){
-        return Status.valueOf("BURN");
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
+        int hasEfeito = (this.chance/100);
+        
+        if(hasEfeito > Math.random()){
+            switch (this.mod) {
+            case "Accuracy":
+                if(this.n > 0){
+                    pokemonUsuario.setModifierAccuracy(this.n);
+                }else{
+                  pokemonOponente.setModifierAccuracy(this.n);  
+                }
+                break;
+            case "Evasion":
+                if(this.n > 0){
+                    pokemonUsuario.setModifierEvasion(this.n);
+                }else{
+                    pokemonOponente.setModifierEvasion(this.n);
+                }
+                break;
+            case "ATK":
+                if(this.n > 0){
+                  pokemonUsuario.setModifierAtk(this.n);
+                }else{
+                  pokemonOponente.setModifierAtk(this.n);  
+                }
+                break;
+            case "DEF":
+                if(this.n > 0){
+                    pokemonUsuario.setModifierDef(this.n);
+                }else{
+                  pokemonOponente.setModifierDef(this.n);  
+                }
+                break;
+            case "SPE":
+                if(this.n > 0){
+                    pokemonUsuario.setModifierSpe(this.n);
+                }else{
+                    pokemonOponente.setModifierSpe(this.n);
+                }
+                break;
+            case "SPD":
+                if(this.n > 0){
+                    pokemonUsuario.setModifierSpd(this.n);
+                }else{
+                    pokemonOponente.setModifierSpd(this.n);
+                }
+                break;
+            }
+        }
     }
     //Construtores
     public AtaqueModifier(String mod, int n, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

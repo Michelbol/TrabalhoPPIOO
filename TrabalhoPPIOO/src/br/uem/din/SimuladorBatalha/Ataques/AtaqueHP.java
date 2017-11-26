@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import br.uem.din.SimuladorBatalha.Pokemon;
 
 /**
  *
@@ -40,8 +41,8 @@ public class AtaqueHP extends Ataque {
     }
     //métodos
     @Override
-    public Status efeito(){
-        return Status.valueOf("BURN");
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
+        
     }
 
     public AtaqueHP(int valor, int porcentagem, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
