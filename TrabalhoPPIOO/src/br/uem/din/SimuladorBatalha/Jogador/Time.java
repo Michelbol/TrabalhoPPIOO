@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha.Jogador;
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Pokemon;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -58,6 +59,32 @@ public class Time {
     public void setNumeroPokemonsTime(int numeroPokemonsTime) {
         this.numeroPokemonsTime = numeroPokemonsTime;
     }
+
+    public void setPokemon1(Pokemon pokemon1) {
+        this.pokemon1 = pokemon1;
+    }
+
+    public void setPokemon2(Pokemon pokemon2) {
+        this.pokemon2 = pokemon2;
+    }
+
+    public void setPokemon3(Pokemon pokemon3) {
+        this.pokemon3 = pokemon3;
+    }
+
+    public void setPokemon4(Pokemon pokemon4) {
+        this.pokemon4 = pokemon4;
+    }
+
+    public void setPokemon5(Pokemon pokemon5) {
+        this.pokemon5 = pokemon5;
+    }
+
+    public void setPokemon6(Pokemon pokemon6) {
+        this.pokemon6 = pokemon6;
+    }
+    
+ 
     
     public void setPokemon(Pokemon pokemon) {
         //verificar se existe cada pokemon e inserir pokemon caso exista alguma vaga
@@ -104,6 +131,7 @@ public class Time {
 
     public Time() {
     }
+    
     
     
     

@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha;
 
 
+import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,30 +35,52 @@ public class TrabalhoPPIOO {
         jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
         jogador2 = batalha.inicializarJogadores(args, 2, listaAtaques, listaEspecies);
         jogador1.getTime().getPokemon1().getAtaque1().calculoDano(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz);
+       
+        int rodada=1;
+        while(1==1){
+             JOptionPane.showMessageDialog(null,"Rodada"+rodada);
+            
+            
+            if(rodada%2==1){
+                JOptionPane.showMessageDialog(null,"É a vez do jogador 1");
+                jogando(jogador1);
 
-        String[] opcoes = {"Trocar Pokemon", "Atacar"};
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"É a vez do jogador 2");
+                jogando(jogador2);
+
+            }
+           
+            
+            rodada++;
+        }
+    }
+
+    private static void jogando(Jogador jogador) {
+ String[] opcoes = {"Trocar Pokemon", "Atacar"};
         int escolhido = JOptionPane.showOptionDialog(null, "Escolha sua jogada", "Titulo da Janela",
         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-        JOptionPane.showMessageDialog(null, escolhido);
         if(escolhido==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
             //JOPTION PANES PARA TROCA DE POKEMON
             
-          Pokemon PokemonEscolhido = (Pokemon) JOptionPane.showInputDialog(null, "Escolha um Pokemon que vai entrar no lugar do atual", "",
+          Pokemon PokemonEscolhido = (Pokemon) JOptionPane.showInputDialog(null, "Escolha um Pokemon que vai entrar no lugar do atual\nAtual Pokemon:"+jogador.getTime().getPokemon1().getEspecie().getNome(), "",
           JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Pokemon[] {
-          jogador1.getTime().getPokemon1(),
-          jogador1.getTime().getPokemon2(),
-          jogador1.getTime().getPokemon3(),
-          jogador1.getTime().getPokemon4(),
-          jogador1.getTime().getPokemon5(),
-          jogador1.getTime().getPokemon6()},
+          jogador.getTime().getPokemon2(),
+          jogador.getTime().getPokemon3(),
+          jogador.getTime().getPokemon4(),
+          jogador.getTime().getPokemon5(),
+          jogador.getTime().getPokemon6()},
                        /*parametro que começa selecionado*/
-          jogador1.getTime().getPokemon3().getEspecie().getNome());
-          
+          jogador.getTime().getPokemon1().getEspecie().getNome());
+          if(PokemonEscolhido.getStatusPrimario()!= Status.FAINTED){
+               jogador.trocaPokemon(PokemonEscolhido);
+          }            
         }
         if(escolhido==1){//o botão clicado a  foi referente a atacar .
 //____________________________________________________________________________________________
           //JOPTIONPANE PARA ATACAR
-  Pokemon pokemonQataca = jogador1.getTime().getPokemon1();//representa o pokemon q esta escolhido atualmente
+  Pokemon pokemonQataca = jogador.getTime().getPokemon1();//representa o pokemon q esta escolhido atualmente
 // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
          try{
          String ataqueEscolhido = (String) JOptionPane.showInputDialog(null, "Escolha o ataque q "+pokemonQataca.getEspecie().getNome()+" vai usar", "",
@@ -71,6 +94,6 @@ public class TrabalhoPPIOO {
          }catch(Exception e){
          System.out.print(e.getMessage());
          }  
-        }
-    }
+        }    }
+    
 }
