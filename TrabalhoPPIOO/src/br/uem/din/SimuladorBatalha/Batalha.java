@@ -163,11 +163,12 @@ public class Batalha {
                                         AtaqueFixo ataqueFixo = new AtaqueFixo(val, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
                                         lista.add(ataqueFixo);
                                     } else if (classe.equals("hp")) {
+                                        String primeiroParametro = Parametro(parametros, 0);
                                         String segundoParametro = Parametro(parametros, 1);
                                         double aux = Double.parseDouble(segundoParametro);
                                         aux = aux*100;
                                         int porcentagem = (int) aux;
-                                        AtaqueHP ataqueHp = new AtaqueHP(0, porcentagem, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
+                                        AtaqueHP ataqueHp = new AtaqueHP(primeiroParametro, porcentagem, id, nome, tipo, ppAtual, ppAtual, power, accuracy);
                                         lista.add(ataqueHp);
                                     } else if (classe.equals("modifier")) {
                                         String mod = Parametro(parametros, 0), segundoParametro = Parametro(parametros, 1), terceiroParametro = Parametro(parametros, 2);
