@@ -31,13 +31,13 @@ public class TrabalhoPPIOO {
         listaEspecies.addAll(batalha.carregarTabelas(0));
         listaAtaques.addAll(batalha.carregarTabelas(1));
         listaMultAtk.addAll(batalha.carregarTabelas(4));
+        System.out.println("Lista Ataques: " + listaAtaques);
         double matriz[][] = batalha.formatArray(listaMultAtk);
         jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
         jogador2 = batalha.inicializarJogadores(args, 2, listaAtaques, listaEspecies);
-        jogador1.getTime().getPokemon1().getAtaque1().calculoDano(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz);
-       
+        
         int rodada=1;
-        while(1==1){
+        while(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
              JOptionPane.showMessageDialog(null,"Rodada"+rodada);
             
             
@@ -50,10 +50,13 @@ public class TrabalhoPPIOO {
                 JOptionPane.showMessageDialog(null,"É a vez do jogador 2");
                 jogando(jogador2);
 
-            }
-           
-            
+            }            
             rodada++;
+            if(jogador1.getTime().verificaTime() == false){
+                JOptionPane.showMessageDialog(null, "O Jogador 1 Perdeu!!!!!");
+            }else if(jogador2.getTime().verificaTime() == false){
+                JOptionPane.showMessageDialog(null, "O Jogador 2 Perdeu!!!!!");
+            }
         }
     }
 

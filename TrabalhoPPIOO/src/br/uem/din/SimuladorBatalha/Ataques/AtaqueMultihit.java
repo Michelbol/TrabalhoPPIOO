@@ -7,6 +7,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Pokemon;
+import java.util.Random;
 
 /**
  *
@@ -41,8 +42,19 @@ public class AtaqueMultihit extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
-        
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+      this.setPpAtual(this.getPpAtual()-1);
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+            //calcula dano
+            Random rand = new Random();
+            int intervalo = this.max - this.min;
+            int nroTotAtaques = (rand.nextInt(intervalo)+this.min);
+            int critico = (calculoCritico(pokemonUsuario.getSpd())) ? 2 : 1;
+            for(int contAtaque = 1; contAtaque <= nroTotAtaques; contAtaque++){
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - (calculoDano(pokemonUsuario, pokemonOponente, matriz, true)*critico));
+            }
+        }
+        System.out.println("Errou o ataque!");  
     }
     //Construtores
     public AtaqueMultihit(int min, int max, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

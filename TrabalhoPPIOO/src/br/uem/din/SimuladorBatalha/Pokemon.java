@@ -132,6 +132,10 @@ public class Pokemon {
         }else{
             System.out.println("Vida do pokemon está completa!");
         }
+        if(this.hpAtual <= 0){
+            this.hpAtual = 0;
+            this.statusPrimario = Status.FAINTED;
+        }
     }
 
     public void setHpMax(double hpMax) {

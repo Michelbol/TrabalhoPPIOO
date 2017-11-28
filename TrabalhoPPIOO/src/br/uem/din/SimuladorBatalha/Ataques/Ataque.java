@@ -110,8 +110,13 @@ public class Ataque {
     }
     
     //métodos
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
-        
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+        this.ppAtual = this.ppAtual -1;
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+            //calcula dano
+            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - calculoDano(pokemonUsuario, pokemonOponente, matriz, false));
+        }
+        System.out.println("Errou o ataque!");
     }
     public boolean calculoCritico(Double spdUsuario){
         double isCritico = spdUsuario/512;
@@ -123,8 +128,8 @@ public class Ataque {
         }
     }
     
-    public boolean calculoAcerto(Double A, Double E){
-        double isHit = this.accuracy * (A/E);
+    public boolean calculoAcerto(int modifierAccuracy, int modifierEvasion){
+        double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
         if(isHit > Math.random()){
             return true;
         }else{
@@ -133,7 +138,7 @@ public class Ataque {
         }
     }
     
-    public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente, double matriz[][]){
+    public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente, double matriz[][],boolean isMulthit){
         int L = pokemonUsuario.getLevel(), P = this.power;
         double A = 0, D = 0;
         
@@ -157,7 +162,10 @@ public class Ataque {
             A = (pokemonUsuario.getSpe() < 0) ? 0 : pokemonUsuario.getSpe();
             D = pokemonOponente.getSpe();
         }
-        if(calculoCritico(pokemonUsuario.getSpd())){
+        if(calculoCritico(pokemonUsuario.getSpd()) && isMulthit == false){
+            L *= 2;
+        }
+        if(isMulthit == true){
             L *= 2;
         }
         if(pokemonUsuario.getStatusPrimario() == Status.valueOf("BURN")){

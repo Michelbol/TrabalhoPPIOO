@@ -132,6 +132,19 @@ public class Time {
     public Time() {
     }
     
+    public boolean verificaTime(){
+        if(this.pokemon1.getStatusPrimario() != Status.FAINTED
+                || this.pokemon2.getStatusPrimario() != Status.FAINTED
+                || this.pokemon3.getStatusPrimario() != Status.FAINTED
+                || this.pokemon4.getStatusPrimario() != Status.FAINTED
+                || this.pokemon5.getStatusPrimario() != Status.FAINTED
+                || this.pokemon6.getStatusPrimario() != Status.FAINTED){
+            System.out.println("Este time perdeu!");
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     

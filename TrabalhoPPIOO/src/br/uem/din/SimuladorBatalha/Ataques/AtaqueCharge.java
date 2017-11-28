@@ -21,8 +21,13 @@ public class AtaqueCharge extends Ataque{
     }
     
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente){
-        
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+        this.setPpAtual(this.getPpAtual()-1);
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+            //calcula dano
+            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - calculoDano(pokemonUsuario, pokemonOponente, matriz, false));
+        }
+        System.out.println("Errou o ataque!");
     }
 
     public AtaqueCharge(int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

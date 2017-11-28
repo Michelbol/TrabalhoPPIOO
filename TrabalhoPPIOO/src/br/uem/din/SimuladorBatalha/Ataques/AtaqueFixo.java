@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import br.uem.din.SimuladorBatalha.Pokemon;
 
 /**
  *
@@ -29,8 +30,18 @@ public class AtaqueFixo extends Ataque {
                 ", val=" + val + '}' + "\n";
     }
     //métodos
-    public Status efeito(){
-        return Status.valueOf("BURN");
+     @Override
+    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+        this.setPpAtual(this.getPpAtual()-1);
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+            //calcula dano
+            if(this.val == 0){
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - pokemonUsuario.getLevel());
+            }else{
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - this.val);
+            }
+        }
+        System.out.println("Errou o ataque!");
     }
     //Construtores
     public AtaqueFixo(int val, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {
