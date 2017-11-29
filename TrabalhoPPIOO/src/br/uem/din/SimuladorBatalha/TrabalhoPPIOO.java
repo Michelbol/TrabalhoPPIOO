@@ -32,7 +32,6 @@ public class TrabalhoPPIOO {
         listaEspecies.addAll(batalha.carregarTabelas(0));
         listaAtaques.addAll(batalha.carregarTabelas(1));
         listaMultAtk.addAll(batalha.carregarTabelas(4));
-        System.out.println("Lista Ataques: " + listaAtaques);
         double matriz[][] = batalha.formatArray(listaMultAtk);
         jogador1 = batalha.inicializarJogadores(args, 1, listaAtaques, listaEspecies);
         jogador2 = batalha.inicializarJogadores(args, 2, listaAtaques, listaEspecies);

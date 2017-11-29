@@ -7,8 +7,6 @@ package br.uem.din.SimuladorBatalha.Jogador;
 
 import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Pokemon;
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  *
@@ -35,7 +33,7 @@ public class Jogador {
     }
     public void trocaPokemon(Pokemon pokemon){
         //um dos comandos que o usuário pode escolher é trocar pokemon
-        Pokemon temp=null;
+        Pokemon temp = null;
         if(this.getTime().getPokemon1()== pokemon){
              System.out.println("este pokemon ja é o primeiro");
          }  
@@ -63,22 +61,26 @@ public class Jogador {
     }
     public void usarAtaque(Pokemon pokemonUsuario,Pokemon pokemonOponente,double matriz[][],Ataque ataqueEscolhido){
         if(ataqueEscolhido == this.time.getPokemon1().getAtaque1()){
-            pokemonUsuario.getAtaque1().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            //dentro da função efeito já é calculado o dano do ataque (Y)
+//            pokemonUsuario.getAtaque1().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
             pokemonUsuario.getAtaque1().efeito(pokemonUsuario, pokemonOponente, matriz);
         }
         
         if(ataqueEscolhido == this.time.getPokemon1().getAtaque2()){
-            pokemonUsuario.getAtaque2().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            //dentro da função efeito já é calculado o dano do ataque (Y)
+//            pokemonUsuario.getAtaque2().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
             pokemonUsuario.getAtaque2().efeito(pokemonUsuario, pokemonOponente, matriz);
         }
         
         if(ataqueEscolhido == this.time.getPokemon1().getAtaque3()){
-            pokemonUsuario.getAtaque3().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            //dentro da função efeito já é calculado o dano do ataque (Y)
+//            pokemonUsuario.getAtaque3().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
             pokemonUsuario.getAtaque3().efeito(pokemonUsuario, pokemonOponente, matriz);
         }
         
         if(ataqueEscolhido == this.time.getPokemon1().getAtaque4()){
-            pokemonUsuario.getAtaque4().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            //dentro da função efeito já é calculado o dano do ataque (Y)
+//            pokemonUsuario.getAtaque4().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
             pokemonUsuario.getAtaque4().efeito(pokemonUsuario, pokemonOponente, matriz);
         }
         

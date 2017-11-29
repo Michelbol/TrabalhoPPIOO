@@ -66,28 +66,28 @@ public class Pokemon {
         return spd;
     }
 
-    public int getModifierAccuracy() {
-        return modifierAccuracy;
+    public double getModifierAccuracy() {
+        return calculaModifier(modifierAccuracy);
     }
 
-    public int getModifierEvasion() {
-        return modifierEvasion;
+    public double getModifierEvasion() {
+        return calculaModifier(modifierEvasion);
     }
 
-    public int getModifierAtk() {
-        return modifierAtk;
+    public double getModifierAtk() {
+        return calculaModifier(modifierAtk);
     }
 
-    public int getModifierDef() {
-        return modifierDef;
+    public double getModifierDef() {
+        return calculaModifier(modifierDef);
     }
 
-    public int getModifierSpe() {
-        return modifierSpe;
+    public double getModifierSpe() {
+        return calculaModifier(modifierSpe);
     }
 
-    public int getModifierSpd() {
-        return modifierSpd;
+    public double getModifierSpd() {
+        return calculaModifier(modifierSpd);
     }
 
     public boolean isConfusion() {
@@ -297,5 +297,50 @@ public class Pokemon {
     }
     public double valorAtributoSpd(){       
        return this.spd*(max(2, 2 + this.modifierSpd)/max(2,2-this.modifierSpd));
+    }
+    public double calculaModifier(int modifier){
+        double permodifier = 0;
+        switch (modifier) {
+            case -6:
+                permodifier = 33;
+                break;
+            case -5:
+                permodifier = 37;
+                break;
+            case -4:
+                permodifier = 43;
+                break;
+            case -3:
+                permodifier = 50;
+                break;
+            case -2:
+                permodifier = 60;
+                break;
+            case -1:
+                permodifier = 75;
+                break;
+            case 0:
+                permodifier = 100;
+                break;
+            case 1:
+                permodifier = 133;
+                break;
+            case 2:
+                permodifier = 166;
+                break;
+            case 3:
+                permodifier = 200;
+                break;
+            case 4:
+                permodifier = 233;
+                break;
+            case 5:
+                permodifier = 266;
+                break;
+            case 6:
+                permodifier = 300;
+                break;
+        }
+        return permodifier;
     }
 }

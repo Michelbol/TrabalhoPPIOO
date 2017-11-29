@@ -128,7 +128,7 @@ public class Ataque {
         }
     }
     
-    public boolean calculoAcerto(int modifierAccuracy, int modifierEvasion){
+    public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion){
         double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
         if(isHit > Math.random()){
             return true;
@@ -175,7 +175,7 @@ public class Ataque {
         if(this.tipo == pokemonUsuario.getEspecie().getTipo1() || this.tipo == pokemonUsuario.getEspecie().getTipo2()){
             dano *= 1.5;
         }
-        dano = dano*matriz[this.tipo.nroEnum-1][pokemonUsuario.getEspecie().getTipo1().nroEnum-1]*matriz[this.tipo.nroEnum-1][pokemonUsuario.getEspecie().getTipo2().nroEnum-1];
+        dano = dano*matriz[this.tipo.nroEnum][pokemonUsuario.getEspecie().getTipo1().nroEnum]*matriz[this.tipo.nroEnum][pokemonUsuario.getEspecie().getTipo2().nroEnum];
         Random rand = new Random();
         int R = (rand.nextInt(38)+217);
         dano = (dano * R)/255;

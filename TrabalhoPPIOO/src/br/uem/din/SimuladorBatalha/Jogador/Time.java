@@ -139,9 +139,9 @@ public class Time {
                 || this.pokemon4.getStatusPrimario() != Status.FAINTED
                 || this.pokemon5.getStatusPrimario() != Status.FAINTED
                 || this.pokemon6.getStatusPrimario() != Status.FAINTED){
-            System.out.println("Este time perdeu!");
             return true;
         }else{
+            System.out.println("Este time perdeu!");
             return false;
         }
     }
