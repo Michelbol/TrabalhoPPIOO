@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha.Jogador;
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Pokemon;
 import java.util.Collection;
 import java.util.Collections;
@@ -60,7 +61,28 @@ public class Jogador {
          }  
          
     }
-    public void usarAtaque(){
-        //um dos comandos que o usuário pode escolher vai atacar o outro pokemon
+    public void usarAtaque(Pokemon pokemonUsuario,Pokemon pokemonOponente,double matriz[][],Ataque ataqueEscolhido){
+        if(ataqueEscolhido == this.time.getPokemon1().getAtaque1()){
+            pokemonUsuario.getAtaque1().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            pokemonUsuario.getAtaque1().efeito(pokemonUsuario, pokemonOponente, matriz);
+        }
+        
+        if(ataqueEscolhido == this.time.getPokemon1().getAtaque2()){
+            pokemonUsuario.getAtaque2().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            pokemonUsuario.getAtaque2().efeito(pokemonUsuario, pokemonOponente, matriz);
+        }
+        
+        if(ataqueEscolhido == this.time.getPokemon1().getAtaque3()){
+            pokemonUsuario.getAtaque3().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            pokemonUsuario.getAtaque3().efeito(pokemonUsuario, pokemonOponente, matriz);
+        }
+        
+        if(ataqueEscolhido == this.time.getPokemon1().getAtaque4()){
+            pokemonUsuario.getAtaque4().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
+            pokemonUsuario.getAtaque4().efeito(pokemonUsuario, pokemonOponente, matriz);
+        }
+        
+       
+        
     }
 }

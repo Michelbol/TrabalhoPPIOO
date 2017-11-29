@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha;
 
 
+import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;
@@ -43,12 +44,12 @@ public class TrabalhoPPIOO {
             
             if(rodada%2==1){
                 JOptionPane.showMessageDialog(null,"É a vez do jogador 1");
-                jogando(jogador1);
+                jogando(jogador1,jogador2,matriz);
 
             }
             else{
                 JOptionPane.showMessageDialog(null,"É a vez do jogador 2");
-                jogando(jogador2);
+                jogando(jogador2,jogador1,matriz);
 
             }            
             rodada++;
@@ -60,7 +61,7 @@ public class TrabalhoPPIOO {
         }
     }
 
-    private static void jogando(Jogador jogador) {
+    private static void jogando(Jogador jogador,Jogador nVez,double matriz[][]) {
  String[] opcoes = {"Trocar Pokemon", "Atacar"};
         int escolhido = JOptionPane.showOptionDialog(null, "Escolha sua jogada", "Titulo da Janela",
         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
@@ -85,18 +86,20 @@ public class TrabalhoPPIOO {
           //JOPTIONPANE PARA ATACAR
   Pokemon pokemonQataca = jogador.getTime().getPokemon1();//representa o pokemon q esta escolhido atualmente
 // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-         try{
-         String ataqueEscolhido = (String) JOptionPane.showInputDialog(null, "Escolha o ataque q "+pokemonQataca.getEspecie().getNome()+" vai usar", "",
-          JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new String[] {
-          pokemonQataca.getAtaque1().getNome(),
-          pokemonQataca.getAtaque2().getNome(),
-          pokemonQataca.getAtaque3().getNome(),
-          pokemonQataca.getAtaque4().getNome(),},
+          Ataque ataqueEscolhido = (Ataque) JOptionPane.showInputDialog(null, "Escolha o ataque q "+pokemonQataca.getEspecie().getNome()+" vai usar", "",
+          JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Ataque[] {
+          pokemonQataca.getAtaque1(),
+          pokemonQataca.getAtaque2(),
+          pokemonQataca.getAtaque3(),
+          pokemonQataca.getAtaque4()},
           /*parametro que começa selecionado*/
           pokemonQataca.getAtaque1().getNome());
-         }catch(Exception e){
-         System.out.print(e.getMessage());
-         }  
-        }    }
+         
+         jogador.usarAtaque(jogador.getTime().getPokemon1(), nVez.getTime().getPokemon1(),matriz,ataqueEscolhido);
+         
+         
+         
+        }    
+    }
     
 }
