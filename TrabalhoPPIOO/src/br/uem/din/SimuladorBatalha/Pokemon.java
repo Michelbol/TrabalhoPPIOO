@@ -252,7 +252,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return especie.getNome();
+        return "Nome: "+especie.getNome()+"   HP Atual: "+this.hpAtual;
         
     }
     

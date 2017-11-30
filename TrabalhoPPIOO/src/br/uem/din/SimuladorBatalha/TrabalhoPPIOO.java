@@ -78,14 +78,31 @@ public class TrabalhoPPIOO {
           jogador.getTime().getPokemon1().getEspecie().getNome());
           if(PokemonEscolhido.getStatusPrimario()!= Status.FAINTED){
                jogador.trocaPokemon(PokemonEscolhido);
-          }            
+          }else{
+              JOptionPane.showMessageDialog(null,"Este pokemon já está fora de combate");
+              jogando(jogador, nVez, matriz);
+          }          
         }
-        if(escolhido==1){//o botão clicado a  foi referente a atacar .
+        
 //____________________________________________________________________________________________
-          //JOPTIONPANE PARA ATACAR
+          
+        if(escolhido==1){//o botão clicado a  foi referente a atacar .
+          
+  JOptionPane.showMessageDialog(null,"Status do pokemon do jogador da vez antes da batalaha:\n"
+                                   + "Nome:"+jogador.getTime().getPokemon1().getEspecie().getNome()+"\n"
+                                   + "HP Maximo:"+jogador.getTime().getPokemon1().getHpMax()+"\n"
+                                   + "HP Atual:"+jogador.getTime().getPokemon1().getHpAtual());
+  
+  
+  JOptionPane.showMessageDialog(null,"Status do pokemon do jogador que não esta na vez antes da batalaha:\n"
+                                   + "Nome:"+nVez.getTime().getPokemon1().getEspecie().getNome()+"\n"
+                                   + "HP Maximo:"+nVez.getTime().getPokemon1().getHpMax()+"\n"
+                                   + "HP Atual:"+nVez.getTime().getPokemon1().getHpAtual());
+
+//JOPTIONPANE PARA ATACAR
   Pokemon pokemonQataca = jogador.getTime().getPokemon1();//representa o pokemon q esta escolhido atualmente
 // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-          Ataque ataqueEscolhido = (Ataque) JOptionPane.showInputDialog(null, "Escolha o ataque q "+pokemonQataca.getEspecie().getNome()+" vai usar", "",
+          Ataque ataqueEscolhido = (Ataque) JOptionPane.showInputDialog(null, "Escolha o ataque q "+jogador.getTime().getPokemon1().getEspecie().getNome()+" vai usar para atacar o "+nVez.getTime().getPokemon1().getEspecie().getNome(), "",
           JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Ataque[] {
           pokemonQataca.getAtaque1(),
           pokemonQataca.getAtaque2(),
@@ -93,8 +110,24 @@ public class TrabalhoPPIOO {
           pokemonQataca.getAtaque4()},
           /*parametro que começa selecionado*/
           pokemonQataca.getAtaque1().getNome());
+          
+         if(jogador.getTime().getPokemon1().getStatusPrimario()!= Status.FAINTED){
+              jogador.usarAtaque(jogador.getTime().getPokemon1(), nVez.getTime().getPokemon1(),matriz,ataqueEscolhido);
          
-         jogador.usarAtaque(jogador.getTime().getPokemon1(), nVez.getTime().getPokemon1(),matriz,ataqueEscolhido);
+         JOptionPane.showMessageDialog(null,"Status do pokemon do jogador da vez pós a batalaha:\n"
+                                   + "Nome:"+jogador.getTime().getPokemon1().getEspecie().getNome()+"\n"
+                                   + "HP Maximo:"+jogador.getTime().getPokemon1().getHpMax()+"\n"
+                                   + "HP Atual:"+jogador.getTime().getPokemon1().getHpAtual());
+         
+         JOptionPane.showMessageDialog(null,"Status do pokemon do jogador que não esta na vez pós a batalaha:\n"
+                                   + "Nome:"+jogador.getTime().getPokemon1().getEspecie().getNome()+"\n"
+                                   + "HP Maximo:"+jogador.getTime().getPokemon1().getHpMax()+"\n"
+                                   + "HP Atual:"+jogador.getTime().getPokemon1().getHpAtual());
+         
+         }else{
+              JOptionPane.showMessageDialog(null,"O pokemon que está atacando está fora de combate");
+              jogando(jogador, nVez, matriz);
+          }  
          
          
          
