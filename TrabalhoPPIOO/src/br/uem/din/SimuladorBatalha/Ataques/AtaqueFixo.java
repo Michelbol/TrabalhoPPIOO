@@ -31,17 +31,22 @@ public class AtaqueFixo extends Ataque {
     }
     //métodos
      @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
+        double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
             if(this.val == 0){
-                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - pokemonUsuario.getLevel());
+                dano = pokemonUsuario.getLevel();
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             }else{
-                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - this.val);
+                dano = this.val;
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             }
+        }else{
+            System.out.println("Errou o ataque!");
         }
-        System.out.println("Errou o ataque!");
+        return dano;
     }
     //Construtores
     public AtaqueFixo(int val, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

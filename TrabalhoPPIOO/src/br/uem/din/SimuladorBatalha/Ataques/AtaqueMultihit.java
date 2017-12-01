@@ -42,8 +42,9 @@ public class AtaqueMultihit extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
       this.setPpAtual(this.getPpAtual()-1);
+      double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
             Random rand = new Random();
@@ -51,10 +52,13 @@ public class AtaqueMultihit extends Ataque {
             int nroTotAtaques = (rand.nextInt(intervalo)+this.min);
             int critico = (calculoCritico(pokemonUsuario.getSpd())) ? 2 : 1;
             for(int contAtaque = 1; contAtaque <= nroTotAtaques; contAtaque++){
-                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - (calculoDano(pokemonUsuario, pokemonOponente, matriz, true)*critico));
+                dano = (calculoDano(pokemonUsuario, pokemonOponente, matriz, true)*critico);
+                pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             }
+        }else{
+           System.out.println("Errou o ataque!");   
         }
-        System.out.println("Errou o ataque!");  
+        return dano;
     }
     //Construtores
     public AtaqueMultihit(int min, int max, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

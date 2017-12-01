@@ -12,7 +12,8 @@ package br.uem.din.SimuladorBatalha.Jogador;
 public class Humano extends Jogador {
     
     @Override
-    public void escolherComando(){
+    public int escolherComando(int nroJogador){
+        return 0;
         
     }
 }

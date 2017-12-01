@@ -40,11 +40,13 @@ public class AtaqueStatus extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
+        double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
-            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - calculoDano(pokemonUsuario, pokemonOponente, matriz, false));
+            dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
+            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             double activeEfeito = this.chance/100;
             if(activeEfeito > Math.random()){
                 if(this.status.equals(Status.FAINTED)
@@ -61,8 +63,10 @@ public class AtaqueStatus extends Ataque {
             }else if(this.status.equals("Confusion")){
                 pokemonOponente.setConfusion(true);
             }
+        }else{
+            System.out.println("Errou o ataque!");
         }
-        System.out.println("Errou o ataque!");
+        return dano;
     }
 
     public AtaqueStatus(String status, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

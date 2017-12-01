@@ -49,9 +49,9 @@ public class AtaqueModifier extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         int hasEfeito = (this.chance/100);
-        
+        double dano = 0;
         if(hasEfeito > Math.random()){
             switch (this.mod) {
             case "Accuracy":
@@ -101,9 +101,12 @@ public class AtaqueModifier extends Ataque {
         this.setPpAtual(this.getPpAtual()-1);
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
-            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - calculoDano(pokemonUsuario, pokemonOponente, matriz, false));
+            dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
+            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
+        }else{
+          System.out.println("Errou o ataque!");  
         }
-        System.out.println("Errou o ataque!");
+        return dano;
     }
     //Construtores
     public AtaqueModifier(String mod, int n, int chance, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

@@ -8,6 +8,7 @@ package br.uem.din.SimuladorBatalha;
 import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import static java.lang.Double.max;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -127,7 +128,7 @@ public class Pokemon {
     }
 
     public void setHpAtual(double hpAtual) {
-        if(this.hpAtual < this.hpMax){
+        if(hpAtual < this.hpMax){
             this.hpAtual = hpAtual;
         }else{
             System.out.println("Vida do pokemon está completa!");

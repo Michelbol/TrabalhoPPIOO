@@ -7,6 +7,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
+import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.Pokemon;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -105,19 +106,26 @@ public class Ataque {
 
     public Ataque() {
     }
+    
     public Ataque(String ataque) {
         System.out.println("Ataque não informado");
     }
     
     //métodos
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.ppAtual = this.ppAtual -1;
+        double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
-            pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - calculoDano(pokemonUsuario, pokemonOponente, matriz, false));
+            dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
+            pokemonOponente.setHpAtual((pokemonOponente.getHpAtual() - dano));
+            return dano;
+        }else{
+            System.out.println("Errou o ataque!");
+            return 0;
         }
-        System.out.println("Errou o ataque!");
     }
+    
     public boolean calculoCritico(Double spdUsuario){
         double isCritico = spdUsuario/512;
         if(isCritico > Math.random()){
@@ -129,6 +137,7 @@ public class Ataque {
     }
     
     public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion){
+        System.out.println("Accuracy: " + modifierAccuracy + "\nEvasion: " + modifierEvasion + "\nAccuracy: " + this.accuracy);
         double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
         if(isHit > Math.random()){
             return true;
@@ -182,5 +191,6 @@ public class Ataque {
         System.out.println("Dano: " + dano);
         return dano;
     }
+    
     
 }

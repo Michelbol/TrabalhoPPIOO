@@ -41,20 +41,22 @@ public class AtaqueHP extends Ataque {
     }
     //métodos
     @Override
-    public void efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+    public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
+        double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
-            double dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
+            dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             if(this.valor.equals("dano")){
-                pokemonUsuario.setHpAtual(pokemonUsuario.getHpAtual()+(dano*this.porcentagem));
+                pokemonUsuario.setHpAtual(pokemonUsuario.getHpAtual()+this.porcentagem);
             }else if(this.valor.equals("max_hp")){
                 pokemonUsuario.setHpAtual(pokemonUsuario.getHpAtual()+(pokemonUsuario.getHpMax()*this.porcentagem));
             }
+        }else{
+            System.out.println("Errou o ataque!");
         }
-        System.out.println("Errou o ataque!");
-        
+        return dano;
     }
 
     public AtaqueHP(String valor, int porcentagem, int id, String nome, String tipo, double ppMax, double ppAtual, int power, int accuracy) {

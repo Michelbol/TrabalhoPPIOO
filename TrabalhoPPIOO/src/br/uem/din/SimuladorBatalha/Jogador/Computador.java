@@ -14,7 +14,8 @@ import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 public class Computador extends Jogador {
     
     @Override
-    public void escolherComando(){
+    public int escolherComando(int nroJogador){
+        return 0;
         
     }
 }
