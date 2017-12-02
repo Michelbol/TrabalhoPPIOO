@@ -48,7 +48,7 @@ public class AtaqueMultihit extends Ataque {
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
             //calcula dano
             Random rand = new Random();
-            int intervalo = this.max - this.min;
+            int intervalo = ((this.max - this.min) == 0) ? this.max : (this.max - this.min);
             int nroTotAtaques = (rand.nextInt(intervalo)+this.min);
             int critico = (calculoCritico(pokemonUsuario.getSpd())) ? 2 : 1;
             for(int contAtaque = 1; contAtaque <= nroTotAtaques; contAtaque++){

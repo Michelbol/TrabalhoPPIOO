@@ -6,7 +6,6 @@
 package br.uem.din.SimuladorBatalha;
 
 
-import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import java.util.ArrayList;

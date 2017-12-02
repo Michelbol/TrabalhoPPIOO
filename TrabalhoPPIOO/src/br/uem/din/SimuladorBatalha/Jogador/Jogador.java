@@ -39,12 +39,14 @@ public class Jogador {
         return escolhaJogador;
     }
     public void trocaPokemon(){
+        int troca = 0;
         //um dos comandos que o usuário pode escolher é trocar pokemon
-        while(this.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)){
-            int cont = 0;
-            if(cont > 1){
+        System.out.println("Entrei troca!");
+        while(troca <= 0){
+            if(troca == -1){
                 JOptionPane.showMessageDialog(null, "Você selecionou um pokemon que está com 0.00 de vida escolha outro.");
             }
+            System.out.println("Entrei no while!");
             Pokemon PokemonEscolhido = (Pokemon) JOptionPane.showInputDialog(null, "Escolha um Pokemon que vai entrar no lugar do"
                   + " atual\nAtual Pokemon:"+this.getTime().getPokemon1().getEspecie().getNome(), ""
                   ,JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Pokemon[] {
@@ -52,10 +54,10 @@ public class Jogador {
                         this.getTime().getPokemon3(),
                         this.getTime().getPokemon4(),
                         this.getTime().getPokemon5(),
-                        this.getTime().getPokemon6()
+                        this.getTime().getPokemon6(),
                   },this.getTime().getPokemon1().getEspecie().getNome());
         Pokemon temp = null;
-        if(this.getTime().getPokemon1()== PokemonEscolhido){
+        if(this.getTime().getPokemon1() == PokemonEscolhido){
              System.out.println("este pokemon ja é o primeiro");
          }  
          if(this.getTime().getPokemon2()== PokemonEscolhido){
@@ -86,7 +88,18 @@ public class Jogador {
              System.out.println("Pokemon 1: " + this.getTime().getPokemon1());
              System.out.println("Pokemon 5: " + this.getTime().getPokemon5());
          }
-          cont = 1;
+          if(this.getTime().getPokemon6()== PokemonEscolhido){
+             temp = this.getTime().getPokemon1();
+             this.getTime().setPokemon1(this.getTime().getPokemon6());
+             this.getTime().setPokemon6(temp);
+             System.out.println("Pokemon 1: " + this.getTime().getPokemon1());
+             System.out.println("Pokemon 6: " + this.getTime().getPokemon6());
+         }
+          if(this.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)){
+              troca = -1;
+          }else{
+             troca = 1; 
+          }
         }
     }
     

@@ -469,6 +469,7 @@ public class Batalha {
         //============================inicio jogador 2=====================================================================================
         Ataque ataqueEscolhido2 = null;
         int escolhaJogador2 = jogador2.escolherComando(2);
+        System.out.println("Após Escolher o comando");
         if(escolhaJogador2==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
             //JOPTION PANES PARA TROCA DE POKEMON
                jogador2.trocaPokemon();
@@ -480,15 +481,17 @@ public class Batalha {
         }
         //===================inicio ataques================================================================================================
              //verificar quem deve atacar primeiro//
-        if(escolhaJogador1 == 0){
+        if(escolhaJogador1 == 0 && escolhaJogador2 == 1){
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
-        }else if(escolhaJogador2 == 0){
+        }else if(escolhaJogador2 == 0 && escolhaJogador1 == 1){
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-        }else if(jogador1.getTime().getPokemon1().valorAtributoSpd() > jogador2.getTime().getPokemon1().valorAtributoSpd()){
+        }else if(escolhaJogador1 == 1 
+                && escolhaJogador2 == 1 
+                && jogador1.getTime().getPokemon1().valorAtributoSpd() > jogador2.getTime().getPokemon1().valorAtributoSpd()){
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
@@ -496,7 +499,9 @@ public class Batalha {
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
-        }else{
+        }else if(escolhaJogador1 == 1 
+                && escolhaJogador2 == 1 
+                &&jogador2.getTime().getPokemon1().valorAtributoSpd() > jogador1.getTime().getPokemon1().valorAtributoSpd()){
              JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
@@ -552,7 +557,7 @@ public class Batalha {
             +"\n========================================================"
             + "\nStatus do pokemon do jogador2 antes da batalha:\n"
             + "Nome:"+ jogador2.getTime().getPokemon1().getEspecie().getNome()
-            + " | Level: " + jogador1.getTime().getPokemon1().getLevel() + "\n"
+            + " | Level: " + jogador2.getTime().getPokemon1().getLevel() + "\n"
             + "HP Maximo:"+jogador2.getTime().getPokemon1().getHpMax()+"\n"
             + "HP Atual:"+jogador2.getTime().getPokemon1().getHpAtual()+"\n"
             + "Status Primario: '" + jogador2.getTime().getPokemon1().getStatusPrimario() 
