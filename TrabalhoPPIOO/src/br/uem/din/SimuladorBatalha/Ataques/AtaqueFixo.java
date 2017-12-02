@@ -6,7 +6,7 @@
 package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
-import br.uem.din.SimuladorBatalha.Pokemon;
+import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 
 /**
  *

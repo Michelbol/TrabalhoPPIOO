@@ -6,7 +6,7 @@
 package br.uem.din.SimuladorBatalha.Jogador;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
-import br.uem.din.SimuladorBatalha.Pokemon;
+import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 import javax.swing.JOptionPane;
 
 /**

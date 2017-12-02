@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uem.din.SimuladorBatalha;
+package br.uem.din.SimuladorBatalha.Controladores;
 
 import br.uem.din.SimuladorBatalha.Ataques.Ataque;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueCharge;
@@ -13,8 +13,10 @@ import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import br.uem.din.SimuladorBatalha.pokemon.Especie;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.Jogador.Time;
+import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
