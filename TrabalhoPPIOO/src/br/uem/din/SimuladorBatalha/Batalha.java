@@ -496,7 +496,7 @@ public class Batalha {
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
             if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)) {
-             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 2 precisa de cuidados, escolha outro para por em seu lugar");
+             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 2 está fainted!");
              if(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
                  jogador2.trocaPokemon();
              }else{

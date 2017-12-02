@@ -144,4 +144,8 @@ public class Jogador {
                     pokemonAtacante.getAtaque1().getNome()
                 );
     }
+
+    public void trocaFainted(Pokemon pokemon){
+        
+    }
 }
