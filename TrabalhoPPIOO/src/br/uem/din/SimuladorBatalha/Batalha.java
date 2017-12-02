@@ -495,10 +495,18 @@ public class Batalha {
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-            //verificar se o pokemon do jogador 2 está morto e não deixar ele atacar.
-            JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+            if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)) {
+             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 2 precisa de cuidados, escolha outro para por em seu lugar");
+             if(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
+                 jogador2.trocaPokemon();
+             }else{
+                 return 1;
+             }             
+            }else{
+                JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() 
+                 +" causou " + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz) 
+                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+            }
         }else if(escolhaJogador1 == 1 
                 && escolhaJogador2 == 1 
                 &&jogador2.getTime().getPokemon1().valorAtributoSpd() > jogador1.getTime().getPokemon1().valorAtributoSpd()){
@@ -506,9 +514,14 @@ public class Batalha {
                 + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
              //verificar se o pokemon do jogador 1 está morto e não deixar ele atacar.
-             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)) {
+             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 1 precisa de cuidados, escolha outro para por em seu lugar");
+             jogador1.trocaPokemon();
+            }else{
+             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+            }
         }
 //            jogador2.usarAtaque(jogador2.getTime().getPokemon1(), pokemonOponente.getTime().getPokemon1(),
 //                      matriz,ataqueEscolhido);
