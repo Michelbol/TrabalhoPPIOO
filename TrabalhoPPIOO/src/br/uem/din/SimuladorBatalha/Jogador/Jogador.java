@@ -33,8 +33,9 @@ public class Jogador {
     public int escolherComando(int nroJogador){
         //o jogador vai escolher o comando que será executado.
         String[] opcoes = {"Trocar Pokemon", "Atacar"};
-        int escolhaJogador = JOptionPane.showOptionDialog(null, "É a vez do jogador " + nroJogador +" escolhar sua jogada", "Opções de Batalha",
-        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        int escolhaJogador = JOptionPane.showOptionDialog(null, "É a vez do jogador " + nroJogador 
+                +" escolhar sua jogada", "Opções de Batalha",JOptionPane.YES_NO_CANCEL_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
         return escolhaJogador;
     }
     public void trocaPokemon(){

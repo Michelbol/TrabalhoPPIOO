@@ -128,7 +128,7 @@ public class Pokemon {
     }
 
     public void setHpAtual(double hpAtual) {
-        if(hpAtual < this.hpMax){
+        if(hpAtual <= this.hpMax){
             this.hpAtual = hpAtual;
         }else{
             System.out.println("Vida do pokemon está completa!");

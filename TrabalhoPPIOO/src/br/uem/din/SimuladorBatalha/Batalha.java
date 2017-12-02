@@ -456,7 +456,6 @@ public class Batalha {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
         //==========================inicio jogador1=====================================================================================
         Ataque ataqueEscolhido1 = null;
-        Batalha batalha = new Batalha();
         int escolhaJogador1 = jogador1.escolherComando(1);
         if(escolhaJogador1==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
             //JOPTION PANES PARA TROCA DE POKEMON
@@ -480,36 +479,34 @@ public class Batalha {
             return escolhaJogador2;
         }
         //===================inicio ataques================================================================================================
-        if(jogador2.getTime().getPokemon1().getStatusPrimario()!= Status.FAINTED){
              //verificar quem deve atacar primeiro//
-            if(escolhaJogador1 == 0){
-                JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
-            }else if(escolhaJogador2 == 0){
-                JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-            }else if(jogador1.getTime().getPokemon1().valorAtributoSpd() > jogador2.getTime().getPokemon1().valorAtributoSpd()){
-                JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-                JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
-            }else{
-                 JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
-                 JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                    + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                    + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-            }
+        if(escolhaJogador1 == 0){
+            JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+        }else if(escolhaJogador2 == 0){
+            JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+        }else if(jogador1.getTime().getPokemon1().valorAtributoSpd() > jogador2.getTime().getPokemon1().valorAtributoSpd()){
+            JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+            //verificar se o pokemon do jogador 2 está morto e não deixar ele atacar.
+            JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+        }else{
+             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+             //verificar se o pokemon do jogador 1 está morto e não deixar ele atacar.
+             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
+                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+        }
 //            jogador2.usarAtaque(jogador2.getTime().getPokemon1(), pokemonOponente.getTime().getPokemon1(),
 //                      matriz,ataqueEscolhido);
-         }else{
-            JOptionPane.showMessageDialog(null,"O pokemon que está atacando está fora de combate");
-        }
         return 1;
     }
 
