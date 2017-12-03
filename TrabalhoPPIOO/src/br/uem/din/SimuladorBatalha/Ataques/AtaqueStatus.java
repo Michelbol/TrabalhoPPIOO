@@ -7,6 +7,7 @@ package br.uem.din.SimuladorBatalha.Ataques;
 
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,14 +49,18 @@ public class AtaqueStatus extends Ataque {
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             double activeEfeito = this.chance/100;
+            System.out.println("ActiveEfeito: " + activeEfeito);
+            System.out.println("Math.random:" + Math.random());
+            System.out.println("Status:" + this.status);
             if(activeEfeito > Math.random()){
-                if(this.status.equals(Status.FAINTED)
-                        || this.status.equals(Status.BURN)
-                        || this.status.equals(Status.FROZEN)
-                        || this.status.equals(Status.PARALYSIS)
-                        || this.status.equals(Status.POISON)
-                        || this.status.equals(Status.SLEEP)
+                if(this.status.equals(Status.Fainted.name())
+                        || this.status.equals(Status.Burn.name())
+                        || this.status.equals(Status.Frozen.name())
+                        || this.status.equals(Status.Paralysis.name())
+                        || this.status.equals(Status.Poison.name())
+                        || this.status.equals(Status.Sleep.name())
                         ){
+                    JOptionPane.showMessageDialog(null, "O pokemon recebeu status: " + this.status);
                     pokemonOponente.setStatusPrimario(Status.valueOf(this.status));
                 }
             }else if(this.status.equals("Flinch")){

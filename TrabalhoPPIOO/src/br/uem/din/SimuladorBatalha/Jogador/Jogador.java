@@ -6,6 +6,7 @@
 package br.uem.din.SimuladorBatalha.Jogador;
 
 import br.uem.din.SimuladorBatalha.Ataques.Ataque;
+import br.uem.din.SimuladorBatalha.Controladores.View;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 import javax.swing.JOptionPane;
@@ -32,13 +33,11 @@ public class Jogador {
     
     public int escolherComando(int nroJogador){
         //o jogador vai escolher o comando que será executado.
-        String[] opcoes = {"Trocar Pokemon", "Atacar"};
-        int escolhaJogador = JOptionPane.showOptionDialog(null, "É a vez do jogador " + nroJogador 
-                +" escolhar sua jogada", "Opções de Batalha",JOptionPane.YES_NO_CANCEL_OPTION, 
-                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-        return escolhaJogador;
+        View view = new View();
+        return view.viewEscolherComandos(nroJogador);
     }
     public void trocaPokemon(){
+        View view = new View();
         int troca = 0;
         //um dos comandos que o usuário pode escolher é trocar pokemon
         System.out.println("Entrei troca!");
@@ -47,15 +46,7 @@ public class Jogador {
                 JOptionPane.showMessageDialog(null, "Você selecionou um pokemon que está com 0.00 de vida escolha outro.");
             }
             System.out.println("Entrei no while!");
-            Pokemon PokemonEscolhido = (Pokemon) JOptionPane.showInputDialog(null, "Escolha um Pokemon que vai entrar no lugar do"
-                  + " atual\nAtual Pokemon:"+this.getTime().getPokemon1().getEspecie().getNome(), ""
-                  ,JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Pokemon[] {
-                        this.getTime().getPokemon2(),
-                        this.getTime().getPokemon3(),
-                        this.getTime().getPokemon4(),
-                        this.getTime().getPokemon5(),
-                        this.getTime().getPokemon6(),
-                  },this.getTime().getPokemon1().getEspecie().getNome());
+            Pokemon PokemonEscolhido = view.trocaPokemon(this);
         Pokemon temp = null;
         if(this.getTime().getPokemon1() == PokemonEscolhido){
              System.out.println("este pokemon ja é o primeiro");
@@ -95,7 +86,7 @@ public class Jogador {
              System.out.println("Pokemon 1: " + this.getTime().getPokemon1());
              System.out.println("Pokemon 6: " + this.getTime().getPokemon6());
          }
-          if(this.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)){
+          if(this.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
               troca = -1;
           }else{
              troca = 1; 
@@ -127,22 +118,7 @@ public class Jogador {
 //            pokemonUsuario.getAtaque4().calculoDano(pokemonUsuario, pokemonOponente, matriz, true);
             pokemonUsuario.getAtaque4().efeito(pokemonUsuario, pokemonOponente, matriz);
         }
-        
-       
-        
-    }
 
-    public Ataque escolheAtaque(Pokemon pokemonAtacante, String nomePokemonDefensor){
-        return (Ataque) JOptionPane.showInputDialog(null, "Escolha o ataque que "
-                  + pokemonAtacante.getEspecie().getNome()+" vai usar para atacar o "
-                  + nomePokemonDefensor, "",
-                    JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Ataque[] {
-                    pokemonAtacante.getAtaque1(),
-                    pokemonAtacante.getAtaque2(),
-                    pokemonAtacante.getAtaque3(),
-                    pokemonAtacante.getAtaque4()},
-                    pokemonAtacante.getAtaque1().getNome()
-                );
     }
 
     public void trocaFainted(Pokemon pokemon){

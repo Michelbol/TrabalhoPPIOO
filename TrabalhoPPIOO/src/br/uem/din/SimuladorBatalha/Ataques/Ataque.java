@@ -177,7 +177,7 @@ public class Ataque {
         if(isMulthit == true){
             L *= 2;
         }
-        if(pokemonUsuario.getStatusPrimario() == Status.valueOf("BURN")){
+        if(pokemonUsuario.getStatusPrimario() == Status.valueOf("Burn")){
             A = (A < 0) ? 0 : (A/2);
         }
         double dano = (L * A * P / D / 50) + 2;

@@ -10,5 +10,7 @@ package br.uem.din.SimuladorBatalha.Enum;
  * @author miche
  */
 public enum Status {
-    OK, FAINTED, BURN, FROZEN, PARALYSIS, POISON, SLEEP;
+    OK, Fainted, Burn, Frozen, Paralysis, Poison, Sleep;
+    
+  
 }

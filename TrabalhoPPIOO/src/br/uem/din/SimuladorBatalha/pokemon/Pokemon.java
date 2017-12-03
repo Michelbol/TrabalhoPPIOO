@@ -135,7 +135,7 @@ public class Pokemon {
         }
         if(this.hpAtual <= 0){
             this.hpAtual = 0;
-            this.statusPrimario = Status.FAINTED;
+            this.statusPrimario = Status.Fainted;
         }
     }
 

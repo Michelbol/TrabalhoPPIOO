@@ -458,13 +458,14 @@ public class Batalha {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
         //==========================inicio jogador1=====================================================================================
         Ataque ataqueEscolhido1 = null;
+        View view = new View();
         int escolhaJogador1 = jogador1.escolherComando(1);
         if(escolhaJogador1==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
             //JOPTION PANES PARA TROCA DE POKEMON
           jogador1.trocaPokemon();
         }else if(escolhaJogador1==1){//o botão clicado a  foi referente a atacar . 
         // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-          ataqueEscolhido1 = jogador1.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
+          ataqueEscolhido1 = view.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
         }else if(escolhaJogador1 == -1){
             return escolhaJogador1;
         }
@@ -477,7 +478,7 @@ public class Batalha {
                jogador2.trocaPokemon();
         }else if(escolhaJogador2==1){//o botão clicado a  foi referente a atacar . 
         // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-          ataqueEscolhido2 = jogador2.escolheAtaque(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1().getEspecie().getNome());
+          ataqueEscolhido2 = view.escolheAtaque(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1().getEspecie().getNome());
         }else if(escolhaJogador2 == -1){
             return escolhaJogador2;
         }
@@ -497,7 +498,7 @@ public class Batalha {
             JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                 + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
-            if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)) {
+            if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)) {
              JOptionPane.showMessageDialog(null, "O Pokemon do jogador 2 está fainted!");
              if(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
                  jogador2.trocaPokemon();
@@ -516,7 +517,7 @@ public class Batalha {
                 + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
              //verificar se o pokemon do jogador 1 está morto e não deixar ele atacar.
-             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.FAINTED)) {
+             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)) {
              JOptionPane.showMessageDialog(null, "O Pokemon do jogador 1 precisa de cuidados, escolha outro para por em seu lugar");
              jogador1.trocaPokemon();
             }else{
@@ -557,27 +558,5 @@ public class Batalha {
         return matriz;
     }
     
-    public void mensagemInicioBatalha(int rodada, Jogador jogador1, Jogador jogador2){
-        JOptionPane.showMessageDialog(null, "Rodada " + rodada 
-            + "\nPokemons da Batalha: "
-            + "\nStatus do pokemon do jogador1 antes da batalha:\n"
-            +"========================================================\n"
-            + "Nome:"+ jogador1.getTime().getPokemon1().getEspecie().getNome()
-            + " | Level: " + jogador1.getTime().getPokemon1().getLevel() + "\n"
-            + "HP Maximo: " + jogador1.getTime().getPokemon1().getHpMax()+"\n"
-            + "HP Atual: " + jogador1.getTime().getPokemon1().getHpAtual()+"\n"
-            + "Status Primario: '" + jogador1.getTime().getPokemon1().getStatusPrimario() 
-            + "' Está Confuso: " + jogador1.getTime().getPokemon1().isConfusion()
-            + " Está Flich: " + jogador1.getTime().getPokemon1().isFlinch()
-            +"\n========================================================"
-            + "\nStatus do pokemon do jogador2 antes da batalha:\n"
-            + "Nome:"+ jogador2.getTime().getPokemon1().getEspecie().getNome()
-            + " | Level: " + jogador2.getTime().getPokemon1().getLevel() + "\n"
-            + "HP Maximo:"+jogador2.getTime().getPokemon1().getHpMax()+"\n"
-            + "HP Atual:"+jogador2.getTime().getPokemon1().getHpAtual()+"\n"
-            + "Status Primario: '" + jogador2.getTime().getPokemon1().getStatusPrimario() 
-            + "' Está Confuso: " + jogador2.getTime().getPokemon1().isConfusion()
-            + " Está Flich: " + jogador2.getTime().getPokemon1().isFlinch());
-    }
     
 }
