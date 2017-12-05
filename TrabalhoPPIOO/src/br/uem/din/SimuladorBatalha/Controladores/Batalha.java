@@ -456,17 +456,24 @@ public class Batalha {
 
     public int executarTurno(Jogador jogador1, Jogador jogador2, double matriz[][]) {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
+        double dano = 0;
         //==========================inicio jogador1=====================================================================================
         Ataque ataqueEscolhido1 = null;
         View view = new View();
         int escolhaJogador1 = jogador1.escolherComando(1);
         if(escolhaJogador1==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
-            //JOPTION PANES PARA TROCA DE POKEMON
           jogador1.trocaPokemon();
         }else if(escolhaJogador1==1){//o botão clicado a  foi referente a atacar . 
-        // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-          ataqueEscolhido1 = view.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
-        }else if(escolhaJogador1 == -1){
+          int cont = 0;  
+            while(ataqueEscolhido1 == null){
+                if(cont >0){
+                    view.mensagemGenerica("Selecione um ataque válido");
+                }
+            ataqueEscolhido1 = view.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
+            cont =1;
+          }
+        }
+        if(escolhaJogador1 == -1){
             return escolhaJogador1;
         }
         //============================inicio jogador 2=====================================================================================
@@ -477,54 +484,64 @@ public class Batalha {
             //JOPTION PANES PARA TROCA DE POKEMON
                jogador2.trocaPokemon();
         }else if(escolhaJogador2==1){//o botão clicado a  foi referente a atacar . 
-        // SEGUNDO:JOPTIONPANE COM OS ATAQUES DO PKEMON (PENSANDO EU Q O METODO USAR ATAQUE VAI RECEBER UMA STRING)
-          ataqueEscolhido2 = view.escolheAtaque(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1().getEspecie().getNome());
+            int cont = 0;  
+            while(ataqueEscolhido2 == null){
+                if(cont >0){
+                    view.mensagemGenerica("Selecione um ataque válido");
+                }
+            ataqueEscolhido2 = view.escolheAtaque(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1().getEspecie().getNome());
+            cont =1;
+          }
         }else if(escolhaJogador2 == -1){
             return escolhaJogador2;
         }
         //===================inicio ataques================================================================================================
              //verificar quem deve atacar primeiro//
         if(escolhaJogador1 == 0 && escolhaJogador2 == 1){
-            JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+            //jogador1 vai trocar de pokemon --- jogador 2 vai atacar
+            dano = ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz);
+            view.mensagemDano(jogador2, jogador1, dano);
         }else if(escolhaJogador2 == 0 && escolhaJogador1 == 1){
-            JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+            //jogador2 vai trocar de pokemon -- jogador 1 vai atacar
+            dano = ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz);
+            view.mensagemDano(jogador1, jogador2, dano);
         }else if(escolhaJogador1 == 1 
                 && escolhaJogador2 == 1 
                 && jogador1.getTime().getPokemon1().valorAtributoSpd() > jogador2.getTime().getPokemon1().valorAtributoSpd()){
-            JOptionPane.showMessageDialog(null, "O pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome());
+            //os dois vão atacar, mas o pokemon do jogador 1 é mais rápido que o do jogador 2
+            dano = ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz);
+            view.mensagemDano(jogador1, jogador2, dano);
             if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)) {
-             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 2 está fainted!");
-             if(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
-                 jogador2.trocaPokemon();
-             }else{
-                 return 1;
-             }             
+                //o pokemon do jogador 2 está fainted
+                view.mensagemPokemonStatus(Status.Fainted, 2);
+                if(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
+                    jogador2.trocaPokemon();
+                }else{
+                    return 1;
+                }             
             }else{
-                JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() 
-                 +" causou " + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz) 
-                 + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+                //o pokemon 2 está atacando o pokemon do jogador 1
+                dano = ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz);
+                view.mensagemDano(jogador2, jogador1, dano);
             }
         }else if(escolhaJogador1 == 1 
                 && escolhaJogador2 == 1 
                 &&jogador2.getTime().getPokemon1().valorAtributoSpd() > jogador1.getTime().getPokemon1().valorAtributoSpd()){
-             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+            //os dois jogadores vão atacar mas o pokemon do jogador 2 é mais rápido que o pokemon do jogador1 
+            dano = ataqueEscolhido2.efeito(jogador2.getTime().getPokemon1(), jogador1.getTime().getPokemon1(), matriz);
+            view.mensagemDano(jogador2, jogador1, dano);
              //verificar se o pokemon do jogador 1 está morto e não deixar ele atacar.
-             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)) {
-             JOptionPane.showMessageDialog(null, "O Pokemon do jogador 1 precisa de cuidados, escolha outro para por em seu lugar");
-             jogador1.trocaPokemon();
+            if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)) {
+                 view.mensagemPokemonStatus(Status.Fainted, escolhaJogador1);
+                jogador1.trocaPokemon();
             }else{
-             JOptionPane.showMessageDialog(null, "O pokemon " + jogador2.getTime().getPokemon1().getEspecie().getNome() +" causou " 
-                + ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz)
-                + " de dano no pokemon " + jogador1.getTime().getPokemon1().getEspecie().getNome());
+                dano = ataqueEscolhido1.efeito(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1(), matriz);
+                view.mensagemDano(jogador1, jogador2, dano);
             }
+        }
+        if(jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Burn){
+            jogador1.getTime().getPokemon1().setHpAtual(jogador1.getTime().getPokemon1().getHpAtual() - (jogador1.getTime().getPokemon1().getHpAtual()*0.0625)); 
+            view.mensagemGenerica("O pokemon receu dano de burn!");
         }
 //            jogador2.usarAtaque(jogador2.getTime().getPokemon1(), pokemonOponente.getTime().getPokemon1(),
 //                      matriz,ataqueEscolhido);

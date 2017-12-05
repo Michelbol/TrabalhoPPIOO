@@ -344,4 +344,19 @@ public class Pokemon {
         }
         return permodifier;
     }
+
+    public Pokemon verificaStatus(Pokemon pokemon){
+        if(pokemon.statusPrimario.equals(Status.Burn.name())){
+            
+        }else if(pokemon.statusPrimario.equals(Status.Frozen.name())){
+            
+        }else if(pokemon.statusPrimario.equals(Status.Paralysis.name())){
+           
+        }else if(pokemon.statusPrimario.equals(Status.Poison.name())){
+            
+        }else if(pokemon.statusPrimario.equals(Status.Sleep.name())){
+            
+        }
+        return pokemon;
+    }
 }

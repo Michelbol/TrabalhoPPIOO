@@ -104,7 +104,7 @@ public class View {
         return escolhaJogador;
     }
     
-        public Ataque escolheAtaque(Pokemon pokemonAtacante, String nomePokemonDefensor){
+    public Ataque escolheAtaque(Pokemon pokemonAtacante, String nomePokemonDefensor){
         return (Ataque) JOptionPane.showInputDialog(null, "Escolha o ataque que "
                   + pokemonAtacante.getEspecie().getNome()+" vai usar para atacar o "
                   + nomePokemonDefensor, "",
@@ -115,5 +115,15 @@ public class View {
                     pokemonAtacante.getAtaque4()},
                     pokemonAtacante.getAtaque1().getNome()
                 );
+    }
+    public void mensagemDano(Jogador Atacante, Jogador Defensor, Double dano){
+        JOptionPane.showMessageDialog(null, "O pokemon " + Atacante.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+               + dano +" de dano no pokemon " + Defensor.getTime().getPokemon1().getEspecie().getNome());
+    }
+    public void mensagemPokemonStatus(Status status, int jogador){
+        JOptionPane.showMessageDialog(null, "O Pokemon do jogador "+ jogador + " está " + status);
+    }
+    public void mensagemGenerica(String mensagem){
+        JOptionPane.showMessageDialog(null, mensagem);
     }
 }
