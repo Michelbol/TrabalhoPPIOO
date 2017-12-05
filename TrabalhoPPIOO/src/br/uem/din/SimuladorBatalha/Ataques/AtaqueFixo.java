@@ -34,7 +34,7 @@ public class AtaqueFixo extends Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
             //calcula dano
             if(this.val == 0){
                 dano = pokemonUsuario.getLevel();

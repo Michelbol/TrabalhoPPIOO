@@ -115,7 +115,7 @@ public class Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.ppAtual = this.ppAtual -1;
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
             //calcula dano
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual((pokemonOponente.getHpAtual() - dano));
@@ -136,10 +136,20 @@ public class Ataque {
         }
     }
     
-    public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion){
+    public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion, Status status){
         System.out.println("Accuracy: " + modifierAccuracy + "\nEvasion: " + modifierEvasion + "\nAccuracy: " + this.accuracy);
         double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
-        if(isHit > Math.random()){
+        double rand = Math.random()*100;
+        System.out.println("isHit: "+ isHit);
+        System.out.println("random: "+ rand);
+        if(status == Status.Frozen){
+            isHit = 0;
+        }
+        if(status == Status.Paralysis){
+            rand += 25;
+        }
+        System.out.println("random: "+ rand);
+        if(isHit > rand){
             return true;
         }else{
             JOptionPane.showMessageDialog(null, "O Ataque falhou!!!");

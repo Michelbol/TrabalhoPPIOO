@@ -44,14 +44,15 @@ public class AtaqueStatus extends Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
             //calcula dano
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
+            double rand = (Math.random()*100);
             System.out.println("Math.random:" + this.chance);
-            System.out.println("Math.random:" + (Math.random()*100));
+            System.out.println("Math.random:" + rand);
             System.out.println("Status:" + this.status);
-            if(this.chance > (Math.random()*100)){
+            if(this.chance > rand){
                 if(this.status.equals(Status.Fainted.name())
                         || this.status.equals(Status.Burn.name())
                         || this.status.equals(Status.Frozen.name())

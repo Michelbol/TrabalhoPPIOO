@@ -45,7 +45,7 @@ public class AtaqueMultihit extends Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
       this.setPpAtual(this.getPpAtual()-1);
       double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
             //calcula dano
             Random rand = new Random();
             int intervalo = ((this.max - this.min) == 0) ? this.max : (this.max - this.min);
