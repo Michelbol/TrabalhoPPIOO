@@ -24,7 +24,10 @@ public class AtaqueCharge extends Ataque{
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(),
+                pokemonOponente.getModifierEvasion(),
+                pokemonUsuario.getStatusPrimario(),
+                pokemonUsuario.isFlinch())){
             //calcula dano
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);

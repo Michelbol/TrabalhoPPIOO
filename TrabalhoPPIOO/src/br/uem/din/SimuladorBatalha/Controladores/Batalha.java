@@ -547,20 +547,29 @@ public class Batalha {
             jogador2.getTime().getPokemon1().setHpAtual(jogador2.getTime().getPokemon1().getHpAtual() - (jogador2.getTime().getPokemon1().getHpMax()*0.0625)); 
             view.mensagemGenerica("O pokemon do jogador 2 receu dano de burn!");
         }
-        if(jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Sleep){
+        if(jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
+                || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis 
+                || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Sleep 
+                || jogador1.getTime().getPokemon1().isConfusion() == true){
             double rand = Math.random()*100;
             double curado = (jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
                     || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis) ? 10 : 20;
             System.out.println("Curado: " + curado);
             System.out.println("Rand: " + rand);
             if(curado > rand){
+                jogador1.getTime().getPokemon1().setConfusion(false);
                jogador1.getTime().getPokemon1().setStatusPrimario(Status.OK);
                view.mensagemGenerica("O pokemon do jogador 1 está OK!");
             }
         }
-        if(jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis){
-            double rand = Math.random();
-            if(10 > rand*100){
+        if(jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
+                || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis 
+                || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Sleep 
+                || jogador2.getTime().getPokemon1().isConfusion() == true){
+            double rand = Math.random()*100, curado = (jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
+                    || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis) ? 10 : 20;
+            if(curado > rand){
+               jogador2.getTime().getPokemon1().setConfusion(false);
                jogador2.getTime().getPokemon1().setStatusPrimario(Status.OK);
                view.mensagemGenerica("O pokemon do jogador 2 está OK");
             }

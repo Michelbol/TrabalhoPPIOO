@@ -115,10 +115,19 @@ public class Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.ppAtual = this.ppAtual -1;
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(),
+                pokemonOponente.getModifierEvasion(),
+                pokemonUsuario.getStatusPrimario(), pokemonUsuario.isFlinch())){
             //calcula dano
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
-            pokemonOponente.setHpAtual((pokemonOponente.getHpAtual() - dano));
+            if(pokemonUsuario.isConfusion() == true){
+                double rand = Math.random()*100, chance = 50;
+                if(chance > rand){
+                 pokemonUsuario.setHpAtual((pokemonUsuario.getHpAtual() - dano));   
+                }
+            }else{
+                pokemonOponente.setHpAtual((pokemonOponente.getHpAtual() - dano));
+            }
             return dano;
         }else{
             System.out.println("Errou o ataque!");
@@ -136,14 +145,14 @@ public class Ataque {
         }
     }
     
-    public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion, Status status){
+    public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion, Status status, boolean flinch){
         System.out.println("Accuracy: " + modifierAccuracy + "\nEvasion: " + modifierEvasion + "\nAccuracy: " + this.accuracy);
         double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
         double rand = Math.random()*100;
         System.out.println("isHit: "+ isHit);
         System.out.println("random: "+ rand);
-        if(status == Status.Frozen){
-            isHit = 0;
+        if(status == Status.Frozen || status == Status.Sleep || flinch == true){
+            rand = 100;
         }
         if(status == Status.Paralysis){
             rand += 25;

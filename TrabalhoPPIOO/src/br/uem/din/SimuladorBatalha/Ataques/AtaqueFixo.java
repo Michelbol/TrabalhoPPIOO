@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package br.uem.din.SimuladorBatalha.Ataques;
-
-import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 
 /**
@@ -34,7 +32,10 @@ public class AtaqueFixo extends Ataque {
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.setPpAtual(this.getPpAtual()-1);
         double dano = 0;
-        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(), pokemonOponente.getModifierEvasion(), pokemonUsuario.getStatusPrimario())){
+        if(calculoAcerto(pokemonUsuario.getModifierAccuracy(),
+                pokemonOponente.getModifierEvasion(),
+                pokemonUsuario.getStatusPrimario(),
+                pokemonUsuario.isFlinch())){
             //calcula dano
             if(this.val == 0){
                 dano = pokemonUsuario.getLevel();
