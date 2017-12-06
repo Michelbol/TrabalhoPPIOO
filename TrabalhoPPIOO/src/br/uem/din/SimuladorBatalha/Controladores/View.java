@@ -36,12 +36,11 @@ public class View {
         int rodada=1;
         while(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
-                JOptionPane.showMessageDialog(null, "Atenção Jogador1 !!!\nSeu pokemon precisa de cuidados escolha outro para subistitui-lo");
-                jogador1.trocaPokemon();
+                jogador1.trocaFainted();
             }
             if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
                JOptionPane.showMessageDialog(null, "Atenção Jogador2!!!\nSeu pokemon precisa de cuidados escolha outro para subistitui-lo");
-               jogador2.trocaPokemon(); 
+               jogador2.trocaFainted();
             }
             View view = new View();
             view.mensagemInicioBatalha(rodada, jogador1, jogador2);

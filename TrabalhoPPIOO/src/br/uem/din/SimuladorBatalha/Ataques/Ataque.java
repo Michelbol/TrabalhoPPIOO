@@ -5,12 +5,11 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Controladores.View;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.Enum.Tipo;
-import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -108,12 +107,12 @@ public class Ataque {
     }
     
     public Ataque(String ataque) {
-        System.out.println("Ataque não informado");
     }
     
     //métodos
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
         this.ppAtual = this.ppAtual -1;
+        boolean isFainted;
         double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(),
                 pokemonOponente.getModifierEvasion(),
@@ -123,14 +122,15 @@ public class Ataque {
             if(pokemonUsuario.isConfusion() == true){
                 double rand = Math.random()*100, chance = 50;
                 if(chance > rand){
-                 pokemonUsuario.setHpAtual((pokemonUsuario.getHpAtual() - dano));   
+                 pokemonUsuario.setHpAtual((pokemonUsuario.getHpAtual() - dano));
                 }
             }else{
                 pokemonOponente.setHpAtual((pokemonOponente.getHpAtual() - dano));
             }
             return dano;
         }else{
-            System.out.println("Errou o ataque!");
+            View view = new View();
+            view.mensagemGenerica("O ataque falhou!");
             return 0;
         }
     }
@@ -138,7 +138,8 @@ public class Ataque {
     public boolean calculoCritico(Double spdUsuario){
         double isCritico = spdUsuario/512;
         if(isCritico > Math.random()){
-            JOptionPane.showMessageDialog(null, "Ataque Crítico!!!");
+            View view = new View();
+            view.mensagemGenerica("Ataque Crítico!!!");
             return true;
         }else{
           return false;  
@@ -146,22 +147,17 @@ public class Ataque {
     }
     
     public boolean calculoAcerto(double modifierAccuracy, double modifierEvasion, Status status, boolean flinch){
-        System.out.println("Accuracy: " + modifierAccuracy + "\nEvasion: " + modifierEvasion + "\nAccuracy: " + this.accuracy);
         double isHit = this.accuracy * (modifierAccuracy/modifierEvasion);
         double rand = Math.random()*100;
-        System.out.println("isHit: "+ isHit);
-        System.out.println("random: "+ rand);
         if(status == Status.Frozen || status == Status.Sleep || flinch == true){
             rand = 100;
         }
         if(status == Status.Paralysis){
             rand += 25;
         }
-        System.out.println("random: "+ rand);
         if(isHit > rand){
             return true;
         }else{
-            JOptionPane.showMessageDialog(null, "O Ataque falhou!!!");
           return false;
         }
     }
@@ -207,7 +203,6 @@ public class Ataque {
         Random rand = new Random();
         int R = (rand.nextInt(38)+217);
         dano = (dano * R)/255;
-        System.out.println("Dano: " + dano);
         return dano;
     }
     

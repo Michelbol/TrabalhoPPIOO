@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Controladores.View;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 
 /**
@@ -56,7 +57,8 @@ public class AtaqueHP extends Ataque {
                 pokemonUsuario.setHpAtual(pokemonUsuario.getHpAtual()+(pokemonUsuario.getHpMax()*this.porcentagem));
             }
         }else{
-            System.out.println("Errou o ataque!");
+            View view = new View();
+            view.mensagemGenerica("O ataque Falhou!");
         }
         return dano;
     }

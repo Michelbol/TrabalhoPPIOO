@@ -42,6 +42,7 @@ public class AtaqueStatus extends Ataque {
     //métodos
     @Override
     public double efeito(Pokemon pokemonUsuario, Pokemon pokemonOponente,double matriz[][]){
+        View view = new View();
         this.setPpAtual(this.getPpAtual()-1);
         double dano = 0;
         if(calculoAcerto(pokemonUsuario.getModifierAccuracy(),
@@ -51,9 +52,6 @@ public class AtaqueStatus extends Ataque {
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             double rand = (Math.random()*100);
-            System.out.println("Math.random:" + this.chance);
-            System.out.println("Math.random:" + rand);
-            System.out.println("Status:" + this.status);
             if(this.chance > rand){
                 if(this.status.equals(Status.Fainted.name())
                         || this.status.equals(Status.Burn.name())
@@ -62,7 +60,7 @@ public class AtaqueStatus extends Ataque {
                         || this.status.equals(Status.Poison.name())
                         || this.status.equals(Status.Sleep.name())
                         ){
-                    View view = new View();
+                    
                     view.mensagemGenerica("O pokemon recebeu o status: " + this.status);
                     pokemonOponente.setStatusPrimario(Status.valueOf(this.status));
                     if(this.status.equals(Status.Fainted.name())){
@@ -75,7 +73,7 @@ public class AtaqueStatus extends Ataque {
                 pokemonOponente.setConfusion(true);
             }
         }else{
-            System.out.println("Errou o ataque!");
+            view.mensagemGenerica("O ataque Falhou!");
         }
         return dano;
     }

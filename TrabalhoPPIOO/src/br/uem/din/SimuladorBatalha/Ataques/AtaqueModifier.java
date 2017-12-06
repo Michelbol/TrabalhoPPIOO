@@ -5,6 +5,7 @@
  */
 package br.uem.din.SimuladorBatalha.Ataques;
 
+import br.uem.din.SimuladorBatalha.Controladores.View;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 
 /**
@@ -106,7 +107,8 @@ public class AtaqueModifier extends Ataque {
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
         }else{
-          System.out.println("Errou o ataque!");  
+          View view = new View();
+          view.mensagemGenerica("O ataque Falhou!");
         }
         return dano;
     }

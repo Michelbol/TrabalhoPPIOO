@@ -5,9 +5,9 @@
  */
 package br.uem.din.SimuladorBatalha.Jogador;
 
+import br.uem.din.SimuladorBatalha.Controladores.View;
 import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,27 +86,22 @@ public class Time {
  
     
     public void setPokemon(Pokemon pokemon) {
+        View view = new View();
         //verificar se existe cada pokemon e inserir pokemon caso exista alguma vaga
             if(this.getPokemon1() == null){
                 this.pokemon1 = pokemon;
-//                System.out.println("Adicionou pokemon1");
             }else if(this.getPokemon2() == null){
                 this.pokemon2 = pokemon;
-//                System.out.println("Adicionou pokemon2");
             }else if(this.getPokemon3() == null){
                 this.pokemon3 = pokemon;
-//                System.out.println("Adicionou pokemon3");
             }else if(this.getPokemon4() == null){
                 this.pokemon4 = pokemon;
-//                System.out.println("Adicionou pokemon4");
             }else if(this.getPokemon5() == null){
                 this.pokemon5 = pokemon;
-//                System.out.println("Adicionou pokemon5");
             }else if(this.getPokemon6() == null){
                 this.pokemon6 = pokemon;
-//                System.out.println("Adicionou pokemon6");
             }else{
-                JOptionPane.showMessageDialog(null, "O time já está cheio!");
+                view.mensagemGenerica("O time já está cheio!");
             } 
     }
 
@@ -140,7 +135,6 @@ public class Time {
                 || this.pokemon6.getStatusPrimario() != Status.Fainted){
             return true;
         }else{
-            System.out.println("Este time perdeu!");
             return false;
         }
     }
