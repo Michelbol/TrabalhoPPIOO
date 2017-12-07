@@ -11,6 +11,7 @@ import br.uem.din.SimuladorBatalha.Enum.Status;
 import br.uem.din.SimuladorBatalha.pokemon.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,50 +36,53 @@ public class Jogador {
     
     public int escolherComando(int nroJogador){
         //o jogador vai escolher o comando que será executado.
-        View view = new View();
-        return view.viewEscolherComandos(nroJogador);
+        return -1;
     }
     
     public void trocaPokemon(){
         View view = new View();
         Pokemon PokemonEscolhido = null;
+        int PokemonEscolhidoMaquina = 0;
         int troca = 0;
         //um dos comandos que o usuário pode escolher é trocar pokemon
         while(troca <= 0){
             if(troca == -1){
-                view.mensagemGenerica("Você selecionou um pokemon que está com 0.00 de vida escolha outro.");
+                view.mensagemGenerica("Você selecionou um pokemon inválido escolha outro.");
             }
-            PokemonEscolhido = view.trocaPokemon(this);
+            if(this.getClass() == Humano.class){
+                PokemonEscolhido = view.trocaPokemon(this);
+            }else if(this.getClass() == Computador.class){
+                Computador computador = (Computador) this;
+                PokemonEscolhidoMaquina = computador.escolhePokemon();
+                view.mensagemGenerica("O computador Trocou de Computador! Agora ele está com o Pokemon: " + PokemonEscolhidoMaquina);
+            }
             Pokemon temp = null;
-            if(this.getTime().getPokemon1() == PokemonEscolhido){
-                view.mensagemGenerica("Este pokemon ja é o primeiro");
-            }  
-            if(this.getTime().getPokemon2()== PokemonEscolhido){
+            if(this.getTime().getPokemon2()== PokemonEscolhido || PokemonEscolhidoMaquina == 2){
                 temp = this.getTime().getPokemon1();
                 this.getTime().setPokemon1(this.getTime().getPokemon2());
                 this.getTime().setPokemon2(temp);
             }  
-            if(this.getTime().getPokemon3()== PokemonEscolhido){
+            if(this.getTime().getPokemon3()== PokemonEscolhido || PokemonEscolhidoMaquina == 3){
                 temp = this.getTime().getPokemon1();
                 this.getTime().setPokemon1(this.getTime().getPokemon3());
                 this.getTime().setPokemon3(temp);
             }  
-            if(this.getTime().getPokemon4()== PokemonEscolhido){
+            if(this.getTime().getPokemon4()== PokemonEscolhido || PokemonEscolhidoMaquina == 4){
                 temp = this.getTime().getPokemon1();
                 this.getTime().setPokemon1(this.getTime().getPokemon4());
                 this.getTime().setPokemon4(temp);
             }  
-            if(this.getTime().getPokemon5()== PokemonEscolhido){
+            if(this.getTime().getPokemon5()== PokemonEscolhido || PokemonEscolhidoMaquina == 5){
                 temp = this.getTime().getPokemon1();
                 this.getTime().setPokemon1(this.getTime().getPokemon5());
                 this.getTime().setPokemon5(temp);
             }
-            if(this.getTime().getPokemon6()== PokemonEscolhido){
+            if(this.getTime().getPokemon6()== PokemonEscolhido || PokemonEscolhidoMaquina == 6){
                 temp = this.getTime().getPokemon1();
                 this.getTime().setPokemon1(this.getTime().getPokemon6());
                 this.getTime().setPokemon6(temp);
             }
-            if(this.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
+            if(this.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted) || PokemonEscolhidoMaquina == 1){
                 troca = -1;
             }else{
                 troca = 1; 

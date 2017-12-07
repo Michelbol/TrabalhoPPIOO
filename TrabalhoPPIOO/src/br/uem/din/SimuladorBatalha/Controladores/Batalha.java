@@ -13,6 +13,8 @@ import br.uem.din.SimuladorBatalha.Ataques.AtaqueModifier;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueMultihit;
 import br.uem.din.SimuladorBatalha.Ataques.AtaqueStatus;
 import br.uem.din.SimuladorBatalha.Enum.Status;
+import br.uem.din.SimuladorBatalha.Jogador.Computador;
+import br.uem.din.SimuladorBatalha.Jogador.Humano;
 import br.uem.din.SimuladorBatalha.pokemon.Especie;
 import br.uem.din.SimuladorBatalha.Jogador.Jogador;
 import br.uem.din.SimuladorBatalha.Jogador.Time;
@@ -377,7 +379,7 @@ public class Batalha {
     public Jogador inicializarJogadores(String[] args, int decideJogador, List<Ataque> listaAtaques, List<Especie> listaEspecies) {
         //vai inicializar as informações dos jogadores
         Time time = null;
-        Jogador jogador = new Jogador();
+        Jogador jogador = null;
         Especie especie;
         Pokemon pokemon;
         Ataque ataque1 = null;
@@ -385,6 +387,11 @@ public class Batalha {
         Ataque ataque3 = null;
         Ataque ataque4 = null;
         if(decideJogador == 1){
+            if(Integer.parseInt(args[PARAMETRO_JOGADOR]) == 1){
+                jogador = new Humano();
+            }else if(Integer.parseInt(args[PARAMETRO_JOGADOR]) == 0){
+                jogador = new Computador();
+            }
             time = new Time();
             time.setNumeroPokemonsTime(Integer.parseInt(args[PARAMETRO_NUMERO_POKEMONS]));
             for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
@@ -418,6 +425,11 @@ public class Batalha {
         }else if(decideJogador == 2){
             time = new Time();
             int ultimaPosicaoPrimeiroJogador = 38;
+            if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_JOGADOR]) == 1){
+                jogador = new Humano();
+            }else if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_JOGADOR]) == 0){
+                jogador = new Computador();
+            }
            time.setNumeroPokemonsTime(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_NUMERO_POKEMONS]));
             for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
                 int level;
@@ -456,10 +468,16 @@ public class Batalha {
     public int executarTurno(Jogador jogador1, Jogador jogador2, double matriz[][]) {
         //Verificar qual jogador vai jogar primeiro e executar a ação que ele definiu e depois executar a açao do próximo jogador  
         double dano = 0;
+        int escolhaJogador1 = -1;
         //==========================inicio jogador1=====================================================================================
         Ataque ataqueEscolhido1 = null;
         View view = new View();
-        int escolhaJogador1 = jogador1.escolherComando(1);
+        if(jogador1.getClass() == Humano.class){
+            escolhaJogador1 = jogador1.escolherComando(1);
+        }else if(jogador1.getClass() == Computador.class){
+            System.out.println("Jogador1: " + jogador1);
+            escolhaJogador1 = jogador1.escolherComando(1);
+        }
         if(escolhaJogador1==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
           jogador1.trocaPokemon();
         }else if(escolhaJogador1==1){//o botão clicado a  foi referente a atacar . 
@@ -468,7 +486,22 @@ public class Batalha {
                 if(cont >0){
                     view.mensagemGenerica("Selecione um ataque válido");
                 }
-            ataqueEscolhido1 = view.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
+            if(jogador1.getClass() == Humano.class){
+                ataqueEscolhido1 = view.escolheAtaque(jogador1.getTime().getPokemon1(), jogador2.getTime().getPokemon1().getEspecie().getNome());
+            }else if(jogador1.getClass() == Computador.class){
+                Computador computador = new Computador();
+                computador = (Computador) jogador1;
+                int ataque = computador.escolhePokemon();
+                if(ataque == 1){
+                   ataqueEscolhido1 = computador.getTime().getPokemon1().getAtaque1(); 
+                }else if(ataque == 2){
+                   ataqueEscolhido1 = computador.getTime().getPokemon1().getAtaque2(); 
+                }else if(ataque == 3){
+                   ataqueEscolhido1 = computador.getTime().getPokemon1().getAtaque3(); 
+                }else if(ataque == 4){
+                   ataqueEscolhido1 = computador.getTime().getPokemon1().getAtaque4(); 
+                }
+            }
             cont =1;
           }
         }
@@ -477,7 +510,14 @@ public class Batalha {
         }
         //============================inicio jogador 2=====================================================================================
         Ataque ataqueEscolhido2 = null;
-        int escolhaJogador2 = jogador2.escolherComando(2);
+        int escolhaJogador2 = -1;
+        if(jogador2.getClass() == Humano.class){
+            System.out.println("Jogador 2 é Humano");
+            escolhaJogador2 = jogador2.escolherComando(2);
+        }else if(jogador2.getClass() == Computador.class){
+            escolhaJogador2 = jogador2.escolherComando(2);
+            System.out.println("Jogador 2 é Computador");
+        }
         if(escolhaJogador2==0){//o botão clicado a cima foi referente a troca de pokemon o JOPtion pane retorno o.
             //JOPTION PANES PARA TROCA DE POKEMON
                jogador2.trocaPokemon();

@@ -5,6 +5,8 @@
  */
 package br.uem.din.SimuladorBatalha.Jogador;
 
+import br.uem.din.SimuladorBatalha.Controladores.View;
+
 /**
  *
  * @author miche
@@ -13,7 +15,7 @@ public class Humano extends Jogador {
     
     @Override
     public int escolherComando(int nroJogador){
-        return 0;
-        
+        View view = new View();
+        return view.viewEscolherComandos(nroJogador);
     }
 }
