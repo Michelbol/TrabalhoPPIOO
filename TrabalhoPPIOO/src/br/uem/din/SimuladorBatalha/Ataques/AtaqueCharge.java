@@ -32,8 +32,7 @@ public class AtaqueCharge extends Ataque{
             dano = calculoDano(pokemonUsuario, pokemonOponente, matriz, false);
             pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
         }else{
-          View view = new View();
-          view.mensagemGenerica("O ataque Falhou!");
+          return 0;
         }
         return dano;
     }

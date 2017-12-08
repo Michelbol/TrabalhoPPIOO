@@ -116,11 +116,16 @@ public class View {
                 );
     }
     public void mensagemDano(Jogador Atacante, Jogador Defensor, Double dano){
-        JOptionPane.showMessageDialog(null, "O pokemon " + Atacante.getTime().getPokemon1().getEspecie().getNome() +" causou " 
+        if(dano != 0){
+            JOptionPane.showMessageDialog(null, "O pokemon " + Atacante.getTime().getPokemon1().getEspecie().getNome() +" causou " 
                + dano +" de dano no pokemon " + Defensor.getTime().getPokemon1().getEspecie().getNome());
+        }else{
+            JOptionPane.showMessageDialog(null, "O ataque Falhou!"+ dano);
+        }   
     }
+    
     public void mensagemPokemonStatus(Status status, int jogador){
-        JOptionPane.showMessageDialog(null, "O Pokemon do jogador "+ jogador + " está " + status);
+        JOptionPane.showMessageDialog(null, "O Pokemon do jogador "+ jogador + " recebeu o status " + status);
     }
     public void mensagemGenerica(String mensagem){
         JOptionPane.showMessageDialog(null, mensagem);

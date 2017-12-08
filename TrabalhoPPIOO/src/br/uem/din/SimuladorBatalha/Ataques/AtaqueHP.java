@@ -57,8 +57,7 @@ public class AtaqueHP extends Ataque {
                 pokemonUsuario.setHpAtual(pokemonUsuario.getHpAtual()+(pokemonUsuario.getHpMax()*this.porcentagem));
             }
         }else{
-            View view = new View();
-            view.mensagemGenerica("O ataque Falhou!");
+            return 0;
         }
         return dano;
     }

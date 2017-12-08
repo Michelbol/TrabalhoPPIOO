@@ -46,8 +46,7 @@ public class AtaqueFixo extends Ataque {
                 pokemonOponente.setHpAtual(pokemonOponente.getHpAtual() - dano);
             }
         }else{
-            View view = new View();
-            view.mensagemGenerica("O ataque Falhou!");
+            return 0;
         }
         return dano;
     }

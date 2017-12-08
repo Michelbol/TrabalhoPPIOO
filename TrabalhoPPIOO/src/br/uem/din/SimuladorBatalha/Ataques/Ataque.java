@@ -129,8 +129,6 @@ public class Ataque {
             }
             return dano;
         }else{
-            View view = new View();
-            view.mensagemGenerica("O ataque falhou!");
             return 0;
         }
     }
@@ -138,8 +136,6 @@ public class Ataque {
     public boolean calculoCritico(Double spdUsuario){
         double isCritico = spdUsuario/512;
         if(isCritico > Math.random()){
-            View view = new View();
-            view.mensagemGenerica("Ataque Crítico!!!");
             return true;
         }else{
           return false;  
@@ -165,6 +161,7 @@ public class Ataque {
     public double calculoDano(Pokemon pokemonUsuario, Pokemon pokemonOponente, double matriz[][],boolean isMulthit){
         int L = pokemonUsuario.getLevel(), P = this.power;
         double A = 0, D = 0;
+        boolean critico = calculoCritico(pokemonUsuario.getSpd());
         
         if(this.tipo == Tipo.valueOf("None") 
                 || this.tipo == Tipo.valueOf("Fighting") 
@@ -186,7 +183,7 @@ public class Ataque {
             A = (pokemonUsuario.getSpe() < 0) ? 0 : pokemonUsuario.getSpe();
             D = pokemonOponente.getSpe();
         }
-        if(calculoCritico(pokemonUsuario.getSpd()) && isMulthit == false){
+        if(critico && isMulthit == false){
             L *= 2;
         }
         if(isMulthit == true){

@@ -73,7 +73,7 @@ public class AtaqueStatus extends Ataque {
                 pokemonOponente.setConfusion(true);
             }
         }else{
-            view.mensagemGenerica("O ataque Falhou!");
+            return 0;
         }
         return dano;
     }
