@@ -113,53 +113,48 @@ public class Jogador {
         Pokemon temp = null;
         int indice=0;
         List<Pokemon> list = new ArrayList();
-        if(this.time.getNumeroPokemonsTime() > 1){
-            if(this.time.getPokemon2() != null && this.time.getPokemon2().getStatusPrimario() != Status.Fainted){
-                temp = this.getTime().getPokemon1();
-                this.getTime().setPokemon1(this.getTime().getPokemon2());
-                this.getTime().setPokemon2(temp); 
-                indice = 1;
-            }else if(this.time.getPokemon3() != null && this.time.getPokemon3().getStatusPrimario() != Status.Fainted){
-                temp = this.getTime().getPokemon1();
-                this.getTime().setPokemon1(this.getTime().getPokemon2());
-                this.getTime().setPokemon3(temp); 
-                indice = 2;
-            }else if(this.time.getPokemon4() != null && this.time.getPokemon4().getStatusPrimario() != Status.Fainted){
-                temp = this.getTime().getPokemon1();
-                this.getTime().setPokemon1(this.getTime().getPokemon2());
-                this.getTime().setPokemon4(temp);
-                indice = 3;
-            }else if(this.time.getPokemon5() != null && this.time.getPokemon5().getStatusPrimario() != Status.Fainted){
-                temp = this.getTime().getPokemon1();
-                this.getTime().setPokemon1(this.getTime().getPokemon2());
-                this.getTime().setPokemon5(temp); 
-                indice = 4;
-            }else if(this.time.getPokemon6() != null && this.time.getPokemon6().getStatusPrimario() != Status.Fainted){
-                temp = this.getTime().getPokemon1();
-                this.getTime().setPokemon1(this.getTime().getPokemon2());
-                this.getTime().setPokemon6(temp); 
-                indice = 5;
-            }
-            list.add(this.time.getPokemon1());
-            list.add(this.time.getPokemon2());
-            list.add(this.time.getPokemon3());
-            list.add(this.time.getPokemon4());
-            list.add(this.time.getPokemon5());
-            list.add(this.time.getPokemon6());
-            System.out.println("Jogador: "+ this);
-            for(int i = indice; i<time.getNumeroPokemonsTime(); i++){
-                int j = i;
-                list.add(i, list.get(j));
-                list.remove(j);
-            }
-            
-            this.getTime().setPokemon1(list.get(0));
-            this.getTime().setPokemon2(list.get(1));
-            this.getTime().setPokemon3(list.get(2));
-            this.getTime().setPokemon4(list.get(3));
-            this.getTime().setPokemon5(list.get(4));
-            this.getTime().setPokemon6(list.get(5));
-           
+        if(this.time.getPokemon2().getStatusPrimario() != Status.Fainted){
+            temp = this.getTime().getPokemon1();
+            this.getTime().setPokemon1(this.getTime().getPokemon2());
+            this.getTime().setPokemon2(temp); 
+            indice = 1;
+        }else if(this.time.getPokemon3().getStatusPrimario() != Status.Fainted){
+            temp = this.getTime().getPokemon1();
+            this.getTime().setPokemon1(this.getTime().getPokemon2());
+            this.getTime().setPokemon3(temp); 
+            indice = 2;
+        }else if(this.time.getPokemon4().getStatusPrimario() != Status.Fainted){
+            temp = this.getTime().getPokemon1();
+            this.getTime().setPokemon1(this.getTime().getPokemon2());
+            this.getTime().setPokemon4(temp);
+            indice = 3;
+        }else if(this.time.getPokemon5().getStatusPrimario() != Status.Fainted){
+            temp = this.getTime().getPokemon1();
+            this.getTime().setPokemon1(this.getTime().getPokemon2());
+            this.getTime().setPokemon5(temp); 
+            indice = 4;
+        }else if(this.time.getPokemon6().getStatusPrimario() != Status.Fainted){
+            temp = this.getTime().getPokemon1();
+            this.getTime().setPokemon1(this.getTime().getPokemon2());
+            this.getTime().setPokemon6(temp); 
+            indice = 5;
         }
+        list.add(this.time.getPokemon1());
+        list.add(this.time.getPokemon2());
+        list.add(this.time.getPokemon3());
+        list.add(this.time.getPokemon4());
+        list.add(this.time.getPokemon5());
+        list.add(this.time.getPokemon6());
+        for(int i = indice; i<5; i++){
+            int j = i+1;
+            list.add(i, list.get(j));
+            list.remove(j+1);
         }
+        this.getTime().setPokemon1(list.get(0));
+        this.getTime().setPokemon2(list.get(1));
+        this.getTime().setPokemon3(list.get(2));
+        this.getTime().setPokemon4(list.get(3));
+        this.getTime().setPokemon5(list.get(4));
+        this.getTime().setPokemon6(list.get(5));
+    }
 }

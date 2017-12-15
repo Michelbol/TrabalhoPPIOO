@@ -394,7 +394,6 @@ public class Batalha {
             }
             time = new Time();
             time.setNumeroPokemonsTime(Integer.parseInt(args[PARAMETRO_NUMERO_POKEMONS]));
-            System.out.println("Nro pokemons: " + time.getNumeroPokemonsTime());
             for (int i = 0; i < time.getNumeroPokemonsTime(); i++) {
                 int level;
                 int multiplicador = (i * 6);
@@ -425,8 +424,7 @@ public class Batalha {
             }
         }else if(decideJogador == 2){
             time = new Time();
-            int ultimaPosicaoPrimeiroJogador = (PARAMETRO_ATAQUE_4 + (time.getNumeroPokemonsTime()*6)+1);
-            System.out.println("Ultimaposicação primeiro jogador: " + ultimaPosicaoPrimeiroJogador);
+            int ultimaPosicaoPrimeiroJogador = 38;
             if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_JOGADOR]) == 1){
                 jogador = new Humano();
             }else if(Integer.parseInt(args[ultimaPosicaoPrimeiroJogador+PARAMETRO_JOGADOR]) == 0){
@@ -580,15 +578,15 @@ public class Batalha {
             jogador1.getTime().getPokemon1().setHpAtual(jogador1.getTime().getPokemon1().getHpAtual() - (jogador1.getTime().getPokemon1().getHpMax()*0.0625)); 
             view.mensagemGenerica("O pokemon  do jogador 1 recebeu "+ danoBurn +" de burn!");
         }
-        if(jogador2.getTime().getPokemon1() != null && jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Burn){
+        if(jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Burn){
             double danoBurn = (jogador2.getTime().getPokemon1().getHpMax()*0.0625);
             jogador2.getTime().getPokemon1().setHpAtual(jogador2.getTime().getPokemon1().getHpAtual() - danoBurn); 
             view.mensagemGenerica("O pokemon do jogador 2 recebeu "+ danoBurn +" de burn!");
         }
-        if(jogador1.getTime().getPokemon1() != null && (jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
+        if(jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
                 || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis 
                 || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Sleep 
-                || jogador1.getTime().getPokemon1().isConfusion() == true)){
+                || jogador1.getTime().getPokemon1().isConfusion() == true){
             double rand = Math.random()*100;
             double curado = (jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
                     || jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis) ? 10 : 20;
@@ -598,10 +596,10 @@ public class Batalha {
                view.mensagemGenerica("O pokemon do jogador 2 foi curado! está com Status OK");
             }
         }
-        if(jogador2.getTime().getPokemon1() != null && (jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
+        if(jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
                 || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis 
                 || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Sleep 
-                || jogador2.getTime().getPokemon1().isConfusion() == true)){
+                || jogador2.getTime().getPokemon1().isConfusion() == true){
             double rand = Math.random()*100, curado = (jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Frozen 
                     || jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Paralysis) ? 10 : 20;
             if(curado > rand){
@@ -615,12 +613,12 @@ public class Batalha {
             jogador1.getTime().getPokemon1().setHpAtual(jogador1.getTime().getPokemon1().getHpAtual() - danoPoison); 
             view.mensagemGenerica("O pokemon  do jogador 1 recebeu " + dano + " de Poison!");
         }
-        if(jogador2.getTime().getPokemon1() != null && jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Poison){
+        if(jogador2.getTime().getPokemon1().getStatusPrimario() == Status.Poison){
             double danoPoison = (jogador2.getTime().getPokemon1().getHpMax()*0.0625);
             jogador2.getTime().getPokemon1().setHpAtual(jogador2.getTime().getPokemon1().getHpAtual() - danoPoison); 
             view.mensagemGenerica("O pokemon do jogador 2 receu " + dano + " de Poison!");
         }
-        if(jogador1.getTime().getPokemon1() != null && jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Fainted){
+        if(jogador1.getTime().getPokemon1().getStatusPrimario() == Status.Fainted){
             jogador1.trocaFainted();
         }
         return 1;

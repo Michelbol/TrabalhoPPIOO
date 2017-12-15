@@ -35,11 +35,10 @@ public class View {
         int sair = 0;
         int rodada=1;
         while(jogador1.getTime().verificaTime() == true && jogador2.getTime().verificaTime() == true){
-            System.out.println("Jogador1: " + jogador1);
             if(jogador1.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
                 jogador1.trocaFainted();
             }
-            if(jogador2.getTime().getPokemon1() != null && jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
+            if(jogador2.getTime().getPokemon1().getStatusPrimario().equals(Status.Fainted)){
                JOptionPane.showMessageDialog(null, "Atenção Jogador2!!!\nSeu pokemon precisa de cuidados escolha outro para subistitui-lo");
                jogador2.trocaFainted();
             }
@@ -62,8 +61,6 @@ public class View {
     }   
     
     public void mensagemInicioBatalha(int rodada, Jogador jogador1, Jogador jogador2){
-        System.out.println("Jogador 1: "+ jogador1);
-        System.out.println("Jogador 2: "+ jogador2);
         JOptionPane.showMessageDialog(null, "Rodada " + rodada 
             + "\nPokemons da Batalha: "
             + "\nStatus do pokemon do jogador1 antes da batalha:\n"
@@ -87,14 +84,6 @@ public class View {
     }
     
     public Pokemon trocaPokemon(Jogador jogador){
-        if(jogador.getTime().getPokemon2() == null &&
-                jogador.getTime().getPokemon3() == null &&
-                jogador.getTime().getPokemon4() == null &&
-                jogador.getTime().getPokemon5() == null &&
-                jogador.getTime().getPokemon6() == null){
-            JOptionPane.showMessageDialog(null, "Você só tem 1 pokemon, impossível trocar");
-            return jogador.getTime().getPokemon1();
-        }else{
         Pokemon pokemon = (Pokemon) JOptionPane.showInputDialog(null, "Escolha um Pokemon que vai entrar no lugar do"
                   + " atual\nAtual Pokemon:"+jogador.getTime().getPokemon1().getEspecie().getNome(), ""
                   ,JOptionPane.QUESTION_MESSAGE, null,/*vetor de opções*/ new Pokemon[] {
@@ -104,8 +93,7 @@ public class View {
                         jogador.getTime().getPokemon5(),
                         jogador.getTime().getPokemon6(),
                   },jogador.getTime().getPokemon1().getEspecie().getNome());
-            return pokemon;
-        }
+        return pokemon;
     }
     public int viewEscolherComandos(int nroJogador){
         String[] opcoes = {"Trocar Pokemon", "Atacar"};

@@ -127,12 +127,12 @@ public class Time {
     }
     
     public boolean verificaTime(){
-        if((this.pokemon1.getStatusPrimario() != Status.Fainted)
-                || (this.pokemon2 != null ? (this.pokemon2.getStatusPrimario() != Status.Fainted) : false)
-                || (this.pokemon3 != null ? (this.pokemon3.getStatusPrimario() != Status.Fainted) : false)
-                || (this.pokemon4 != null ? (this.pokemon4.getStatusPrimario() != Status.Fainted) : false)
-                || (this.pokemon5 != null ? (this.pokemon5.getStatusPrimario() != Status.Fainted) : false)
-                || (this.pokemon6 != null ? (this.pokemon6.getStatusPrimario() != Status.Fainted) : false)){
+        if(this.pokemon1.getStatusPrimario() != Status.Fainted
+                || this.pokemon2.getStatusPrimario() != Status.Fainted
+                || this.pokemon3.getStatusPrimario() != Status.Fainted
+                || this.pokemon4.getStatusPrimario() != Status.Fainted
+                || this.pokemon5.getStatusPrimario() != Status.Fainted
+                || this.pokemon6.getStatusPrimario() != Status.Fainted){
             return true;
         }else{
             return false;
